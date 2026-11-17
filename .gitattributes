@@ -1,0 +1,3 @@
+* text=auto eol=lf
+# Preserve vendored fixtures byte-for-byte, including upstream terminal blank lines.
+tests/fixtures/upstream/** -text whitespace=-blank-at-eof

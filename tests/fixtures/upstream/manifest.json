@@ -1,0 +1,102 @@
+{
+  "repository": "https://github.com/Unleash/client-specification",
+  "revision": "9ef6efa01feabeb699857192ad8106fd7d990235",
+  "files": [
+    {
+      "name": "index.json",
+      "sha256": "fa5f4597a4fcb1c9096b0083faee4f699f55a1c8d2a54ab166ae9b149664ad0f"
+    },
+    {
+      "name": "01-simple-examples.json",
+      "sha256": "4656959ff674b406d9353729585b97ee2732f1e39033dd95c3582878c6245c39"
+    },
+    {
+      "name": "02-user-with-id-strategy.json",
+      "sha256": "3dcbf1383cbeb7b9f76adce83c0ac346e8aa377d51efc7a66994de179e29b7f6"
+    },
+    {
+      "name": "03-gradual-rollout-user-id-strategy.json",
+      "sha256": "0813d4c35e849dd1ceb9ce942fe030d602e5f2a75b00c9a48ba550054b240bd5"
+    },
+    {
+      "name": "04-gradual-rollout-session-id-strategy.json",
+      "sha256": "471e87971b87de0cb8703bdea7f9975957535355d7f18c96c8fb6642303c72b7"
+    },
+    {
+      "name": "05-gradual-rollout-random-strategy.json",
+      "sha256": "0f8ec8e552f92f7901baf39d35b00e99ec4a926668f37bc4ca807f92a0ef8d32"
+    },
+    {
+      "name": "06-remote-address-strategy.json",
+      "sha256": "cad64a90d12d73786afe6083bc41b0ab510e5888b72330eb6dfa7beadec16658"
+    },
+    {
+      "name": "07-multiple-strategies.json",
+      "sha256": "f217e96e40bb61a223b2559b2fc23e57c27eff27be1ff857cd1aa8372664d594"
+    },
+    {
+      "name": "08-variants.json",
+      "sha256": "8dc2cf7173e3f4834e950129dccc6cbe451780e840e50ec0586c8286e5d25596"
+    },
+    {
+      "name": "09-strategy-constraints.json",
+      "sha256": "7b64dfe958e363bf19cc37f0eee63d21a5fec1ddb832e87378cee88b0954354c"
+    },
+    {
+      "name": "10-flexible-rollout-strategy.json",
+      "sha256": "ac4e702cb7b8d9f14d778ef05a53d904f2a209d18854fd4008f59a696fb2c7b7"
+    },
+    {
+      "name": "11-strategy-constraints-edge-cases.json",
+      "sha256": "90fcd55d546b098139e83d361e673f87ff727efd95e44425cc0c1a3d0294272f"
+    },
+    {
+      "name": "12-custom-stickiness.json",
+      "sha256": "0b922149679d6d89769d223fe8a7e5390f53c67c2e75ca5952917795524c893c"
+    },
+    {
+      "name": "13-constraint-operators.json",
+      "sha256": "26f2248de68bd7c34fe5864b63b8aa515af11a163a79dc791b65a94b81b1857b"
+    },
+    {
+      "name": "14-constraint-semver-operators.json",
+      "sha256": "c807fdf6f3235f05574247cb9fe1ebcf3301a582f7df4d136d7e6c0979ffd672"
+    },
+    {
+      "name": "15-global-constraints.json",
+      "sha256": "f08c45c0f9565513c61d54bb7cfd87d0f1290f0e483ff39724e3d030300d2238"
+    },
+    {
+      "name": "16-strategy-variants.json",
+      "sha256": "ecb59e6daea89d465b3b4690d353ecb582be2cb5e9dce3c3b3655b7d08e85a54"
+    },
+    {
+      "name": "17-dependent-features.json",
+      "sha256": "226c4247e3778d8b31f0e1a3c559936bbfcff543a2a735c58a3b017df275edb6"
+    },
+    {
+      "name": "18-utf8-flag-names.json",
+      "sha256": "8de14b320aa82c51731a724b825c19e8fb768ee2e82670f37dfb039ce9412ae1"
+    },
+    {
+      "name": "19-delta-api-hydration.json",
+      "sha256": "f088d22ee95f89950b373d707fac3c369be4fbbbbfac489c19c4969d849be02c"
+    },
+    {
+      "name": "20-delta-api-events.json",
+      "sha256": "7180927cede8e66eaaf4a94eaecc569a8a29499fa33d5be4b40ca3abaf58706d"
+    },
+    {
+      "name": "21-regex-constraint-operators.json",
+      "sha256": "d09cd7e74cccde7733b3e3c980e383f2ac0f1540ee582c011cfb718c38b215e8"
+    },
+    {
+      "name": "22-cidr-constraint-operators.json",
+      "sha256": "0b5920ecf9aadb4ee59fcc2482c285a2c8424b97c246d96d29605b262c659a33"
+    },
+    {
+      "name": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  ]
+}

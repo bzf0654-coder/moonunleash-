@@ -1,0 +1,60 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonunleash/sdk"
+
+import {
+  "moonbitlang/core/debug",
+  "moonbitlang/core/json",
+}
+
+// Values
+
+// Errors
+#derive(@debug.Debug)
+pub(all) suberror ConfigError {
+  Invalid(String)
+  Unsupported(String)
+}
+pub fn ConfigError::message(Self) -> String
+pub fn ConfigError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+pub struct Context {
+  // private fields
+}
+pub fn Context::new(user_id? : String) -> Self
+pub fn Context::parse(String) -> Self raise
+
+#derive(Eq, @debug.Debug)
+pub(all) struct Decision {
+  enabled : Bool
+  reason : String
+}
+pub fn Decision::equal(Self, Self) -> Bool
+pub fn Decision::not_equal(Self, Self) -> Bool
+pub fn Decision::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Payload {
+  kind : String
+  value : String
+}
+
+pub struct Snapshot {
+  // private fields
+}
+pub fn Snapshot::evaluate(Self, String, Context, fallback? : Bool, random? : () -> Double) -> Decision
+pub fn Snapshot::get_variant(Self, String, Context, random? : () -> Double) -> Variant
+pub fn Snapshot::is_enabled(Self, String, Context, fallback? : Bool) -> Bool
+pub fn Snapshot::parse(String) -> Self raise
+pub fn Snapshot::size(Self) -> Int32
+
+pub(all) struct Variant {
+  name : String
+  enabled : Bool
+  feature_enabled : Bool
+  payload : Payload?
+}
+pub fn Variant::to_json(Self) -> @json.Json
+
+// Type aliases
+
+// Traits
