@@ -103,6 +103,28 @@ pub fn Options::new(
 }
 
 ///|
+// Use the streaming connection API shared by the verified toolchain versions.
+// Options already rejects credentials, query, fragment and control characters.
+fn http_target(url : String) -> (String, String) raise @sdk.ConfigError {
+  let (scheme, rest) = match url.split_once("://") {
+    Some(pair) => pair
+    None =>
+      raise @sdk.ConfigError::Invalid("absolute HTTP request URL required")
+  }
+  if scheme != "https" && scheme != "http" {
+    raise @sdk.ConfigError::Invalid("invalid HTTP request scheme")
+  }
+  let (authority, path) = match rest.split_once("/") {
+    Some((authority, path)) => (authority.to_owned(), "/\{path}")
+    None => (rest.to_owned(), "/")
+  }
+  if authority == "" {
+    raise @sdk.ConfigError::Invalid("empty HTTP request authority")
+  }
+  ("\{scheme}://\{authority}", path)
+}
+
+///|
 fn http_transport(options : Options) -> Transport {
   {
     request: async fn(verb, url, body, etag) {
@@ -118,16 +140,10 @@ fn http_transport(options : Options) -> Transport {
       if body is Some(_) {
         headers[@http.CaseInsensitiveString("Content-Type")] = "application/json"
       }
-      let conn = @http.request(
-        if verb == "POST" {
-          Post
-        } else {
-          Get
-        },
-        url,
-        headers~,
-      )
+      let (origin, path) = http_target(url)
+      let conn = @http.ClientConnection(origin, headers~)
       defer conn.close()
+      conn.request(if verb == "POST" { Post } else { Get }, path)
       if body is Some(text) {
         conn.write(@utf8.encode(text))
       }

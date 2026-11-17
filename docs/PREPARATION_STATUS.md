@@ -9,7 +9,7 @@
 | 项目 | 实际证据 |
 |---|---|
 | MoonBit 实现与文档 | 核心、快照生命周期、在线适配、离线/在线示例；见[入口说明](<../README.md>) |
-| 构建与测试 | wasm 35/35、wasm-gc 26/26、JS 26/26；native 仅类型检查通过 |
+| 构建与测试 | wasm 36/36、wasm-gc 26/26、JS 26/26；native 仅类型检查通过 |
 | 官方规范范围 | 三个已验证后端各 93 Pass / 0 Fail / 201 NotRun，12/22 组；[范围清单](<COMPATIBILITY_SCOPE.md>) |
 | 固定参考差分 | Node 6.12.2：93 条原官方用例及 4608 条 ASCII 共同样本一致；[逐项结果](<DIFFERENTIAL_RESULTS.md>) |
 | 互操作限制 | 48 条 Unicode 分桶诊断有 20 条不一致；原结果保留，首页已明示 |
@@ -19,7 +19,7 @@
 | 材料与授权来源 | [一页申报稿](<APPLICATION_ONE_PAGE.md>)、[当前官方要求](<OFFICIAL_REQUIREMENTS.md>)、[来源和许可](<../THIRD_PARTY.md>) |
 | CI | 首轮已实际执行；JS/wasm-gc 成功、wasm/native 检查/测试失败，不能以产物存在冒充通过 |
 
-测试项包含 suite runner，不能把 35 项当作 35 条完整官方规范。生成 JSON/夹具的行数不是手写实现规模或参赛代码量。
+测试项包含 suite runner，不能把 36 项当作 35 条完整官方规范。生成 JSON/夹具的行数不是手写实现规模或参赛代码量。
 
 ## 此前的外部阻塞（历史，地址已更正）
 

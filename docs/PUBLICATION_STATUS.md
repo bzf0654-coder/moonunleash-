@@ -31,6 +31,18 @@ node tools/ci-status.mjs 44090981004 8dca4960759826d9f5436c0943c24e5aa47076c5
 
 该已失败 run 的读取器预期非零退出；证据先保存，再报告失败，不把读取失败结论包装为绿色。后续重跑须按实际 SHA 与 run 单独记录。
 
+## 第二轮定位与修复候选
+
+[SDK checks #2](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44092864629) 对 c6b088c 再次给出 JS/wasm-gc 成功、wasm/native 失败；[逐步状态](<../artifacts/ci-run-44092864629.json>)与首轮分别保留。新 annotation 明确显示：
+
+- 实际工具链为 moon 0.1.20261117 (eb64713)、moonc v0.10.21+06da1ed44 (2026-11-16)、moonrun 0.1.20261117。
+- [wasm 编译诊断](https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/134072258870/annotations)及 [native 诊断](https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/134072258125/annotations) 都报旧 `@http.request` 不存在，并产生级联 unused_async 错误；不是已观察到的单测逻辑失败。
+- 本机 2026-11-04 的接口仍有该函数，而当前上游改为 request_stream。未降级工具链、关闭 deny-warn 或删除测试。
+
+修复候选改用两份已查接口共有的 ClientConnection 构造与 request 方法，显式分离 origin 与原始 path；连接建立后先注册 defer close，再发请求。它仍逐块检查字节限额、拒绝重定向，不换成无界聚合响应。新增白盒回归覆盖端口、嵌套路径、编码路径、IPv6 authority 和保留双斜线；公开 SDK 接口无变化。
+
+本机旧工具链复验已通过：wasm **36/36**、wasm-gc **26/26**、JS **26/26**、native 类型检查及原有真实 loopback HTTP 故障测试。**这仍不是新工具链云端通过；须等待修复提交的独立 CI 结果。**
+
 ## 身份与报名边界
 
 仓库所有者和本次 push actor 是 bzf0654-coder。历史提交沿用本机原有 Git identity，GitHub 将作者映射为 fbzqqqq；未擅自更改全局 identity 或重写作者历史。申请人需要自行确认两者关系及参赛贡献归属，不能由代理推定为同一人。

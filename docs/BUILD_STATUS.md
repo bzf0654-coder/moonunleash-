@@ -3,7 +3,7 @@
 Observed, not claimed production readiness:
 
 - Moon CLI `0.1.20261104 (940aa18)`; moonc `v0.10.20+65efd5b93`.
-- wasm: 35 MoonBit tests passed (26 pure-core tests including 12 upstream suite runners; 9 online/lifecycle/security tests).
+- wasm: 36 MoonBit tests passed (26 pure-core tests including 12 upstream suite runners; 10 online/lifecycle/security tests).
 - wasm-gc: 26 pure-core tests passed. Online adapter is deliberately not built for this backend.
 - JavaScript: 26 pure-core tests passed. Online adapter is deliberately not built for this backend.
 - Native MoonBit type check now passes (`moon check --target native --deny-warn`). The earlier native build/test attempt stopped before C compilation because MSVC C++ Build Tools / cl.exe or clang-cl.exe are absent. The Windows SDK alone is installed. Native binaries and runtime behavior remain unverified; the type check is not a passing native execution result.
@@ -22,7 +22,7 @@ Publication update: user confirmed bzf0654-coder and authorized a separate moonu
 
 Pinned development-only Node SDK 6.12.2 differential now runs on the JS backend: original 93 official cases and 4608 generated ASCII common-profile cases all agree; 48 Unicode diagnostic decisions include 20 disagreements. A controlled encoding-only intervention explains those 48 samples but is NOT an unmodified SDK compatibility pass. Ten UTF-8 primitive vectors were added as one regression test, producing the then-current 33/25/25 test counts. See [differential results and limits](<DIFFERENTIAL_RESULTS.md>).
 
-The next contract check found and fixed missing appName/environment defaults in online evaluations. All public decision entry points now merge client defaults without replacing explicit values. A core regression and a wasm online regression produce the current **35/26/26** counts. Targeted calls to the actual pinned Node wrapper prototype methods agree **108/108**, without constructing its network/metrics lifecycle. See [context defaults and scope](<CONTEXT_DEFAULTS.md>). The first cross-backend attempt also exposed the new async test missing an online-only target declaration; its scope now matches the existing wasm/native adapter, and all three supported test backends were rerun successfully.
+The next contract check found and fixed missing appName/environment defaults in online evaluations. All public decision entry points now merge client defaults without replacing explicit values. A core regression and a wasm online regression produced the then-current **35/26/26** counts. The later shared streaming-connection repair adds a private URL-routing regression, producing the current **36/26/26** local counts. Targeted calls to the actual pinned Node wrapper prototype methods agree **108/108**, without constructing its network/metrics lifecycle. See [context defaults and scope](<CONTEXT_DEFAULTS.md>). The first cross-backend attempt also exposed the new async test missing an online-only target declaration; its scope now matches the existing wasm/native adapter, and all three supported test backends were rerun successfully.
 
 Remaining: further compatibility as justified, real Unleash interoperability, native validation, repository publication and personal application information. [Current official requirements](<OFFICIAL_REQUIREMENTS.md>) specify a public repository and one-page explanation; repository/account-dependent conditions are not yet met. Currently not fully submission-ready.
 

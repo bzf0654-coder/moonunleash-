@@ -39,12 +39,12 @@ moon run cmd/main --target wasm-gc
 
 | 后端 | 当前证据 |
 |---|---|
-| wasm | 核心与在线故障/生命周期测试共 35 项通过 |
+| wasm | 核心与在线故障/生命周期测试共 36 项通过 |
 | wasm-gc | 纯核心 26 项通过；在线适配不支持此后端 |
 | JavaScript | 纯核心 26 项通过；在线适配尚未提供 |
 | native | MoonBit 类型检查通过；缺少 C 编译器，尚未构建/运行验证 |
 
-测试项数量包含 12 个上游 suite runner，每个 runner 内有多条官方断言，不能把 35 项解释为 35 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
+测试项数量包含 12 个上游 suite runner，每个 runner 内有多条官方断言，不能把 36 项解释为 36 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
 
 ## 真实 HTTP 故障演示
 
