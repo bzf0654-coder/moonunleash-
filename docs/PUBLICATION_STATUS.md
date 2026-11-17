@@ -43,6 +43,14 @@ node tools/ci-status.mjs 44090981004 8dca4960759826d9f5436c0943c24e5aa47076c5
 
 本机旧工具链复验已通过：wasm **36/36**、wasm-gc **26/26**、JS **26/26**、native 类型检查及原有真实 loopback HTTP 故障测试。**这仍不是新工具链云端通过；须等待修复提交的独立 CI 结果。**
 
+## 第三轮：四目标实际通过
+
+修复提交 [9bd4255](https://github.com/bzf0654-coder/moonunleash-/commit/9bd4255775b3a654ab22fd76569ae99e3bb1f45f) 的 [SDK checks #3](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44096693547) 结论为 **success**，JS、wasm-gc、wasm、native 四个 job 及其检查/测试、规范校验、离线示例步骤均成功。[本轮 API 证据](<../artifacts/ci-run-44096693547.json>)与两轮失败分别留存。四份非空、未过期产物的元数据与相同 head SHA 均已核对；没有把历史报告复制成新产物。
+
+Native 的[实际工具链 annotation](https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/134085569605/annotations) 确认 moon 0.1.20261117 (eb64713)、moonc v0.10.21+06da1ed44。CI 的规范校验器逐项强制每个目标 93 Pass / 0 Fail / 201 NotRun；本地未下载云端产物内容，不能声称已在本机审读或运行 native 报告。真实 loopback HTTP smoke 本轮仅在 wasm job 执行；不扩大为 native 网络或真实 Unleash 服务端接受证据。
+
+这使 Linux native 从“只有源码/类型检查”推进为云端实际构建测试通过。Windows 本机仍无 C 编译器，真实 Unleash、完整规范、Unicode 分桶迁移、metrics 等限制不因 CI 绿色消失。源码和申报概述现在有可公开核查的技术预览与四目标验证入口，适用于申请立项沟通，不是正式报名或完整 SDK 认证。
+
 ## 身份与报名边界
 
 仓库所有者和本次 push actor 是 bzf0654-coder。历史提交沿用本机原有 Git identity，GitHub 将作者映射为 fbzqqqq；未擅自更改全局 identity 或重写作者历史。申请人需要自行确认两者关系及参赛贡献归属，不能由代理推定为同一人。

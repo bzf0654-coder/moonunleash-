@@ -42,7 +42,7 @@ moon run cmd/main --target wasm-gc
 | wasm | 核心与在线故障/生命周期测试共 36 项通过 |
 | wasm-gc | 纯核心 26 项通过；在线适配不支持此后端 |
 | JavaScript | 纯核心 26 项通过；在线适配尚未提供 |
-| native | MoonBit 类型检查通过；缺少 C 编译器，尚未构建/运行验证 |
+| native | Linux 云端检查、测试、规范校验和离线示例通过；本机 Windows 仍仅类型检查 |
 
 测试项数量包含 12 个上游 suite runner，每个 runner 内有多条官方断言，不能把 36 项解释为 36 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
 
@@ -107,6 +107,6 @@ node tools/generate-fixtures.mjs
 
 [一页项目说明](<docs/APPLICATION_ONE_PAGE.md>)、[官方要求核对](<docs/OFFICIAL_REQUIREMENTS.md>)及[开发历程](<docs/DEVELOPMENT_STORY.md>)已备草稿；用户提供的实际公开目标为 [bzf0654-coder/moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（末尾有连字符），已核验空引用后完成首推，源码和历史已公开；不改动已有 moonshop。此前不带末尾连字符的地址返回 404，并非当前目标。个人报名信息仍待填写。这不代表已获得 MoonBit 或 Unleash 官方认可。当前适用的是十一月黑客松，不能混用 2—4 月旧赛事的提交次数与支持金额要求。
 
-[CI 配置](<.github/workflows/ci.yml>)覆盖四后端矩阵并上传本次运行产生的报告，不冒用仓库里已有的历史摘要。**源码已公开；首轮云端 CI 的 JS/wasm-gc 通过，wasm/native 失败，正在排查，不能称四目标通过。** 详见[实际发布与 CI 记录](<docs/PUBLICATION_STATUS.md>)。 CI 暂随官方稳定工具链并记录实际版本，本地已验证的精确版本见上文；历史发行标签尚未验证，不捏造可用的固定下载地址。
+[CI 配置](<.github/workflows/ci.yml>)覆盖四后端矩阵并上传本次运行产生的报告，不冒用仓库里已有的历史摘要。**源码已公开；修复后的 [SDK checks #3](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44096693547) 四目标全部通过**，验证提交为 `9bd4255`。前两轮 wasm/native 的实际失败及实验性 HTTP API 迁移过程均保留，详见[发布与 CI 记录](<docs/PUBLICATION_STATUS.md>)。 CI 暂随官方稳定工具链并记录实际版本，本地已验证的精确版本见上文；历史发行标签尚未验证，不捏造可用的固定下载地址。
 
 [Apache-2.0](<LICENSE>)；上游资料、算法来源及 AI 辅助说明见[第三方声明](<THIRD_PARTY.md>)。

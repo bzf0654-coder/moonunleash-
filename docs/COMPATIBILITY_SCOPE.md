@@ -29,7 +29,7 @@ Runtime reports contain per-case expected/actual values, status, group, index an
 
 The backend label is produced by compile-time configuration, not a caller-supplied label. Node verifies every record against the [inventory](<spec-inventory.json>), rejects duplicates/missing cases and fails unless every required case passes. [The MoonBit runner](<../cmd/conformance/main.mbt>) performs the evaluations; Node does not implement a replacement flag engine.
 
-Reproduce with `node tools/conformance.mjs wasm-gc` (also `wasm` or `js`). Native is not a local passing runtime result; its first actual cloud check/test job failed and is being diagnosed (see [publication status](<PUBLICATION_STATUS.md>)). The fixture package is used only by verification tools and is not imported by the SDK core or network adapter.
+Reproduce with `node tools/conformance.mjs wasm-gc` (also `wasm` or `js`). Linux native now passes cloud check/test and the same required conformance validator in run #3; Windows native is still not a local passing runtime result. Native cloud artifact contents were not downloaded or copied into these checked-in local reports; see [publication status](<PUBLICATION_STATUS.md>). The fixture package is used only by verification tools and is not imported by the SDK core or network adapter.
 
 ## Not declared compatible
 
@@ -37,7 +37,7 @@ Reproduce with `node tools/conformance.mjs wasm-gc` (also `wasm` or `js`). Nativ
 
 Whole-snapshot validation is strict: unknown strategies/operators and nonempty unsupported semantic fields reject installation. This intentionally differs from broad upstream behavior for unknown constructs. A single unsupported rule can block updates to other flags in the same response; the previous good snapshot remains in use according to explicit staleness policy.
 
-There is no claim of native testing, actual Unleash server acceptance, Edge compatibility, complete metrics support or production readiness. See [build status](<BUILD_STATUS.md>).
+There is no claim of Windows native execution, native real-network smoke, actual Unleash server acceptance, Edge compatibility, complete metrics support or production readiness. Linux native check/test and conformance validation passed in cloud run #3. See [build status](<BUILD_STATUS.md>).
 
 ## Fixed reference SDK comparison
 
