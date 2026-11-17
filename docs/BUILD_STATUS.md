@@ -14,7 +14,11 @@ Observed, not claimed production readiness:
 - The [HTTP smoke report](<../artifacts/http-smoke.json>) is from a controlled Node HTTP server, **not an actual Unleash server**. It proves transport/state behavior, not full server interoperability or TLS behavior.
 - Scoped polling, cancellation during an in-flight request, explicit close during registration, bounded wait_ready, authentication-header/URL validation, state staleness and expiration, and clock rollback recovery have passing tests.
 
-Remaining: per-case machine-readable conformance runtime results, reference SDK differential testing, further compatibility, real Unleash interoperability, public repository, CI and application material. Currently not submission-ready.
+Per-case runtime reports now independently pass on wasm-gc, wasm and JS: **93 Pass, 0 Fail, 201 NotRun** across all 294 inventoried cases. Required cases cannot silently become skipped successes. The first JS provenance check failed because argv layouts differ; backend labels now use compile-time target configuration. Reports were rerun successfully after that fix; see the [matrix](<COMPATIBILITY_SCOPE.md>).
+
+[CI](<../.github/workflows/ci.yml>) and [application one-pager](<APPLICATION_ONE_PAGE.md>) are prepared. CI has not executed in GitHub; the four-backend matrix, especially native, is a configured future check, not passing evidence. CI follows the official stable installer and records actual versions; attempted historical archive HEAD requests returned HTTP 403, so no guessed fixed installer tag is presented as verified.
+
+Remaining: reference SDK differential testing, further compatibility as justified, real Unleash interoperability, native validation, repository publication and applicant identity. [Current official requirements](<OFFICIAL_REQUIREMENTS.md>) specify a public repository and one-page explanation; repository/account-dependent conditions are not yet met. Currently not fully submission-ready.
 
 Registration payload follows the [official client registration contract](https://docs.getunleash.io/api/register-client-application): interval in seconds and started as Unix seconds. The mock checks those fields, strategies and appName; the started timestamp is fixed at client construction. This is contract checking, not proof of server acceptance.
 

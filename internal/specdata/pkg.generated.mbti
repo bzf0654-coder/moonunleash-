@@ -1,0 +1,20 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonunleash/sdk/internal/specdata"
+
+// Values
+pub fn revision() -> String
+
+pub fn suites() -> Array[Fixture]
+
+// Errors
+
+// Types and methods
+pub(all) struct Fixture {
+  file : String
+  required : Bool
+  source : String
+}
+
+// Type aliases
+
+// Traits

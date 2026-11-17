@@ -1,0 +1,8 @@
+import {
+  "moonunleash/sdk",
+  "moonunleash/sdk/internal/specdata",
+  "moonbitlang/core/json",
+  "moonbitlang/core/env",
+}
+
+pkgtype(kind: "executable")

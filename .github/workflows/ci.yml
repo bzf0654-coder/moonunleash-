@@ -1,0 +1,66 @@
+name: SDK checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# This job is configured, not evidence of a run. The official stable distribution
+# is moving; always archive the actually installed versions with the reports.
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [wasm-gc, wasm, js, native]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install native prerequisites
+        if: matrix.target == 'native'
+        run: sudo apt-get update && sudo apt-get install -y build-essential libssl-dev pkg-config
+      - name: Install official stable MoonBit toolchain
+        run: |
+          curl --fail --show-error --location https://cli.moonbitlang.com/install/unix.sh -o "$RUNNER_TEMP/install-moonbit.sh"
+          bash "$RUNNER_TEMP/install-moonbit.sh"
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Record actual toolchain
+        run: |
+          mkdir -p ci-output
+          moon version --all | tee ci-output/toolchain-${{ matrix.target }}.txt
+      - name: Check checked-in formatting
+        run: moon fmt --check
+      - name: Verify and regenerate pinned fixtures
+        run: |
+          node tools/generate-fixtures.mjs
+          moon fmt
+          git diff --exit-code -- fixtures_generated_test.mbt internal/specdata/specs_generated.mbt docs/spec-inventory.json
+      - name: Check local documentation links
+        run: node tools/check-links.mjs
+      - name: Type check and test
+        run: |
+          moon check --target ${{ matrix.target }} --deny-warn
+          moon test --target ${{ matrix.target }} --deny-warn
+      - name: Generate and validate per-case conformance report
+        run: |
+          node tools/conformance.mjs ${{ matrix.target }}
+          cp artifacts/conformance.${{ matrix.target }}.json ci-output/
+      - name: Run offline example
+        run: moon run cmd/main --target ${{ matrix.target }}
+      - name: Real HTTP fault smoke (controlled server, not Unleash)
+        if: matrix.target == 'wasm'
+        run: |
+          node tools/http-smoke.mjs
+          cp artifacts/http-smoke.json ci-output/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-${{ matrix.target }}
+          path: ci-output/*
+          if-no-files-found: warn

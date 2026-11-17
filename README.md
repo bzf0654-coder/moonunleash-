@@ -73,7 +73,15 @@ API Token 的作用域决定可见项目和环境，不是 context.environment�
 
 ## 兼容性与限制
 
-官方测试基线固定为 [client-specification 9ef6efa](https://github.com/Unleash/client-specification/tree/9ef6efa01feabeb699857192ad8106fd7d990235)。当前执行 01—05、07—12、18 共 12 组，保留全部 22 组资料和哈希，未执行部分不计为通过。
+官方测试基线固定为 [client-specification 9ef6efa](https://github.com/Unleash/client-specification/tree/9ef6efa01feabeb699857192ad8106fd7d990235)。22 组共有 294 条；当前执行 01—05、07—12、18 共 12 组，**93 条通过，201 条明确未执行**，没有把未执行部分计为通过。三个已验证后端均生成[逐用例报告](<docs/COMPATIBILITY_SCOPE.md>)。
+
+```sh
+node tools/conformance.mjs wasm-gc
+node tools/conformance.mjs wasm
+node tools/conformance.mjs js
+```
+
+报告由 MoonBit 实际评估输出；Node 校验来源、清单及每条状态。后端标签由编译期配置产生，避免命令行参数误标。
 
 - 未支持的非空策略级变体、依赖及未知运算符会导致**整份新快照被拒绝**；可能阻止其他开关更新，不会静默忽略。
 - SemVer/日期、remoteAddress、依赖、策略级变体、增量、正则/CIDR 尚未声明支持；分群完整上游 suite 也尚未验收。
@@ -94,6 +102,8 @@ node tools/generate-fixtures.mjs
 
 ## 项目状态与许可
 
-公开仓库和报名材料仍在准备，不代表已获得 MoonBit 或 Unleash 官方认可。开发记录保留真实阶段提交，不制造提交次数。
+[一页项目说明](<docs/APPLICATION_ONE_PAGE.md>)、[官方要求核对](<docs/OFFICIAL_REQUIREMENTS.md>)及[开发历程](<docs/DEVELOPMENT_STORY.md>)已备草稿；申请人身份、公开仓库归属和报名仍待确认，不代表已获得 MoonBit 或 Unleash 官方认可。当前适用的是十一月黑客松，不能混用 2—4 月旧赛事的提交次数与支持金额要求。
+
+[CI 配置](<.github/workflows/ci.yml>)覆盖四后端矩阵并上传本次运行产生的报告，不冒用仓库里已有的历史摘要。**尚未发布仓库、未运行云端 CI，也没有 native 通过证据。** CI 暂随官方稳定工具链并记录实际版本，本地已验证的精确版本见上文；历史发行标签尚未验证，不捏造可用的固定下载地址。
 
 [Apache-2.0](<LICENSE>)；上游资料、算法来源及 AI 辅助说明见[第三方声明](<THIRD_PARTY.md>)。
