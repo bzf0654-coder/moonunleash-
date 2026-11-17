@@ -14,9 +14,10 @@
 - Repository: https://github.com/Unleash/unleash-node-sdk
 - License: Apache-2.0. The project [license](<LICENSE>) contains the Apache-2.0 terms.
 - Copyright: Unleash SDK contributors.
-- Reference paths: `src/strategy/util.ts`, `src/variant.ts`, `src/strategy/strategy.ts`.
+- Reference paths: [normalization](https://github.com/Unleash/unleash-node-sdk/blob/dc113ce745f6c0efe65ae3f6b49a439144ac4aa3/src/strategy/util.ts), [variants](https://github.com/Unleash/unleash-node-sdk/blob/dc113ce745f6c0efe65ae3f6b49a439144ac4aa3/src/variant.ts), [constraints](https://github.com/Unleash/unleash-node-sdk/blob/dc113ce745f6c0efe65ae3f6b49a439144ac4aa3/src/strategy/strategy.ts).
 - MoonBit hashing normalization, variant stickiness/selection and constraint behavior are adaptations based on these publicly documented implementations and the client specification, not third-party runtime calls. No Node SDK is embedded in the MoonBit library.
-- Reference commit for differential testing still needs to be pinned before that verification is claimed; current inspection used the main branch on 2026-11-17. Compatibility fixtures are independently pinned above.
+- Differential oracle is now pinned to npm `unleash-client@6.12.2`, reported gitHead `dc113ce745f6c0efe65ae3f6b49a439144ac4aa3`, with tarball integrity and frozen transitive dependencies in the [reference lockfile](<tools/reference/pnpm-lock.yaml>). Earlier design inspection used main on 2026-11-17; that fact is not retroactively a pinned execution.
+- The development-only reference is actually called by the differential supervisor, not by production MoonBit code. See the [execution plan](<docs/DIFFERENTIAL_PLAN.md>) and [results including Unicode mismatches](<docs/DIFFERENTIAL_RESULTS.md>). It is not an assertion of complete cross-SDK compatibility.
 
 ## MurmurHash3
 

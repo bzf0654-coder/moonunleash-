@@ -10,3 +10,8 @@ target
 *.log
 node_modules/
 ci-output/
+tools/reference/.pnpm-store/
+tools/reference/.cache/
+tools/reference/.data/
+artifacts/differential-input.json
+artifacts/differential-moon.json

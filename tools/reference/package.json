@@ -1,0 +1,10 @@
+{
+  "name": "moonunleash-reference-verification",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@11.28.5",
+  "description": "Development-only, pinned official SDK oracle; never a MoonBit runtime dependency",
+  "dependencies": {
+    "unleash-client": "6.12.2"
+  }
+}

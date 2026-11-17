@@ -1,0 +1,12 @@
+#cfg(target="js")
+import {
+  "moonunleash/sdk",
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+}
+
+pkgtype(kind: "executable")
+
+options(
+  targets: { "main.mbt": [ "js" ] },
+)

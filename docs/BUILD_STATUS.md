@@ -3,9 +3,9 @@
 Observed, not claimed production readiness:
 
 - Moon CLI `0.1.20261104 (940aa18)`; moonc `v0.10.20+65efd5b93`.
-- wasm: 32 MoonBit tests passed (24 pure-core tests including 12 upstream suite runners; 8 online/lifecycle/security tests).
-- wasm-gc: 24 pure-core tests passed. Online adapter is deliberately not built for this backend.
-- JavaScript: 24 pure-core tests passed. Online adapter is deliberately not built for this backend.
+- wasm: 33 MoonBit tests passed (25 pure-core tests including 12 upstream suite runners; 8 online/lifecycle/security tests).
+- wasm-gc: 25 pure-core tests passed. Online adapter is deliberately not built for this backend.
+- JavaScript: 25 pure-core tests passed. Online adapter is deliberately not built for this backend.
 - Native local tests attempted and failed before compilation because MSVC C++ Build Tools / cl.exe or clang-cl.exe are absent. The Windows SDK alone is installed. This is an environment limitation, not a passing native result.
 - Upstream fixtures: 22 files pinned to `9ef6efa01feabeb699857192ad8106fd7d990235`; 24 SHA-256 checks including index and license passed during generation.
 - First conformance run found suite 12 rejected global variants. Global variant validation/selection was implemented without removing the mandatory case. All 11 Phase A suites pass; expanded suite 08 and all included variantTests also pass.
@@ -20,7 +20,9 @@ Per-case runtime reports now independently pass on wasm-gc, wasm and JS: **93 Pa
 
 Publication update: user confirmed bzf0654-coder and authorized a separate moonunleash repository, preserving the existing moonshop project. SSH authentication returned that exact account. There is no reusable HTTPS/API credential for repository creation. After the user reported creation, both a fresh public API request and authenticated SSH still returned repository not found; no push occurred. Git's command-string SSH wrapper hit an MSYS sandbox IPC error; its approved exact read-only retry reached GitHub and confirmed the repository error. No global proxy/security settings were changed.
 
-Remaining: reference SDK differential testing, further compatibility as justified, real Unleash interoperability, native validation, repository publication and personal application information. [Current official requirements](<OFFICIAL_REQUIREMENTS.md>) specify a public repository and one-page explanation; repository/account-dependent conditions are not yet met. Currently not fully submission-ready.
+Pinned development-only Node SDK 6.12.2 differential now runs on the JS backend: original 93 official cases and 4608 generated ASCII common-profile cases all agree; 48 Unicode diagnostic decisions include 20 disagreements. A controlled encoding-only intervention explains those 48 samples but is NOT an unmodified SDK compatibility pass. Ten UTF-8 primitive vectors were added as one regression test, producing the current 33/25/25 test counts. See [differential results and limits](<DIFFERENTIAL_RESULTS.md>).
+
+Remaining: further compatibility as justified, real Unleash interoperability, native validation, repository publication and personal application information. [Current official requirements](<OFFICIAL_REQUIREMENTS.md>) specify a public repository and one-page explanation; repository/account-dependent conditions are not yet met. Currently not fully submission-ready.
 
 Registration payload follows the [official client registration contract](https://docs.getunleash.io/api/register-client-application): interval in seconds and started as Unix seconds. The mock checks those fields, strategies and appName; the started timestamp is fixed at client construction. This is contract checking, not proof of server acceptance.
 

@@ -53,6 +53,20 @@ jobs:
           cp artifacts/conformance.${{ matrix.target }}.json ci-output/
       - name: Run offline example
         run: moon run cmd/main --target ${{ matrix.target }}
+      - uses: pnpm/action-setup@v4
+        if: matrix.target == 'js'
+        with:
+          version: 11.28.5
+      - name: Install pinned development oracle without lifecycle scripts
+        if: matrix.target == 'js'
+        run: pnpm --dir tools/reference install --frozen-lockfile --ignore-scripts --node-linker=hoisted
+      - name: Common-profile differential and explicit Unicode diagnostics
+        if: matrix.target == 'js'
+        env:
+          MOONUNLEASH_CI_OUTPUT: '1'
+        run: |
+          node tools/differential.mjs
+          node tools/hash-diagnostic.mjs
       - name: Real HTTP fault smoke (controlled server, not Unleash)
         if: matrix.target == 'wasm'
         run: |

@@ -4,6 +4,8 @@
 
 > 开发预览版；非 Unleash 官方 SDK。已验证明确范围内的兼容性，不是完整兼容或生产就绪声明。模块名 `moonunleash/sdk` 暂定，尚未发布到 Mooncakes。
 
+**已发现的互操作限制：**与固定 Node SDK 6.12.2 比较，4608 个 ASCII 共同样本一致；48 个 Unicode 分桶诊断中有 **20 个不一致**，来自不同字符串编码路径。非 ASCII 的分组、身份或全局变体开关名可能改变人群分配；不能承诺与该 SDK 无差异迁移。详见[差分结果与诊断](<docs/DIFFERENTIAL_RESULTS.md>)。
+
 ## 解决什么问题
 
 MoonBit 服务需要与 Go/Java/Node 服务共享已有的发布规则，而不是每次判定调用远程服务，或额外部署一个其他语言的中间服务。MoonUnleash 将官方配置解析、策略评估、分桶和变体选择放在 MoonBit 内完成，网络层只负责更新本地快照。
@@ -36,12 +38,12 @@ moon run cmd/main --target wasm-gc
 
 | 后端 | 当前证据 |
 |---|---|
-| wasm | 核心与在线故障/生命周期测试共 32 项通过 |
-| wasm-gc | 纯核心 24 项通过；在线适配不支持此后端 |
-| JavaScript | 纯核心 24 项通过；在线适配尚未提供 |
+| wasm | 核心与在线故障/生命周期测试共 33 项通过 |
+| wasm-gc | 纯核心 25 项通过；在线适配不支持此后端 |
+| JavaScript | 纯核心 25 项通过；在线适配尚未提供 |
 | native | 有适配源码；本机缺少 MSVC，尚未验证通过 |
 
-测试项数量包含 12 个上游 suite runner，每个 runner 内有多条官方断言，不能把 32 项解释为 32 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
+测试项数量包含 12 个上游 suite runner，每个 runner 内有多条官方断言，不能把 33 项解释为 33 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
 
 ## 真实 HTTP 故障演示
 

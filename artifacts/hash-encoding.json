@@ -1,0 +1,276 @@
+{
+  "controlledIntervention": {
+    "description": "In-memory UTF-8 input bridge applied to primitive only, then restored; not an unmodified SDK result",
+    "baselineMismatches": 20,
+    "matched": 48,
+    "mismatched": 0,
+    "cases": [
+      {
+        "id": "unicode:0:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:0:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:0:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:0:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:1:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:1:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:1:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:1:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:2:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:2:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:2:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:2:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:3:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:3:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:3:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:3:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:4:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:4:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:4:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:4:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:5:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:5:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:5:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:5:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:6:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:6:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:6:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:6:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:7:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:7:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:7:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:7:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:8:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:8:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:8:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:8:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:9:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:9:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:9:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:9:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:10:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:10:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:10:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:10:全局变体-ø:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:11:unicode-rollout:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:11:unicode-rollout:variant",
+        "matched": true
+      },
+      {
+        "id": "unicode:11:全局变体-ø:boolean",
+        "matched": true
+      },
+      {
+        "id": "unicode:11:全局变体-ø:variant",
+        "matched": true
+      }
+    ]
+  },
+  "primitive": "murmurhash3js@3.0.1 x86.hash32",
+  "note": "UTF-8 byte view versus raw JavaScript string. No claim that all SDKs share an encoding policy.",
+  "vectors": [
+    {
+      "text": "共享组-🌍:用户甲",
+      "seed": 0,
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+      "utf8Hash": 1483014240,
+      "nodeStringHash": 3785767911
+    },
+    {
+      "text": "共享组-🌍:用户甲",
+      "seed": 86028157,
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+      "utf8Hash": 3371132993,
+      "nodeStringHash": 1534949715
+    },
+    {
+      "text": "全局变体-ø:用户乙",
+      "seed": 0,
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e4b999",
+      "utf8Hash": 1829003578,
+      "nodeStringHash": 2659869393
+    },
+    {
+      "text": "全局变体-ø:用户乙",
+      "seed": 86028157,
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e4b999",
+      "utf8Hash": 3555707867,
+      "nodeStringHash": 4152327267
+    },
+    {
+      "text": "checkout:é",
+      "seed": 0,
+      "utf8Hex": "636865636b6f75743ac3a9",
+      "utf8Hash": 2987043074,
+      "nodeStringHash": 3873677660
+    },
+    {
+      "text": "checkout:é",
+      "seed": 86028157,
+      "utf8Hex": "636865636b6f75743ac3a9",
+      "utf8Hash": 3485684207,
+      "nodeStringHash": 957043010
+    },
+    {
+      "text": "checkout:é",
+      "seed": 0,
+      "utf8Hex": "636865636b6f75743a65cc81",
+      "utf8Hash": 4260123421,
+      "nodeStringHash": 2179856765
+    },
+    {
+      "text": "checkout:é",
+      "seed": 86028157,
+      "utf8Hex": "636865636b6f75743a65cc81",
+      "utf8Hash": 3211497284,
+      "nodeStringHash": 4161005462
+    },
+    {
+      "text": "checkout:😊",
+      "seed": 0,
+      "utf8Hex": "636865636b6f75743af09f988a",
+      "utf8Hash": 3006800575,
+      "nodeStringHash": 1881302162
+    },
+    {
+      "text": "checkout:😊",
+      "seed": 86028157,
+      "utf8Hex": "636865636b6f75743af09f988a",
+      "utf8Hash": 2543312902,
+      "nodeStringHash": 3529290871
+    }
+  ]
+}

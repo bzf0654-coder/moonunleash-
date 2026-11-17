@@ -39,6 +39,10 @@ Whole-snapshot validation is strict: unknown strategies/operators and nonempty u
 
 There is no claim of native testing, actual Unleash server acceptance, Edge compatibility, complete metrics support or production readiness. See [build status](<BUILD_STATUS.md>).
 
+## Fixed reference SDK comparison
+
+[Node SDK 6.12.2 differential](<DIFFERENTIAL_RESULTS.md>) agrees on the 93 selected official cases and 4608 generated ASCII common-profile decisions (JS backend only). **20 of 48 Unicode diagnostic decisions differ.** The UTF-8 byte policy and the reference SDK's raw-JS-string hashing route can assign different cohorts when any bucket-key component is non-ASCII. Passing suite 18's name lookups does not remove this limitation. These samples do not enlarge the official compatibility scope.
+
 ## Scope history (not rewritten)
 
 Before implementation, Phase A froze 01,02,03,04,05,07,09,10,11,12,18 as mandatory. Suite 12 initially failed because global variants were not yet supported. Global variant validation/selection was then implemented, suite 08 added, and every variantTests group in the selected suites enabled. No original mandatory case or expected output was removed to turn a failure into a pass.

@@ -1,6 +1,6 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
-const files = ['README.md', 'THIRD_PARTY.md', ...(await readdir(new URL('docs/', root))).filter(n => n.endsWith('.md')).map(n => `docs/${n}`)];
+const files = ['README.md', 'README.mbt.md', 'THIRD_PARTY.md', ...(await readdir(new URL('docs/', root))).filter(n => n.endsWith('.md')).map(n => `docs/${n}`)];
 let checked = 0;
 for (const file of files) {
   const url = new URL(file, root);
