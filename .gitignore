@@ -4,3 +4,8 @@ target/
 target
 .mooncakes/
 .moonagent/
+.env
+.env.*
+!.env.example
+*.log
+node_modules/

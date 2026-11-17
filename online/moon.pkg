@@ -1,0 +1,18 @@
+#cfg(any(target="native", target="wasm"))
+import {
+  "moonunleash/sdk",
+  "moonbitlang/core/async",
+  "moonbitlang/core/async/http",
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/json",
+  "moonbitlang/core/random",
+}
+
+options(
+  "allow-experimental-packages": true,
+  targets: {
+    "client.mbt": [ "native", "wasm" ],
+    "client_test.mbt": [ "native", "wasm" ],
+  },
+)

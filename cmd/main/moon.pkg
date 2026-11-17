@@ -1,5 +1,6 @@
-// import {
-//   "moonunleash/sdk" @lib,
-// }
+import {
+  "moonunleash/sdk",
+  "moonbitlang/core/json",
+}
 
 pkgtype(kind: "executable")

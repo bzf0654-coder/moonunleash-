@@ -149,8 +149,9 @@ fn validate_constraint(c : @json.Json) -> Unit raise ConfigError {
 ///|
 /// Parses a supported full-state response. Nothing is published on failure.
 pub fn Snapshot::parse(source : String) -> Snapshot raise {
-  if source.length() > 8 * 1024 * 1024 {
-    raise Invalid("response exceeds 8 MiB character budget")
+  if source.length() > 8 * 1024 * 1024 ||
+    @utf8.encode(source).length() > 8 * 1024 * 1024 {
+    raise Invalid("response exceeds 8 MiB UTF-8 budget")
   }
   let root = @json.parse(
     source,

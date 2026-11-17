@@ -18,6 +18,12 @@ pub fn ConfigError::message(Self) -> String
 pub fn ConfigError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub(all) struct BatchDecision {
+  decisions : Array[Decision]
+  generation : Int64
+  stale : Bool
+}
+
 pub struct Context {
   // private fields
 }
@@ -33,6 +39,12 @@ pub fn Decision::equal(Self, Self) -> Bool
 pub fn Decision::not_equal(Self, Self) -> Bool
 pub fn Decision::to_repr(Self) -> @debug.Repr
 
+pub(all) struct EvaluatedDecision {
+  decision : Decision
+  generation : Int64
+  stale : Bool
+}
+
 pub(all) struct Payload {
   kind : String
   value : String
@@ -46,6 +58,31 @@ pub fn Snapshot::get_variant(Self, String, Context, random? : () -> Double) -> V
 pub fn Snapshot::is_enabled(Self, String, Context, fallback? : Bool) -> Bool
 pub fn Snapshot::parse(String) -> Self raise
 pub fn Snapshot::size(Self) -> Int32
+
+pub struct SnapshotStore {
+  // private fields
+}
+pub fn SnapshotStore::close(Self) -> Unit
+pub fn SnapshotStore::evaluate(Self, String, Context, Int64, fallback? : Bool) -> EvaluatedDecision
+pub fn SnapshotStore::evaluate_many(Self, Array[String], Context, Int64, fallback? : Bool) -> BatchDecision
+pub fn SnapshotStore::get_variant(Self, String, Context, Int64) -> Variant
+pub fn SnapshotStore::install(Self, String, Int64, origin? : String) -> Int64 raise
+pub fn SnapshotStore::invalidate_clock(Self) -> Unit
+pub fn SnapshotStore::new(stale_after_ms? : Int64, max_stale_ms? : Int64) -> Self raise ConfigError
+pub fn SnapshotStore::record_failure(Self, String) -> Unit
+pub fn SnapshotStore::revalidate(Self, Int64) -> Unit raise ConfigError
+pub fn SnapshotStore::status(Self, Int64) -> Status
+
+pub(all) struct Status {
+  ready : Bool
+  closed : Bool
+  stale : Bool
+  generation : Int64
+  feature_count : Int32
+  source : String
+  last_error : String?
+  consecutive_failures : Int32
+}
 
 pub(all) struct Variant {
   name : String

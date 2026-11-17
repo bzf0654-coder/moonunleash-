@@ -19,8 +19,8 @@ repository = ""
 
 license = "Apache-2.0"
 
-keywords = [ ]
+keywords = [ "unleash", "feature-flags", "sdk", "rollout" ]
 
 preferred_target = "wasm"
 
-description = ""
+description = "MoonBit-native Unleash evaluation core and explicitly scoped server-side SDK"

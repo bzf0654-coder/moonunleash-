@@ -1,0 +1,15 @@
+#cfg(any(target="native", target="wasm"))
+import {
+  "moonunleash/sdk",
+  "moonunleash/sdk/online",
+  "moonbitlang/core/async",
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+}
+
+pkgtype(kind: "executable")
+
+options(
+  "allow-experimental-packages": true,
+  targets: { "main.mbt": [ "native", "wasm" ] },
+)
