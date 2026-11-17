@@ -1,0 +1,5 @@
+// import {
+//   "moonunleash/sdk" @lib,
+// }
+
+pkgtype(kind: "executable")
