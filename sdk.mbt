@@ -268,6 +268,25 @@ pub fn Context::new(user_id? : String) -> Context {
 }
 
 ///|
+/// Return a fresh context with client defaults. Explicit keys, including null
+/// and empty strings, override defaults; nested properties are not promoted.
+pub fn Context::with_defaults(
+  self : Context,
+  app_name : String,
+  environment~ : String = "default",
+) -> Context {
+  let merged : Map[String, @json.Json] = Map([
+    ("appName", @json.Json::string(app_name)),
+    ("environment", @json.Json::string(environment)),
+  ])
+  guard self.data is Object(fields) else { abort("invalid internal context") }
+  for key, value in fields {
+    merged[key] = value
+  }
+  { data: @json.Json::object(merged), }
+}
+
+///|
 fn Context::get(self : Context, name : String) -> String? {
   // Reserved fields cannot be overridden through properties.
   match name {

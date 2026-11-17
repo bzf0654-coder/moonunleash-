@@ -15,6 +15,7 @@ pub(all) struct Transport {
 pub struct Options {
   priv base_url : String
   priv app_name : String
+  priv environment : String
   priv token : String
   priv refresh_ms : Int32
   priv timeout_ms : Int32
@@ -28,6 +29,7 @@ pub fn Options::new(
   base_url : String,
   app_name : String,
   token : String,
+  environment~ : String = "default",
   allow_http_loopback~ : Bool = false,
   refresh_ms~ : Int32 = 15000,
   timeout_ms~ : Int32 = 5000,
@@ -35,15 +37,18 @@ pub fn Options::new(
   stale_after_ms~ : Int64 = 60000L,
   max_stale_ms? : Int64,
 ) -> Options raise @sdk.ConfigError {
-  if app_name == "" || token == "" {
-    raise @sdk.ConfigError::Invalid("app_name and token are required")
+  if app_name == "" || environment == "" || token == "" {
+    raise @sdk.ConfigError::Invalid(
+      "app_name, environment and token are required",
+    )
   }
   if app_name.length() > 128 ||
+    environment.length() > 128 ||
     token.length() > 8192 ||
     base_url.length() > 2048 {
     raise @sdk.ConfigError::Invalid("client option length budget exceeded")
   }
-  for v in [base_url, app_name, token] {
+  for v in [base_url, app_name, environment, token] {
     if v.to_array().any(fn(c) { c < ' ' || c == '\u007f' }) {
       raise @sdk.ConfigError::Invalid("control character in client options")
     }
@@ -87,6 +92,7 @@ pub fn Options::new(
   {
     base_url: url,
     app_name,
+    environment,
     token,
     refresh_ms,
     timeout_ms,
@@ -312,7 +318,15 @@ pub fn Client::evaluate(
   ctx : @sdk.Context,
   fallback~ : Bool = false,
 ) -> @sdk.EvaluatedDecision {
-  self.store.evaluate(name, ctx, self.now(), fallback~)
+  self.store.evaluate(
+    name,
+    ctx.with_defaults(
+      self.options.app_name,
+      environment=self.options.environment,
+    ),
+    self.now(),
+    fallback~,
+  )
 }
 
 ///|
@@ -332,7 +346,15 @@ pub fn Client::evaluate_many(
   ctx : @sdk.Context,
   fallback~ : Bool = false,
 ) -> @sdk.BatchDecision {
-  self.store.evaluate_many(names, ctx, self.now(), fallback~)
+  self.store.evaluate_many(
+    names,
+    ctx.with_defaults(
+      self.options.app_name,
+      environment=self.options.environment,
+    ),
+    self.now(),
+    fallback~,
+  )
 }
 
 ///|
@@ -341,7 +363,14 @@ pub fn Client::get_variant(
   name : String,
   ctx : @sdk.Context,
 ) -> @sdk.Variant {
-  self.store.get_variant(name, ctx, self.now())
+  self.store.get_variant(
+    name,
+    ctx.with_defaults(
+      self.options.app_name,
+      environment=self.options.environment,
+    ),
+    self.now(),
+  )
 }
 
 ///|

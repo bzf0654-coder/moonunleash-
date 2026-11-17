@@ -29,6 +29,7 @@ pub struct Context {
 }
 pub fn Context::new(user_id? : String) -> Self
 pub fn Context::parse(String) -> Self raise
+pub fn Context::with_defaults(Self, String, environment? : String) -> Self
 
 #derive(Eq, @debug.Debug)
 pub(all) struct Decision {

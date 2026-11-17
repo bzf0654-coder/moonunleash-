@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": 1,
+  "reference": "unleash-client@6.12.2",
+  "gitHead": "dc113ce745f6c0efe65ae3f6b49a439144ac4aa3",
+  "backend": "js",
+  "scope": "Actual wrapper isEnabled/getVariant prototype methods with in-memory core/staticContext; no constructor, network or metrics lifecycle",
+  "inputSha256": "6d35356c26c2121f0a682f26d32015e49894da3840506c4e32830aecf7888167",
+  "summary": {
+    "cases": 108,
+    "matched": 108,
+    "mismatched": 0
+  },
+  "cases": [
+    {
+      "id": "0:0:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {},
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:0:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {},
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:0:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {},
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:0:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {},
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:0:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {},
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:0:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {},
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:1:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:1:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:1:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:1:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:1:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:1:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:2:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:2:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:2:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:2:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:2:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:2:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:3:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:3:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:3:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:3:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:3:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:3:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:4:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:4:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:4:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:4:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:4:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:4:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:5:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:5:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:5:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:5:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:5:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:5:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:6:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:6:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:6:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:6:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:6:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:6:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:7:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:7:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:7:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:7:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:7:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "0:7:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:8:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:8:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:8:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:8:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "0:8:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "0:8:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "tests",
+        "environment": "default"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:0:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {},
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:0:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {},
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:0:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {},
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:0:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {},
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:0:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {},
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:0:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {},
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:1:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:1:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:1:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:1:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:1:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:1:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "userId": "user-1",
+        "properties": {
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:2:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:2:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:2:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:2:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:2:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:2:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "appName": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:3:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:3:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:3:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:3:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:3:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:3:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "environment": "other"
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:4:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:4:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:4:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:4:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:4:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:4:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "appName": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:5:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:5:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:5:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:5:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:5:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:5:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "appName": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:6:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:6:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:6:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:6:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:6:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:6:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "environment": ""
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:7:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:7:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:7:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:7:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:7:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": false,
+      "moonbit": false,
+      "status": "Match"
+    },
+    {
+      "id": "1:7:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "environment": null
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:8:app:boolean",
+      "name": "app",
+      "kind": "boolean",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:8:app:variant",
+      "name": "app",
+      "kind": "variant",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "app"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:8:environment:boolean",
+      "name": "environment",
+      "kind": "boolean",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:8:environment:variant",
+      "name": "environment",
+      "kind": "variant",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "environment"
+        }
+      },
+      "status": "Match"
+    },
+    {
+      "id": "1:8:qualified:boolean",
+      "name": "qualified",
+      "kind": "boolean",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": true,
+      "moonbit": true,
+      "status": "Match"
+    },
+    {
+      "id": "1:8:qualified:variant",
+      "name": "qualified",
+      "kind": "variant",
+      "context": {
+        "properties": {
+          "appName": "spoof",
+          "environment": "spoof",
+          "tier": "enterprise"
+        }
+      },
+      "defaults": {
+        "appName": "custom-app",
+        "environment": "production"
+      },
+      "node": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "moonbit": {
+        "name": "only",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "qualified"
+        }
+      },
+      "status": "Match"
+    }
+  ]
+}

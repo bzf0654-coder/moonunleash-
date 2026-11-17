@@ -16,10 +16,17 @@ async fn main {
   }
   let name = @env.get_env_var("UNLEASH_FLAG").unwrap_or("checkout")
   let user = @env.get_env_var("UNLEASH_USER_ID").unwrap_or("demo-user")
+  let app_name = @env.get_env_var("UNLEASH_APP_NAME").unwrap_or(
+    "moonunleash-live-demo",
+  )
+  let environment = @env.get_env_var("UNLEASH_CONTEXT_ENVIRONMENT").unwrap_or(
+    "default",
+  )
   let options = @online.Options::new(
     url,
-    "moonunleash-live-demo",
+    app_name,
     token,
+    environment~,
     allow_http_loopback=@env.get_env_var("UNLEASH_ALLOW_HTTP_LOOPBACK") ==
       Some("1"),
   )

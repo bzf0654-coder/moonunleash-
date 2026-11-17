@@ -20,6 +20,7 @@ MoonBit 服务需要与 Go/Java/Node 服务共享已有的发布规则，而不�
 - 私有配置快照，严格拒绝未知语义、重复字段、非法配置。
 - 单所有者 SnapshotStore：批量单快照评估、代次、就绪、陈旧、过期策略、关闭。
 - 在线适配：注册、HTTP/HTTPS、周期刷新、超时、退避、ETag/304、作用域取消。
+- 在线评估补齐 appName/environment 默认上下文，保留调用方显式值，覆盖单项/批量/变体入口；见[上下文契约与验证](<docs/CONTEXT_DEFAULTS.md>)。
 - 坏配置和网络错误不会清空最近有效快照；响应读取期间执行大小限制；不携带凭据跟随重定向。
 
 ## 快速运行（从源码）
@@ -38,12 +39,12 @@ moon run cmd/main --target wasm-gc
 
 | 后端 | 当前证据 |
 |---|---|
-| wasm | 核心与在线故障/生命周期测试共 33 项通过 |
-| wasm-gc | 纯核心 25 项通过；在线适配不支持此后端 |
-| JavaScript | 纯核心 25 项通过；在线适配尚未提供 |
-| native | 有适配源码；本机缺少 MSVC，尚未验证通过 |
+| wasm | 核心与在线故障/生命周期测试共 35 项通过 |
+| wasm-gc | 纯核心 26 项通过；在线适配不支持此后端 |
+| JavaScript | 纯核心 26 项通过；在线适配尚未提供 |
+| native | MoonBit 类型检查通过；缺少 C 编译器，尚未构建/运行验证 |
 
-测试项数量包含 12 个上游 suite runner，每个 runner 内有多条官方断言，不能把 33 项解释为 33 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
+测试项数量包含 12 个上游 suite runner，每个 runner 内有多条官方断言，不能把 35 项解释为 35 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
 
 ## 真实 HTTP 故障演示
 

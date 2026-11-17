@@ -15,3 +15,5 @@ tools/reference/.cache/
 tools/reference/.data/
 artifacts/differential-input.json
 artifacts/differential-moon.json
+artifacts/context-defaults-input.json
+artifacts/context-defaults-moon.json

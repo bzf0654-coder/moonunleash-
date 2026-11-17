@@ -10,7 +10,7 @@
 | ASCII 共同确定性矩阵 | 4608 | 0 | 36 个功能 × 64 个上下文 × Boolean/variant 两类判定 |
 | Unicode 分桶诊断 | 28 | **20** | 单列差异，不算共同范围通过，也不称完整兼容 |
 
-比较的是两侧纯评估内核；不覆盖 Node 顶层 wrapper 注入 appName/environment 等默认上下文，也不证明在线适配在该行为上已对齐。这是功能比较，不是性能、随机分布、真实服务器或 native 测试。额外 4608 条不能冒充新增官方规范覆盖；官方声明范围仍是 12 组 93 条。
+本表比较的是两侧纯评估内核，不覆盖 Node 顶层 wrapper 注入 appName/environment 等默认上下文。此后已另增[默认上下文契约与 108 条针对性比较](<CONTEXT_DEFAULTS.md>)，不回写原始 v1 语料或扩大本表结论。这是功能比较，不是性能、随机分布、真实服务器或 native 测试。额外 4608 条不能冒充新增官方规范覆盖；官方声明范围仍是 12 组 93 条。
 
 - [当前逐条结果](<../artifacts/differential.json>)
 - [工具保留的首次结果](<../artifacts/differential.initial.v1.json>)

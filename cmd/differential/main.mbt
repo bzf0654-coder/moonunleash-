@@ -30,7 +30,16 @@ fn main raise {
     guard field(group, "cases") is Array(cases) else { fail("missing cases") }
     for c in cases {
       let name = text(field(c, "name"))
-      let context = @sdk.Context::parse(field(c, "context").stringify())
+      let raw_context = @sdk.Context::parse(field(c, "context").stringify())
+      let defaults = field(c, "defaults")
+      let context = if defaults is Object(_) {
+        raw_context.with_defaults(
+          text(field(defaults, "appName")),
+          environment=text(field(defaults, "environment")),
+        )
+      } else {
+        raw_context
+      }
       let actual = if text(field(c, "kind")) == "variant" {
         state.get_variant(name, context).to_json()
       } else {
