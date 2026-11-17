@@ -1,0 +1,498 @@
+{
+  "repository": "bzf0654-coder/moonunleash-",
+  "runId": 44090981004,
+  "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44090981004",
+  "headSha": "8dca4960759826d9f5436c0943c24e5aa47076c5",
+  "status": "completed",
+  "conclusion": "failure",
+  "attempt": 1,
+  "event": "push",
+  "createdAt": "2026-11-17T13:15:49Z",
+  "updatedAt": "2026-11-17T13:16:38Z",
+  "jobs": [
+    {
+      "id": 134065678706,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/134065678706",
+      "name": "tests (js)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44090981004/job/134065678706",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 134065678941,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/134065678941",
+      "name": "tests (wasm-gc)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44090981004/job/134065678941",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 134065679084,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/134065679084",
+      "name": "tests (native)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44090981004/job/134065679084",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 134065679311,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/134065679311",
+      "name": "tests (wasm)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44090981004/job/134065679311",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "verification-wasm-gc",
+      "id": 14332110480,
+      "size": 6755,
+      "expired": false,
+      "digest": "sha256:0b288a29d49f5908c97da9c05ccf067edba7cdd83064bf29b74b290c56608fcb",
+      "createdAt": "2026-11-17T13:16:18Z",
+      "headSha": "8dca4960759826d9f5436c0943c24e5aa47076c5"
+    },
+    {
+      "name": "verification-native",
+      "id": 14332080583,
+      "size": 248,
+      "expired": false,
+      "digest": "sha256:b5fa530e4df6188ab5d4d79b2b64b94fc863c6775ca1e6f65ace50617fd93f01",
+      "createdAt": "2026-11-17T13:16:33Z",
+      "headSha": "8dca4960759826d9f5436c0943c24e5aa47076c5"
+    },
+    {
+      "name": "verification-wasm",
+      "id": 14331966106,
+      "size": 244,
+      "expired": false,
+      "digest": "sha256:5e68716025ab9e4cab337da3454dccc8c16591abb6d96f6a85532cbc28958707",
+      "createdAt": "2026-11-17T13:16:12Z",
+      "headSha": "8dca4960759826d9f5436c0943c24e5aa47076c5"
+    },
+    {
+      "name": "verification-js",
+      "id": 14330518436,
+      "size": 34223,
+      "expired": false,
+      "digest": "sha256:3f534479c7aab39a17bc90272929d9b6916b38733d7dec78651b8172b1e2a38b",
+      "createdAt": "2026-11-17T13:16:18Z",
+      "headSha": "8dca4960759826d9f5436c0943c24e5aa47076c5"
+    }
+  ],
+  "note": "Public API job/step status and artifact metadata only; artifact contents and compiler versions are not inferred or downloaded."
+}

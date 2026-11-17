@@ -29,7 +29,7 @@ Runtime reports contain per-case expected/actual values, status, group, index an
 
 The backend label is produced by compile-time configuration, not a caller-supplied label. Node verifies every record against the [inventory](<spec-inventory.json>), rejects duplicates/missing cases and fails unless every required case passes. [The MoonBit runner](<../cmd/conformance/main.mbt>) performs the evaluations; Node does not implement a replacement flag engine.
 
-Reproduce with `node tools/conformance.mjs wasm-gc` (also `wasm` or `js`). Native is a future CI target, not a local passing result. The fixture package is used only by verification tools and is not imported by the SDK core or network adapter.
+Reproduce with `node tools/conformance.mjs wasm-gc` (also `wasm` or `js`). Native is not a local passing runtime result; its first actual cloud check/test job failed and is being diagnosed (see [publication status](<PUBLICATION_STATUS.md>)). The fixture package is used only by verification tools and is not imported by the SDK core or network adapter.
 
 ## Not declared compatible
 

@@ -8,7 +8,8 @@
 - [ ] 确认单人/组队身份；如组队，确认不超过三人与队长信息。
 - [x] 已授权独立发布，不改动已有 moonshop 电商项目；用户已更正实际目标为 [moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（末尾有连字符）。
 - [x] 公开 API 已核验实际目标所属账号、public 状态和空仓库元数据。
-- [ ] 确认远程引用为空，再首次推送源码；不使用 force。此前 404 检查针对的是不带末尾连字符的旧地址。
+- [x] 确认远程引用为空后首推 8dca496；不使用 force。公开 commit 与一页说明均已读回，见[发布实录](<PUBLICATION_STATUS.md>)。
+- [ ] 确认历史 Git 作者 fbzqqqq 与参赛账号 bzf0654-coder 的关系及贡献归属；未擅自改作者或重写历史。
 - [ ] 阅读[一页说明](<APPLICATION_ONE_PAGE.md>)，替换身份与公开仓库链接，不编造个人经历、用户采纳或已经掌握的工程经验。
 - [ ] 阅读[第三方声明](<../THIRD_PARTY.md>)和[兼容边界](<COMPATIBILITY_SCOPE.md>)，接受开发预览版的限制。
 

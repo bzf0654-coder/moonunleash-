@@ -45,8 +45,8 @@ jobs:
         run: node tools/check-links.mjs
       - name: Type check and test
         run: |
-          moon check --target ${{ matrix.target }} --deny-warn
-          moon test --target ${{ matrix.target }} --deny-warn
+          node tools/ci-command.test.mjs
+          node tools/ci-command.mjs ${{ matrix.target }}
       - name: Generate and validate per-case conformance report
         run: |
           node tools/conformance.mjs ${{ matrix.target }}

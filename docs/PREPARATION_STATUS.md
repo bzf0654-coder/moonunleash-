@@ -2,7 +2,7 @@
 
 这是开发预览包的可核查状态，不是“已报名”“官方认证”或生产就绪声明。
 
-**地址更正更新：**用户现已提供实际目标 [moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（末尾有连字符），公开 API 返回 200，确认属于 bzf0654-coder、public、size=0。此前阻塞针对的是不同的无连字符地址；现在准备核验引用后首推，下面旧阻塞经过保留为历史，不再要求用户重复创建。
+**地址更正更新：**用户现已提供实际目标 [moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（末尾有连字符），公开 API 返回 200，确认属于 bzf0654-coder、public、size=0。此前阻塞针对的是不同的无连字符地址；现已核验空引用并首推 8dca496，公开源码已读回。首轮 CI 的 JS/wasm-gc 通过、wasm/native 失败，见[当前发布记录](<PUBLICATION_STATUS.md>)；下面旧阻塞经过仅保留为历史，不再要求用户重复创建。
 
 ## 本地已具备
 
@@ -17,11 +17,13 @@
 | 实际网络故障验证 | 真实 loopback HTTP，覆盖 200/304、坏 JSON、503、更新、302、流式超限；[结果](<../artifacts/http-smoke.json>) |
 | 可复现入口 | 无需服务器的离线示例；带真实服务器环境变量的入口已构建但未实连 |
 | 材料与授权来源 | [一页申报稿](<APPLICATION_ONE_PAGE.md>)、[当前官方要求](<OFFICIAL_REQUIREMENTS.md>)、[来源和许可](<../THIRD_PARTY.md>) |
-| CI | 四目标配置及新鲜报告归档逻辑已写入；**尚未在 GitHub 执行** |
+| CI | 首轮已实际执行；JS/wasm-gc 成功、wasm/native 检查/测试失败，不能以产物存在冒充通过 |
 
 测试项包含 suite runner，不能把 35 项当作 35 条完整官方规范。生成 JSON/夹具的行数不是手写实现规模或参赛代码量。
 
-## 尚未满足的外部条件
+## 此前的外部阻塞（历史，地址已更正）
+
+以下两段记录的是更正前状态；当前源码公开与实际 CI 状态以上文为准。
 
 用户已授权使用独立公开仓库 bzf0654-coder/moonunleash，而不是改动已有 moonshop。但第 4 轮再次访问[目标公开 API](https://api.github.com/repos/bzf0654-coder/moonunleash)仍为 **HTTP 404**；此前账号 SSH 已验证，读取目标也曾返回 Repository not found。404 本身不能区分不存在或非公开，因此不假装知道仓库的后台状态。
 
