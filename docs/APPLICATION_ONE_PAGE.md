@@ -2,7 +2,7 @@
 
 **方向：**工具库 / 成熟生态适配　 **阶段：**可运行开发预览，申请立项而非完整验收
 
-**GitHub ID：**bzf0654-coder　 **仓库：**已授权独立发布至 `bzf0654-coder/moonunleash`，尚未上线　 **许可证：**Apache-2.0
+**GitHub ID：**bzf0654-coder　 **仓库：**[moonunleash-](https://github.com/bzf0654-coder/moonunleash-)　 **许可证：**Apache-2.0
 
 ### 问题与用户
 

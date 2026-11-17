@@ -105,7 +105,7 @@ node tools/generate-fixtures.mjs
 
 ## 项目状态与许可
 
-[一页项目说明](<docs/APPLICATION_ONE_PAGE.md>)、[官方要求核对](<docs/OFFICIAL_REQUIREMENTS.md>)及[开发历程](<docs/DEVELOPMENT_STORY.md>)已备草稿；GitHub 账号已确认为 bzf0654-coder，并获授权独立发布至 `bzf0654-coder/moonunleash`，不改动已有 moonshop。目标仓库当前尚未通过公开 API 和已认证 SSH 的可访问性核验，未执行推送；个人报名信息仍待填写。这不代表已获得 MoonBit 或 Unleash 官方认可。当前适用的是十一月黑客松，不能混用 2—4 月旧赛事的提交次数与支持金额要求。
+[一页项目说明](<docs/APPLICATION_ONE_PAGE.md>)、[官方要求核对](<docs/OFFICIAL_REQUIREMENTS.md>)及[开发历程](<docs/DEVELOPMENT_STORY.md>)已备草稿；用户提供的实际公开目标为 [bzf0654-coder/moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（末尾有连字符），已核验所属账号、公开状态和空仓库元数据，正准备发布；不改动已有 moonshop。此前不带末尾连字符的地址返回 404，并非当前目标。个人报名信息仍待填写。这不代表已获得 MoonBit 或 Unleash 官方认可。当前适用的是十一月黑客松，不能混用 2—4 月旧赛事的提交次数与支持金额要求。
 
 [CI 配置](<.github/workflows/ci.yml>)覆盖四后端矩阵并上传本次运行产生的报告，不冒用仓库里已有的历史摘要。**尚未发布仓库、未运行云端 CI，也没有 native 通过证据。** CI 暂随官方稳定工具链并记录实际版本，本地已验证的精确版本见上文；历史发行标签尚未验证，不捏造可用的固定下载地址。
 

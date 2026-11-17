@@ -15,7 +15,7 @@ version = "0.1.0"
 
 readme = "README.md"
 
-repository = ""
+repository = "https://github.com/bzf0654-coder/moonunleash-"
 
 license = "Apache-2.0"
 

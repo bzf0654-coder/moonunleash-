@@ -6,8 +6,9 @@
 
 - [x] 用户确认 GitHub ID 为 bzf0654-coder；SSH 认证也返回该账号。
 - [ ] 确认单人/组队身份；如组队，确认不超过三人与队长信息。
-- [x] 已授权独立发布至 bzf0654-coder/moonunleash，不改动已有 moonshop 电商项目。
-- [ ] 建立目标空公开仓库并推送。用户报告创建后，公开 API 和已认证 SSH 仍均返回未找到；尚未执行 push。
+- [x] 已授权独立发布，不改动已有 moonshop 电商项目；用户已更正实际目标为 [moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（末尾有连字符）。
+- [x] 公开 API 已核验实际目标所属账号、public 状态和空仓库元数据。
+- [ ] 确认远程引用为空，再首次推送源码；不使用 force。此前 404 检查针对的是不带末尾连字符的旧地址。
 - [ ] 阅读[一页说明](<APPLICATION_ONE_PAGE.md>)，替换身份与公开仓库链接，不编造个人经历、用户采纳或已经掌握的工程经验。
 - [ ] 阅读[第三方声明](<../THIRD_PARTY.md>)和[兼容边界](<COMPATIBILITY_SCOPE.md>)，接受开发预览版的限制。
 
