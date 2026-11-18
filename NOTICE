@@ -1,0 +1,24 @@
+MoonUnleash attribution notice
+
+Portions of the evaluation, context-default, normalization, and variant-selection
+behavior are adapted from the Unleash Node SDK, unleash-client 6.12.2:
+https://github.com/Unleash/unleash-node-sdk/tree/dc113ce745f6c0efe65ae3f6b49a439144ac4aa3
+
+Copyright 2020 Bricks Software AS
+Licensed under the Apache License, Version 2.0.
+The original full license is retained at third_party/unleash-node-sdk/LICENSE.
+
+MoonUnleash changes include a native MoonBit translation, strict bounded snapshot
+validation, private configuration ownership, an explicitly documented UTF-8
+hashing policy, and first-match strategy variants with single evaluation and
+legacy fallback. This is a modified implementation, not an official SDK or an
+unmodified redistribution of the Node SDK. Node is a development-only reference.
+
+The MurmurHash3 x86_32 algorithm originates with Austin Appleby (public domain).
+Its Unleash normalization policy is attributed separately above.
+
+Official client-specification fixtures are redistributed unmodified under their
+original Apache-2.0 license, retained at tests/fixtures/upstream/LICENSE.
+
+This notice was supplied by the MoonUnleash project. It is not a claim that the
+upstream repositories distributed a NOTICE file.

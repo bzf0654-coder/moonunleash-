@@ -96,6 +96,11 @@ test "official 12 custom stickiness" {
 }
 
 ///|
+test "official 16 strategy variants" {
+  run_boolean_spec(fixture_16)
+}
+
+///|
 test "official 18 UTF8 names" {
   run_boolean_spec(fixture_18)
 }

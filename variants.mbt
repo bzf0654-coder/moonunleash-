@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+// Adapted in MoonBit from Unleash Node SDK 6.12.2; Copyright 2020 Bricks Software AS.
+// Modified: strict validation, single evaluation, strategy precedence, legacy
+// fallback, and documented UTF-8 bucketing. See THIRD_PARTY.md and NOTICE.
+
 ///|
 /// Variant payloads remain text: JSON payloads are not executed or reinterpreted.
 pub(all) struct Payload {
@@ -93,7 +98,7 @@ fn variant_from_definition(v : @json.Json) -> Variant {
 }
 
 ///|
-/// Evaluates the flag once, then selects its global variant with the variant seed.
+/// Evaluates once; first-match strategy variants take precedence over legacy ones.
 pub fn Snapshot::get_variant(
   self : Snapshot,
   name : String,
@@ -101,7 +106,10 @@ pub fn Snapshot::get_variant(
   random? : () -> Double,
 ) -> Variant {
   let random = random.unwrap_or(fn() { @random.Rand::chacha8().double() })
-  let enabled = self.evaluate(name, ctx, random~).enabled
+  let (decision, strategy) = self.evaluate_with_strategy(
+    name, ctx, false, random,
+  )
+  let enabled = decision.enabled
   let disabled = Variant::{
     name: "disabled",
     enabled: false,
@@ -112,7 +120,47 @@ pub fn Snapshot::get_variant(
     return disabled
   }
   guard self.features.get(name) is Some(feature) else { return disabled }
+  if strategy is Some(strategy) {
+    let variants = items(field(strategy, "variants"))
+    if !variants.is_empty() {
+      let p = field(strategy, "parameters")
+      let stickiness = match text(field(variants[0], "stickiness")) {
+        Some(value) if value != "" => value
+        _ => str(p, "stickiness", default="default")
+      }
+      if select_variant_definition(
+          variants,
+          ctx,
+          random,
+          str(p, "groupId", default="undefined"),
+          stickiness,
+        )
+        is Some(v) {
+        return variant_from_definition(v)
+      }
+    }
+  }
   let variants = items(field(feature, "variants"))
+  let stickiness = if variants.is_empty() {
+    "default"
+  } else {
+    str(variants[0], "stickiness", default="default")
+  }
+  match select_variant_definition(variants, ctx, random, name, stickiness) {
+    Some(v) => variant_from_definition(v)
+    None => disabled
+  }
+}
+
+///|
+// Common selection primitive: strategy groupId and legacy feature name differ.
+fn select_variant_definition(
+  variants : Array[@json.Json],
+  ctx : Context,
+  random : () -> Double,
+  group_id : String,
+  stickiness : String,
+) -> @json.Json? {
   let mut total = 0
   for v in variants {
     match field(v, "weight") {
@@ -121,18 +169,17 @@ pub fn Snapshot::get_variant(
     }
   }
   if total <= 0 {
-    return disabled
+    return None
   }
   for v in variants {
     for o in items(field(v, "overrides")) {
       if ctx.get(str(o, "contextName")) is Some(actual) {
         if items(field(o, "values")).any(fn(j) { text(j) == Some(actual) }) {
-          return variant_from_definition(v)
+          return Some(v)
         }
       }
     }
   }
-  let stickiness = str(variants[0], "stickiness", default="default")
   let mut id : String? = None
   if stickiness == "default" {
     for key in ["userId", "sessionId", "remoteAddress"] {
@@ -149,12 +196,12 @@ pub fn Snapshot::get_variant(
     None => {
       let r = random()
       if r < 0 || r >= 1 || r.is_nan() {
-        return disabled
+        return None
       }
       (r * 100000 + 0.5).to_int().to_string()
     }
   }
-  let target = bucket(id, name, total, 86028157U)
+  let target = bucket(id, group_id, total, 86028157U)
   let mut cumulative = 0
   for v in variants {
     let weight = match field(v, "weight") {
@@ -163,8 +210,8 @@ pub fn Snapshot::get_variant(
     }
     cumulative = cumulative + weight
     if weight > 0 && cumulative >= target {
-      return variant_from_definition(v)
+      return Some(v)
     }
   }
-  disabled
+  None
 }

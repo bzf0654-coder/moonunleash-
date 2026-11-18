@@ -1,3 +1,9 @@
+// SPDX-License-Identifier: Apache-2.0
+// Unleash normalization adapted from Node SDK 6.12.2;
+// Copyright 2020 Bricks Software AS. Modified: MoonBit UTF-8 byte hashing.
+// The MurmurHash3 algorithm itself is public domain (Austin Appleby).
+// See THIRD_PARTY.md and NOTICE for attribution and changes.
+
 ///|
 /// MurmurHash3 x86_32 over UTF-8, with explicit unsigned wrapping arithmetic.
 fn murmur32(text : String, seed : UInt32) -> UInt32 {

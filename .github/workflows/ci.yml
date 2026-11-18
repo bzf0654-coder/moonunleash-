@@ -68,6 +68,7 @@ jobs:
           node tools/differential.mjs
           node tools/hash-diagnostic.mjs
           node tools/context-defaults.mjs
+          node tools/strategy-variants.mjs
       - name: Real HTTP fault smoke (controlled server, not Unleash)
         if: matrix.target == 'wasm'
         run: |

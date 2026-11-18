@@ -4,7 +4,7 @@ Baseline: [Unleash/client-specification 9ef6efa](https://github.com/Unleash/clie
 
 ## Current measured scope
 
-The pinned index contains **22 suites / 294 cases**. The required scope is 12 suites / **93 passing cases**, with **201 cases explicitly NotRun**, not skipped passes. This is a scoped development preview, not a complete Unleash SDK certification.
+The pinned index contains **22 suites / 294 cases**. The required scope is now 13 suites / **104 passing cases**, with **190 cases explicitly NotRun**, not skipped passes. This is a scoped development preview, not a complete Unleash SDK certification.
 
 | Required suite | Passing cases |
 |---|---:|
@@ -19,6 +19,7 @@ The pinned index contains **22 suites / 294 cases**. The required scope is 12 su
 | 10 flexible rollout | 10 |
 | 11 constraint edges | 6 |
 | 12 custom stickiness | 9 |
+| 16 strategy variants | 11 |
 | 18 UTF-8 names | 2 |
 
 Runtime reports contain per-case expected/actual values, status, group, index and suite name:
@@ -29,11 +30,11 @@ Runtime reports contain per-case expected/actual values, status, group, index an
 
 The backend label is produced by compile-time configuration, not a caller-supplied label. Node verifies every record against the [inventory](<spec-inventory.json>), rejects duplicates/missing cases and fails unless every required case passes. [The MoonBit runner](<../cmd/conformance/main.mbt>) performs the evaluations; Node does not implement a replacement flag engine.
 
-Reproduce with `node tools/conformance.mjs wasm-gc` (also `wasm` or `js`). Linux native now passes cloud check/test and the same required conformance validator in run #3; Windows native is still not a local passing runtime result. Native cloud artifact contents were not downloaded or copied into these checked-in local reports; see [publication status](<PUBLICATION_STATUS.md>). The fixture package is used only by verification tools and is not imported by the SDK core or network adapter.
+Reproduce with `node tools/conformance.mjs wasm-gc` (also `wasm` or `js`). Linux native passed the earlier 93-case preview in cloud run #3; the new 104-case increment needs its own cloud verification. Windows native is still not a local passing runtime result. Native cloud artifact contents were not downloaded or copied into these checked-in local reports; see [publication status](<PUBLICATION_STATUS.md>). The fixture package is used only by verification tools and is not imported by the SDK core or network adapter.
 
 ## Not declared compatible
 
-06 remote address; 13 advanced/date constraint suite; 14 SemVer; 15 complete global segments suite; 16 strategy variants; 17 dependencies; 19/20 delta; 21 regex; 22 CIDR. Some constituent primitives exist, but no subset of these suites is silently counted as passed. Performance, full distributional/randomness testing and complete server interoperability are not established by 93 cases.
+06 remote address; 13 advanced/date constraint suite; 14 SemVer; 15 complete global segments suite; 17 dependencies; 19/20 delta; 21 regex; 22 CIDR. Some constituent primitives exist, but no subset of these suites is silently counted as passed. Performance, full distributional/randomness testing and complete server interoperability are not established by 104 cases.
 
 Whole-snapshot validation is strict: unknown strategies/operators and nonempty unsupported semantic fields reject installation. This intentionally differs from broad upstream behavior for unknown constructs. A single unsupported rule can block updates to other flags in the same response; the previous good snapshot remains in use according to explicit staleness policy.
 
@@ -47,4 +48,4 @@ There is no claim of Windows native execution, native real-network smoke, actual
 
 Before implementation, Phase A froze 01,02,03,04,05,07,09,10,11,12,18 as mandatory. Suite 12 initially failed because global variants were not yet supported. Global variant validation/selection was then implemented, suite 08 added, and every variantTests group in the selected suites enabled. No original mandatory case or expected output was removed to turn a failure into a pass.
 
-Broader constraints, segments, strategy variants and dependencies remain planned expansion, subject to explicit tests and clear scope revisions.
+On 2026-11-18 strategy-level variants were implemented and suite 16 made Required, adding all 11 original cases (104 Pass / 190 NotRun). The separate [M1 differential](<STRATEGY_VARIANTS.md>) adds 1536 deterministic comparisons and preserves its initial oracle exception; these are not extra official cases. Broader constraints, complete segments, dependencies and delta remain required future work. The project completion target is all 22 frozen suites: **294 Pass / 0 Fail / 0 NotRun**, plus separately evidenced interoperability with OSS v7.4.0. It is not an open-ended subset-compatibility endpoint.

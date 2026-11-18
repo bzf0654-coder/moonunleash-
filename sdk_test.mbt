@@ -46,7 +46,7 @@ test "duplicate fields and duplicate flags rejected" {
 }
 
 ///|
-test "unsupported strategy variants and dependencies cannot be ignored" {
+test "unsupported dependencies and malformed global variants cannot be ignored" {
   for key in ["dependencies", "variants"] {
     let source = "{\"version\":2,\"features\":[{\"name\":\"x\",\"enabled\":true,\"strategies\":[{\"name\":\"default\",\"variants\":[{\"name\":\"v\",\"weight\":1}]}],\"\{key}\":[{\"name\":\"parent\"}]}]}"
     let rejected = try {

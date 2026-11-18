@@ -1,0 +1,9 @@
+{
+  "planVersion": 1,
+  "inputSha256": "70a107de32c85b6d210a38bc1645dca219e38fd16dd88563cbb1dbd85736417f",
+  "status": "OracleError",
+  "error": "TypeError: Cannot read properties of undefined (reading stickiness)",
+  "location": "unleash-client@6.12.2/lib/strategy/strategy.js:236",
+  "cause": "Default strategy with nonempty variants and omitted parameters causes the unmodified reference core to throw. No completed differential pass is claimed.",
+  "nextPlan": "v2 retains all contexts and weights, supplies explicit parameters objects to default strategies, and records this reference limitation."
+}

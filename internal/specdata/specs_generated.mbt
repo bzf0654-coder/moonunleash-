@@ -6562,7 +6562,7 @@ pub fn suites() -> Array[Fixture] {
       source: fixture_14,
     },
     { file: "15-global-constraints.json", required: false, source: fixture_15, },
-    { file: "16-strategy-variants.json", required: false, source: fixture_16, },
+    { file: "16-strategy-variants.json", required: true, source: fixture_16, },
     { file: "17-dependent-features.json", required: false, source: fixture_17, },
     { file: "18-utf8-flag-names.json", required: true, source: fixture_18, },
     {

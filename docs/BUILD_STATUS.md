@@ -1,4 +1,17 @@
-# Build status (2026-11-17)
+# Build status (updated 2026-11-18)
+
+## Current M1 SDK increment
+
+- Strategy-level variants and first-enabled-strategy propagation are implemented without changing the public interfaces. Legacy variants remain a fallback, not the recommended A/B path.
+- Local tests: wasm **43/43**, wasm-gc **33/33**, JavaScript **33/33**; Windows native type check passed, not execution.
+- Conformance on those three runtime backends: **104 Pass / 0 Fail / 190 NotRun**, 13/22 suites including all 11 original suite-16 cases. All 24 upstream file hashes still verify.
+- Separate fixed v2 strategy-variant differential: **11/11 official + 1536/1536 matrix**, no oracle errors. The v1 omitted-parameters reference exception is preserved and documented in [the M1 record](<STRATEGY_VARIANTS.md>).
+- The old 93 / 4608 / 48 corpus and first result were not changed; rerun still yields 93/93 official, 4608/4608 ASCII, and 20 Unicode mismatches. Context-default wrapper comparisons still pass 108/108.
+- Exact Bricks Software AS copyright, the original SDK license and explicit modification notices have been retained. This is attribution remediation, not a general legal certification.
+- Current increment cloud CI and real v7.4.0 interoperability are not yet claimed here. The native/cloud counts below describe the earlier preview only.
+
+## Prior 2026-11-17 preview record (historical counts)
+
 
 Observed, not claimed production readiness:
 

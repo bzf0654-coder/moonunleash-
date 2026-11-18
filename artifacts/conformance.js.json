@@ -4,10 +4,10 @@
   "backend": "js",
   "summary": {
     "suites": 22,
-    "requiredSuites": 12,
-    "passed": 93,
+    "requiredSuites": 13,
+    "passed": 104,
     "failed": 0,
-    "notRun": 201
+    "notRun": 190
   },
   "suites": [
     {
@@ -117,10 +117,10 @@
     },
     {
       "file": "16-strategy-variants.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 11,
       "failed": 0,
-      "notRun": 11
+      "notRun": 0
     },
     {
       "file": "17-dependent-features.json",
@@ -2518,8 +2518,8 @@
       "kind": "variantTests",
       "index": 0,
       "description": "Feature.strategy.variant should return variant on enabled toggle",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantName",
         "payload": {
@@ -2529,31 +2529,43 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantName",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 1,
       "description": "Feature.strategy.variant should return disabled variant on disabled toggle",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 2,
       "description": "Feature.strategy.variant.overrides.feature.variant should override feature variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantName",
         "payload": {
@@ -2563,16 +2575,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantName",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 3,
       "description": "Feature.strategy.multiple.variants should choose first variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantNameA",
         "payload": {
@@ -2582,16 +2602,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantNameA",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValueA"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 4,
       "description": "Feature.strategy.multiple.variants should choose second variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantNameB",
         "payload": {
@@ -2601,31 +2629,43 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantNameB",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValueB"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 5,
       "description": "Feature.strategy.empty.variants should return disabled variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 6,
       "description": "Feature.strategy.variant.fallback should fall back to feature variants",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "featureVariant",
         "payload": {
@@ -2635,16 +2675,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "featureVariant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "fallbackValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 7,
       "description": "Feature.strategy.numeric.variants should choose second variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantNameB",
         "payload": {
@@ -2654,16 +2702,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantNameB",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "number",
+          "value": "1"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 8,
       "description": "Feature.strategy.no.strategy.variants should fall back to base variants",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantNameA",
         "payload": {
@@ -2673,16 +2729,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantNameA",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "number",
+          "value": "1"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 9,
       "description": "Feature.strategy.variants.stickiness should inherit stickiness from the strategy - first variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantNameA",
         "payload": {
@@ -2692,16 +2756,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantNameA",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValueA"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
       "kind": "variantTests",
       "index": 10,
       "description": "Feature.strategy.variants.stickiness should inherit stickiness from the strategy - second variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "variantNameB",
         "payload": {
@@ -2711,8 +2783,16 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "variantNameB",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValueB"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",

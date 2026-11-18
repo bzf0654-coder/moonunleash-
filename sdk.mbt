@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+// Adapted in MoonBit from Unleash Node SDK 6.12.2; Copyright 2020 Bricks Software AS.
+// Modified: bounded/private snapshots, supported constraints, context defaults,
+// and first-match strategy propagation. See THIRD_PARTY.md and NOTICE.
+
 ///|
 /// Invalid input and unsupported semantics are distinct, observable failures.
 #derive(@debug.Debug)
@@ -222,8 +227,13 @@ pub fn Snapshot::parse(source : String) -> Snapshot raise {
           }
         _ => raise Invalid("strategy.parameters: expected object")
       }
-      if optional_array(strategy, "variants").length() > 0 {
-        raise Unsupported("strategy variants")
+      let strategy_variants = optional_array(strategy, "variants")
+      validate_variants(strategy_variants)
+      for variant in strategy_variants {
+        match field(variant, "weightType") {
+          Null | String("fix") | String("variable") => ()
+          _ => raise Invalid("variant.weightType: expected fix or variable")
+        }
       }
       let cs = optional_array(strategy, "constraints")
       if cs.length() > 100 {
@@ -431,19 +441,36 @@ pub fn Snapshot::evaluate(
   fallback~ : Bool = false,
   random? : () -> Double,
 ) -> Decision {
+  let random = random.unwrap_or(fn() { @random.Rand::chacha8().double() })
+  let (decision, _) = self.evaluate_with_strategy(name, ctx, fallback, random)
+  decision
+}
+
+///|
+// Carry the first matching strategy into variant selection without re-evaluation.
+fn Snapshot::evaluate_with_strategy(
+  self : Snapshot,
+  name : String,
+  ctx : Context,
+  fallback : Bool,
+  random : () -> Double,
+) -> (Decision, @json.Json?) {
   guard self.features.get(name) is Some(feature) else {
-    return { enabled: fallback, reason: "not_found", }
+    return ({ enabled: fallback, reason: "not_found", }, None)
   }
   if !boolean(field(feature, "enabled")) {
-    return { enabled: false, reason: "disabled", }
+    return ({ enabled: false, reason: "disabled", }, None)
   }
   let strategies = items(field(feature, "strategies"))
   if strategies.is_empty() {
-    return { enabled: true, reason: "no_strategies", }
+    return ({ enabled: true, reason: "no_strategies", }, None)
   }
-  let random = random.unwrap_or(fn() { @random.Rand::chacha8().double() })
-  let enabled = strategies.any(fn(s) { self.strategy_matches(s, ctx, random) })
-  { enabled, reason: if enabled { "strategy_match" } else { "no_match" }, }
+  for strategy in strategies {
+    if self.strategy_matches(strategy, ctx, random) {
+      return ({ enabled: true, reason: "strategy_match", }, Some(strategy))
+    }
+  }
+  ({ enabled: false, reason: "no_match", }, None)
 }
 
 ///|
