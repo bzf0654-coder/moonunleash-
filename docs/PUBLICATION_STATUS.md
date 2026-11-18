@@ -51,13 +51,15 @@ Native 的[实际工具链 annotation](https://api.github.com/repos/bzf0654-code
 
 这使 Linux native 从“只有源码/类型检查”推进为云端实际构建测试通过。Windows 本机仍无 C 编译器，真实 Unleash、完整规范、Unicode 分桶迁移、metrics 等限制不因 CI 绿色消失。源码和申报概述现在有可公开核查的技术预览与四目标验证入口，适用于申请立项沟通，不是正式报名或完整 SDK 认证。
 
-## 2026-11-18：策略级变体增量（待独立云端核验）
+## 2026-11-18：策略级变体增量与第五轮四目标通过
 
 当前原生实现首个启用策略、策略变体优先级、groupId/stickiness 分桶与旧配置回退，新增第 16 组的 11 条原始用例。三个本地运行后端现为 **104 Pass / 0 Fail / 190 NotRun**，测试项数为 wasm **43/43**、wasm-gc/JS 各 **33/33**；Windows native 仍只有类型检查。
 
 新增差分 v2 为 **11/11 官方 + 1536/1536 矩阵**，0 参考异常；v1 的省略 parameters 参考异常与原始输入保留，见 [M1 记录](<STRATEGY_VARIANTS.md>)。既有 93/4608/48 差分没有变更，20 条 Unicode 差异仍在。版权整改保留了 `Copyright 2020 Bricks Software AS`、原许可和源文件改编说明。
 
-本次新增代码不能引用第三轮旧 CI 作为通过证据，需要在真实推送后核验新 SHA 的四目标结果；没有声称真实 OSS v7.4.0 互通已完成。
+源码提交 [25b1313](https://github.com/bzf0654-coder/moonunleash-/commit/25b13135f5cf9ed01c460dd3e587ab44ab9d5756) 已实际推送。第一次批准的 SSH 推送在上传时被远端断开，之后先核对公开分支仍停在旧 SHA，再重试；未 force push 或改写历史。重试触发的 [SDK checks #5](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44337305293) 为 **success**，native、wasm-gc、JS、wasm 四个 job、检查测试、逐例规范校验与离线示例均成功，JS 新变体差分所在步骤也成功。
+
+[本轮 API 证据](<../artifacts/ci-run-44337305293.json>)保留 job/step 状态及四份非空、未过期、同 SHA 产物的元数据；不声称下载了产物内容或核实了本次安装的具体编译器版本。本轮 Linux native 的规范门槛已是 104 Pass / 0 Fail / 190 NotRun，不再只引用旧 93 条的结果。申请书完整 JSON 也在本地 MoonBit JS 内核实跑 **7/7** 正负例通过；这不是从真实服务端抓包。真实 OSS v7.4.0 互通仍未完成。
 
 ## 身份与报名边界
 

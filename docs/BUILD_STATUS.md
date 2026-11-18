@@ -8,7 +8,8 @@
 - Separate fixed v2 strategy-variant differential: **11/11 official + 1536/1536 matrix**, no oracle errors. The v1 omitted-parameters reference exception is preserved and documented in [the M1 record](<STRATEGY_VARIANTS.md>).
 - The old 93 / 4608 / 48 corpus and first result were not changed; rerun still yields 93/93 official, 4608/4608 ASCII, and 20 Unicode mismatches. Context-default wrapper comparisons still pass 108/108.
 - Exact Bricks Software AS copyright, the original SDK license and explicit modification notices have been retained. This is attribution remediation, not a general legal certification.
-- Current increment cloud CI and real v7.4.0 interoperability are not yet claimed here. The native/cloud counts below describe the earlier preview only.
+- Current increment [cloud CI #5](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44337305293) passed all four targets on `25b13135f5cf9ed01c460dd3e587ab44ab9d5756`, including Linux native check/test, the 104-case conformance gate and offline example. [Public job/step and artifact metadata](<../artifacts/ci-run-44337305293.json>) match the same SHA; artifact contents and installed compiler versions were not downloaded or inferred. Real v7.4.0 interoperability remains unverified.
+- The standalone application's exact JSON was also executed through the compiled MoonBit JS evaluator: **7/7** positive/negative cases passed. This is offline evaluation, not a live server capture.
 
 ## Prior 2026-11-17 preview record (historical counts)
 

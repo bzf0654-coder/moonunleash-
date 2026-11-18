@@ -42,7 +42,7 @@ moon run cmd/main --target wasm-gc
 | wasm | 核心与在线故障/生命周期测试共 43 项通过 |
 | wasm-gc | 纯核心 33 项通过；在线适配不支持此后端 |
 | JavaScript | 纯核心 33 项通过；在线适配尚未提供 |
-| native | 本轮 Windows 类型检查通过；旧预览 Linux 云端曾通过，本次策略变体增量云端待核验 |
+| native | 本轮 Linux 云端检查、测试、104 条规范校验与离线示例通过；Windows 本地仍仅类型检查 |
 
 测试项数量包含 13 个上游 suite runner，每个 runner 内有多条官方断言，不能把 43 项解释为 43 条完整官方规范用例。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)及[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
 
@@ -76,7 +76,7 @@ API Token 的作用域决定可见项目和环境，不是 context.environment�
 
 ## 兼容性与限制
 
-官方测试基线固定为 [client-specification 9ef6efa](https://github.com/Unleash/client-specification/tree/9ef6efa01feabeb699857192ad8106fd7d990235)。22 组共有 294 条；当前执行 01—05、07—12、16、18 共 13 组，**104 条通过，190 条明确未执行**，没有把未执行部分计为通过。三个已验证后端均生成[逐用例报告](<docs/COMPATIBILITY_SCOPE.md>)。
+官方测试基线固定为 [client-specification 9ef6efa](https://github.com/Unleash/client-specification/tree/9ef6efa01feabeb699857192ad8106fd7d990235)。22 组共有 294 条；当前执行 01—05、07—12、16、18 共 13 组，**104 条通过，190 条明确未执行**，没有把未执行部分计为通过。三个本地后端均生成[逐用例报告](<docs/COMPATIBILITY_SCOPE.md>)；Linux native 已通过本轮云端同一规范校验门槛。
 
 ```sh
 node tools/conformance.mjs wasm-gc
@@ -108,7 +108,7 @@ node tools/generate-fixtures.mjs
 
 [一页项目说明](<docs/APPLICATION_ONE_PAGE.md>)、[官方要求核对](<docs/OFFICIAL_REQUIREMENTS.md>)及[开发历程](<docs/DEVELOPMENT_STORY.md>)已备草稿；用户提供的实际公开目标为 [bzf0654-coder/moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（末尾有连字符），已核验空引用后完成首推，源码和历史已公开；不改动已有 moonshop。此前不带末尾连字符的地址返回 404，并非当前目标。个人报名信息仍待填写。这不代表已获得 MoonBit 或 Unleash 官方认可。当前适用的是十一月黑客松，不能混用 2—4 月旧赛事的提交次数与支持金额要求。
 
-本次策略级变体增量需重新核验云端 CI，不能引用下述旧运行作为新代码通过证据。
+**本次策略级变体增量已通过 [SDK checks #5](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44337305293)**，验证源码提交 `25b13135f5cf9ed01c460dd3e587ab44ab9d5756`。四目标的检查、测试、104 条规范校验和离线示例均成功，JS 还执行新增变体差分；[本轮公开 API 证据](<artifacts/ci-run-44337305293.json>)记录同 SHA 的四份产物元数据，未下载或冒称审读产物内容。
 
 [CI 配置](<.github/workflows/ci.yml>)覆盖四后端矩阵并上传本次运行产生的报告，不冒用仓库里已有的历史摘要。**源码已公开；修复后的 [SDK checks #3](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44096693547) 四目标全部通过**，验证提交为 `9bd4255`。前两轮 wasm/native 的实际失败及实验性 HTTP API 迁移过程均保留，详见[发布与 CI 记录](<docs/PUBLICATION_STATUS.md>)。 CI 暂随官方稳定工具链并记录实际版本，本地已验证的精确版本见上文；历史发行标签尚未验证，不捏造可用的固定下载地址。
 

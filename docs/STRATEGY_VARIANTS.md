@@ -18,13 +18,15 @@ Run `node tools/strategy-variants.mjs` after installing the frozen development o
 
 ## First reference failure and explicit v2 revision
 
-Plan v1 input SHA-256 was `70a107de32c85b6d210a38bc1645dca219e38fd16dd88563cbb1dbd85736417f`. The MoonBit batch executed, but the unmodified Node core threw `TypeError: Cannot read properties of undefined (reading 'stickiness')` at `strategy.js:236`: its default strategy cannot evaluate nonempty variants when parameters is omitted. No completed v1 differential pass is claimed. The original input, source and failure record are retained locally; this is a reference-core limitation, not a hidden MoonBit mismatch.
+Plan v1 input SHA-256 was `70a107de32c85b6d210a38bc1645dca219e38fd16dd88563cbb1dbd85736417f`. The MoonBit batch executed, but the unmodified Node core threw `TypeError: Cannot read properties of undefined (reading 'stickiness')` at `strategy.js:236`: its default strategy cannot evaluate nonempty variants when parameters is omitted. No completed v1 differential pass is claimed. The original [input](<../artifacts/strategy-variants-input.v1.json>), [source](<../artifacts/strategy-variants.v1-oracle-error.mjs>) and [failure record](<../artifacts/strategy-variants.initial.v1.json>) are retained in the repository; this is a reference-core limitation, not a hidden MoonBit mismatch.
 
 Before re-execution, **plan v2** explicitly supplies `parameters: {}` on default strategies. All 64 contexts, configurations, weights, case IDs and official expectations are retained. The omitted-parameter robustness case stays in the MoonBit tests; v2 does not claim reference equivalence for it. New unexpected oracle errors are recorded per case and cause nonzero exit rather than skipping cases.
 
 ## Results
 
 Plan v2 input SHA-256: `a37907e32a4978c90772a1323145359849a9d991475d1fdd588c7163b7834082`. The actual compiled JS MoonBit evaluator and unmodified Node core agree **11/11 official cases and 1536/1536 deterministic matrix comparisons**, with **0 oracle errors** and **0 oracle/spec disagreements**. Local tests pass wasm **43/43**, wasm-gc **33/33**, JavaScript **33/33**; Windows native type checking passes, runtime remains unverified. The public interfaces are unchanged. Existing local conformance has reached 104 Pass / 0 Fail / 190 NotRun on wasm, wasm-gc and JavaScript. This includes all 11 suite-16 cases, with no changes to upstream fixtures.
+
+The source commit `25b13135f5cf9ed01c460dd3e587ab44ab9d5756` passed [cloud CI #5](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44337305293) on wasm, wasm-gc, JavaScript and Linux native, including the 104-case conformance validator. Four current artifact metadata records match that SHA; their contents were not downloaded. The standalone application's complete JSON also passed **7/7** local MoonBit JS evaluations. Neither result implies a live-server test.
 
 ## Server and remaining boundaries
 

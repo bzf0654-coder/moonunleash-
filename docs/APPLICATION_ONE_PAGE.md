@@ -28,7 +28,7 @@ MoonBit 服务融入多语言系统时，需要复用既有 Unleash 发布规则
 
 ### 仍需完成与诚实边界
 
-M1 纯评估已落地，真实 v7.4.0 配置获取与端到端验收仍待完成；现有真实 loopback HTTP 测试使用可控模拟，不是 Unleash。后续须补高级约束、完整分组、依赖、delta 公共接口、基础 metrics 及余下 190 条官方用例。旧预览曾有四目标云端通过，但本次新增代码的云端结果须单独核验；Windows native 本地仍仅类型检查。
+M1 纯评估已落地，真实 v7.4.0 配置获取与端到端验收仍待完成；现有真实 loopback HTTP 测试使用可控模拟，不是 Unleash。后续须补高级约束、完整分组、依赖、delta 公共接口、基础 metrics 及余下 190 条官方用例。本次源码 `25b1313` 已通过[第五轮四目标云端 CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44337305293)，包含 Linux native 的检查、测试、104 条规范门槛和离线示例；已核对同 SHA 的四份产物元数据，未下载内容。Windows native 本地仍仅类型检查。
 
 保留固定参考 SDK 的 **Copyright 2020 Bricks Software AS**、原始许可及改编声明，参见[第三方说明](<../THIRD_PARTY.md>)。AI 辅助开发不等于个人手写声明；参赛者仍需理解实现和负责最终资料，不虚填报名回执或官方认证。
 
