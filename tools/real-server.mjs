@@ -113,7 +113,7 @@ async function bootstrap() {
     const first = await admin(featurePath(name) + '/strategies', { method: 'POST', body: {
       name: 'flexibleRollout', sortOrder: 0, parameters: { groupId: name, rollout: '100', stickiness: 'userId' },
       constraints: name === 'ci-child' ? [{ contextName: 'userId', operator: 'IN', values: ['allowed-user'] }] : [],
-      variants: [{ name: variant, weight: 1000, weightType: 'fix', stickiness: 'userId',
+      variants: [{ name: variant, weight: 1000, weightType: 'variable', stickiness: 'userId',
         payload: { type: 'string', value: name === 'ci-parent' ? 'parent-blue' : 'child-gold' } }],
     } });
     if (name === 'ci-child') {
@@ -123,7 +123,7 @@ async function bootstrap() {
         name: 'flexibleRollout', sortOrder: 1,
         parameters: { groupId: name + '-later', rollout: '100', stickiness: 'userId' },
         constraints: [{ contextName: 'userId', operator: 'IN', values: ['allowed-user'] }],
-        variants: [{ name: 'later', weight: 1000, weightType: 'fix', stickiness: 'userId',
+        variants: [{ name: 'later', weight: 1000, weightType: 'variable', stickiness: 'userId',
           payload: { type: 'string', value: 'must-not-select' } }],
       } });
       assert.equal(typeof first.id, 'string'); assert.equal(typeof second.id, 'string');

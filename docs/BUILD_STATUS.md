@@ -3,12 +3,12 @@
 ## Current full-spec local increment
 
 - All original **22 suites / 294 cases** now execute through actual MoonBit evaluation/state APIs on wasm, wasm-gc and JavaScript: **294 Pass / 0 Fail / 0 NotRun** each, all **24 upstream hashes** verified.
-- Tests: **96/96 wasm**, **81/81 wasm-gc**, **81/81 JS**. Windows native **type checking only** passed; new Linux native execution and same-source cloud proof remain pending.
+- Tests: **96/96 wasm**, **81/81 wasm-gc**, **81/81 JS**. Windows native **type checking only** passed. [Full-scope cloud CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346) on `4249cc378a480f1d2196e02611fd51abb2ca76e1` passed all four targets, including Linux native execution, 294/0/0, offline example and required differential/Unicode/controlled-HTTP stages. [Public proof](<../artifacts/ci-run-44689082346.json>) verifies fresh summary annotations with 24 hashes/report digests and actual installed versions; raw artifact archives were not downloaded.
 - Advanced/date/SemVer constraints, complete segments, parent/variant dependencies, remote address/CIDR, bounded portable regex and the public atomic delta interface are implemented. Unknown well-shaped operators follow the official false-before-inversion rule.
 - Exact `moonbitlang/regexp@0.3.7` is a production MoonBit library dependency, not Node/JS evaluation. See [regex dialect and limits](<REGEX.md>), [delta contract](<DELTA.md>) and [first failures/checkpoints](<ACCEPTANCE.md>).
 - Bounded metrics counting/freeze/retry/202-acknowledgment and the scoped timer are implemented and locally tested; [contract](<METRICS.md>). [Independent Unicode adjudication](<UNICODE.md>) freezes 144 full uint32 and 112 API expectations, all three local backends passed without rewriting the original 20 Node differences.
-- [Fixed v7.4.0 real-server acceptance](<REAL_SERVER.md>) is implemented for wasm/native but not yet executed. Strict compilation and local raw-byte OCI/source-association verification passed; this does not prove actual HTTP interoperability or metrics persistence. Three local full-spec passes are not production readiness or completion of all acceptance gates.
-- Historical CI below validates its own smaller source/scope only. No current 294-case native/server success is inferred from it.
+- [Fixed v7.4.0 real-server acceptance](<REAL_SERVER.md>) is implemented for wasm/native; first cloud executions failed authenticated readiness/bootstrap and are recorded in the acceptance ledger. Strict compilation and local raw-byte OCI/source-association verification passed; this does not prove actual HTTP interoperability or metrics persistence. Three local full-spec passes are not production readiness or completion of all acceptance gates.
+- Historical CI below validates its own smaller source/scope only. Current 294-case native success is established independently above; real-server success is not inferred from SDK CI.
 
 ## Historical M1 SDK increment (2026-11-18)
 

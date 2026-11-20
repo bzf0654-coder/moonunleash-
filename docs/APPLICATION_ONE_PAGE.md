@@ -1,6 +1,6 @@
 # MoonUnleash：MoonBit 原生功能开关 SDK
 
-**方向：**工具库 / 成熟生态适配　 **阶段：**开发预览，固定规范本地全覆盖；真实服务及同 SHA 云端验收仍待完成
+**方向：**工具库 / 成熟生态适配　 **阶段：**开发预览，固定规范四后端云端全覆盖；真实服务及最终同源验收仍待完成
 
 **GitHub ID：**bzf0654-coder　 **仓库：**[moonunleash-](https://github.com/bzf0654-coder/moonunleash-)　 **许可证：**Apache-2.0
 
@@ -26,13 +26,13 @@ MoonBit 服务融入多语言系统时，需要复用既有 Unleash 发布规则
 - 策略级变体、首个启用策略、groupId、payload、旧配置回退，以及 AND 父依赖/变体依赖。
 - 私有严格快照、同代次批量评估、last-good/陈旧/关闭；公共原子 delta hydration/events、游标与回放。
 - 有界响应 HTTP 适配、ETag/304、超时/退避/作用域取消；有界 yes/no/variant metrics、冻结待发桶、202 确认与独立错误状态。重试为至少一次语义，不承诺持久或恰好一次。
-- wasm **96/96**、wasm-gc/JS 各 **81/81** 测试；三个本地后端各 **294 Pass / 0 Fail / 0 NotRun**。测试项包含 suite runner，不能与官方用例数量相加。native 当前只完成本地严格类型检查。
+- wasm **96/96**、wasm-gc/JS 各 **81/81** 测试；三个本地后端各 **294 Pass / 0 Fail / 0 NotRun**。测试项包含 suite runner，不能与官方用例数量相加。[四目标全量云端 CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346)已独立通过 Linux native 在内的四目标 294/0/0、严格检查/测试与离线示例；[公开当前运行证明](<../artifacts/ci-run-44689082346.json>)包含实际编译器版本、24 哈希、各目标报告摘要。
 - 旧官方 93 / ASCII 4608、上下文 108、策略变体 1547、父依赖 57 的固定 Node 差分分别保留；不冒充额外官方规范覆盖。
 - 原 Unicode 48 项中 Node **20 项差异保留**，分为 7 个 rollout、7 个传播的 feature_enabled、6 个变体；新增冻结的双独立字节参考，**144 个 full uint32 哈希 + 112 个公开 API 判定**已随三后端测试通过。选择明确的 UTF-8 策略，不冒称与 Node 6.12.2 非 ASCII 分桶一致，也不把统一字节编码说成规范已普遍约定。
 
 ### 仍需完成与诚实边界
 
-当前变化尚未取得 Linux native 的完整 294 条及新同 SHA 云端证据，固定 v7.4.0 的 wasm/native 真实注册、配置更新、variants/依赖、断线恢复及 metrics 入库验收尚未完成。真实服务验收脚本和 CI 配置不是执行通过记录；可控 loopback HTTP 也不是真实 Unleash。
+固定 v7.4.0 的 wasm/native 真实注册、配置更新、variants/依赖、断线恢复及 metrics 入库验收尚未完成。真实服务验收脚本和 CI 配置不是执行通过记录；可控 loopback HTTP 也不是真实 Unleash。
 
 历史 [M1 四目标 CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44337305293)只证明 `25b13135f5cf9ed01c460dd3e587ab44ab9d5756` 当时的 104 条，不挪作当前全量结果。Windows native 运行和 Mooncakes 发布均不作已完成声明。
 

@@ -27,7 +27,7 @@ MoonBit 服务需要与 Go/Java/Node 服务共享已有的发布规则，而不�
 
 ## 快速运行（从源码）
 
-已验证工具链：Moon CLI `0.1.20261104 (940aa18)` / moonc `v0.10.20+65efd5b93`。
+已验证工具链：本地 Moon CLI `0.1.20261104 (940aa18)` / moonc `v0.10.20+65efd5b93`；四后端云端 Moon `0.1.20261119 (738607b)` / moonc `v0.10.22+124d61d05`（以实际运行 annotation 为准，不由 stable 标签推断）。
 
 ```sh
 moon check --deny-warn --target wasm
@@ -44,7 +44,9 @@ moon run cmd/main --target wasm-gc
 | wasm | 本地 96/96 项测试；全部 294/294 条官方规范 |
 | wasm-gc | 本地 81/81 项测试、294/294 条；在线适配不支持此后端 |
 | JavaScript | 本地 81/81 项测试、294/294 条；在线适配尚未提供 |
-| native | 当前改动本地类型检查通过，执行待新云端验证；历史 M1 Linux CI 仅证明当时 104 条；Windows 本地仍未执行 |
+| native | Linux 云端严格检查/测试、离线示例与 294/294 条已通过；Windows 本地仍仅类型检查 |
+
+[四目标全量云端通过](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346)对应 `4249cc378a480f1d2196e02611fd51abb2ca76e1`；[公开运行证明](<artifacts/ci-run-44689082346.json>)逐目标核对了 22 组、294/0/0、24 项哈希和报告摘要，而非只看绿色图标。真实 Unleash wasm/native 互通仍单独验收，不由此推断通过。
 
 测试项数量包含 suite runner，每个 runner 内有多条官方断言，不能把 96 项解释为 96 条官方规范用例。全部 24 项上游 SHA-256 校验仍通过。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)、[范围清单](<docs/COMPATIBILITY_SCOPE.md>)及[完整验收账](<docs/ACCEPTANCE.md>)。
 

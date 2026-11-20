@@ -1,6 +1,6 @@
 # Real Unleash 7.4.0 acceptance
 
-**Implementation status: Pending execution.** This document and the checked-in workflow are not a passing integration report. Only a fresh cloud run whose script exits zero and whose current-run result says `PASS` establishes acceptance for that target. No real server was started while authoring these files. Compiler/toolchain and real Docker execution are left to the integrating agent / CI.
+**Implementation status: Executed; acceptance not yet passed.** The first cloud attempts started the actual pinned server but failed readiness/bootstrap, as recorded in the [acceptance ledger](<ACCEPTANCE.md>). This document and the checked-in workflow are not a passing integration report. Only a fresh cloud run whose script exits zero and whose current-run result says `PASS` establishes acceptance for that target. Four-target 294-case SDK CI is separate and does not prove server interoperability.
 
 ## Entry points and boundary
 

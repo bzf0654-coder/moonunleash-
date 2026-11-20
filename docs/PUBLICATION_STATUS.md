@@ -2,7 +2,7 @@
 
 ## 2026-11-20：当前增量尚待新云端验收
 
-三个本地运行后端已各达到 **294 Pass / 0 Fail / 0 NotRun**，测试为 wasm **96/96**、wasm-gc/JS 各 **81/81**；Windows native 严格类型检查通过。公共 delta、完整约束/依赖、有界 metrics 与独立 UTF-8 Golden 已实现，见[当前验收清单](<ACCEPTANCE.md>)。新的[固定真实服务器门](<REAL_SERVER.md>)仍待实际执行；以下四目标 104 条或93条结果均仅为历史证据，不代表这次 294 条增量的 native、metrics 入库或新同 SHA 云端已经通过。
+三个本地运行后端已各达到 **294 Pass / 0 Fail / 0 NotRun**，测试为 wasm **96/96**、wasm-gc/JS 各 **81/81**；Windows native 严格类型检查通过。公共 delta、完整约束/依赖、有界 metrics 与独立 UTF-8 Golden 已实现，见[当前验收清单](<ACCEPTANCE.md>)。[新的四目标云端运行](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346)已在 `4249cc378a480f1d2196e02611fd51abb2ca76e1` 全部通过 294/0/0 和严格测试，Linux native 不再只有本地类型检查；[公开证明](<../artifacts/ci-run-44689082346.json>)核对了实际编译器、当前运行验证汇总/摘要及非空同 SHA 产物元数据，未下载原始产物归档。[固定真实服务器门](<REAL_SERVER.md>)已实际启动容器，但前两轮失败于 readiness/bootstrap，修复和失败保留于验收记录；互通与 metrics 数据库读回仍未通过。以下四目标 104 条或93条结果均仅为历史证据，不代表这次 294 条增量的 native、metrics 入库或新同 SHA 云端已经通过。
 
 ## 实际发布
 
@@ -69,4 +69,4 @@ Native 的[实际工具链 annotation](https://api.github.com/repos/bzf0654-code
 
 仓库所有者和本次 push actor 是 bzf0654-coder。历史提交沿用本机原有 Git identity，GitHub 将作者映射为 fbzqqqq；未擅自更改全局 identity 或重写作者历史。申请人需要自行确认两者关系及参赛贡献归属，不能由代理推定为同一人。
 
-源码公开不等于正式报名。团队/个人资料、章程确认、入群及表单提交仍需申请人处理或明确授权；无回执不称报名成功。真实 Unleash 互通、完整规范、Mooncakes 发布和生产就绪仍不在已通过声明内。
+源码公开不等于正式报名。团队/个人资料、章程确认、入群及表单提交仍需申请人处理或明确授权；无回执不称报名成功。当前完整规范和真实互通状态以本页顶部与验收记录为准；历史段落保留当时边界。Mooncakes 发布与生产就绪仍不作已完成声明。

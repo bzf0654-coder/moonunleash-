@@ -1,0 +1,679 @@
+{
+  "repository": "bzf0654-coder/moonunleash-",
+  "workflow": ".github/workflows/ci.yml",
+  "runId": 44689082346,
+  "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346",
+  "headSha": "4249cc378a480f1d2196e02611fd51abb2ca76e1",
+  "status": "completed",
+  "conclusion": "success",
+  "attempt": 1,
+  "event": "push",
+  "createdAt": "2026-11-20T06:37:13Z",
+  "updatedAt": "2026-11-20T06:37:52Z",
+  "jobs": [
+    {
+      "id": 136130301554,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/136130301554",
+      "name": "tests (wasm)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346/job/136130301554",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve declared Moon dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned independent byte-hash references without scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verify frozen independent Unicode golden and generated regressions",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "annotations": [
+        {
+          "level": "warning",
+          "title": "",
+          "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        },
+        {
+          "level": "notice",
+          "title": "MoonUnleash conformance proof",
+          "message": "{\"sha\":\"4249cc378a480f1d2196e02611fd51abb2ca76e1\",\"target\":\"wasm\",\"revision\":\"9ef6efa01feabeb699857192ad8106fd7d990235\",\"hashesVerified\":24,\"suites\":22,\"requiredSuites\":22,\"passed\":294,\"failed\":0,\"notRun\":0,\"reportSha256\":\"45f98a9a17759788e00c3b473e5f8ca7bfec7f32b8b2c40608b45796bf2618bf\"}"
+        },
+        {
+          "level": "notice",
+          "title": "Actual MoonBit toolchain wasm",
+          "message": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+        }
+      ],
+      "proof": {
+        "sha": "4249cc378a480f1d2196e02611fd51abb2ca76e1",
+        "target": "wasm",
+        "revision": "9ef6efa01feabeb699857192ad8106fd7d990235",
+        "hashesVerified": 24,
+        "suites": 22,
+        "requiredSuites": 22,
+        "passed": 294,
+        "failed": 0,
+        "notRun": 0,
+        "reportSha256": "45f98a9a17759788e00c3b473e5f8ca7bfec7f32b8b2c40608b45796bf2618bf"
+      },
+      "toolchain": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+    },
+    {
+      "id": 136130301876,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/136130301876",
+      "name": "tests (native)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346/job/136130301876",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve declared Moon dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned independent byte-hash references without scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verify frozen independent Unicode golden and generated regressions",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "annotations": [
+        {
+          "level": "warning",
+          "title": "",
+          "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        },
+        {
+          "level": "notice",
+          "title": "MoonUnleash conformance proof",
+          "message": "{\"sha\":\"4249cc378a480f1d2196e02611fd51abb2ca76e1\",\"target\":\"native\",\"revision\":\"9ef6efa01feabeb699857192ad8106fd7d990235\",\"hashesVerified\":24,\"suites\":22,\"requiredSuites\":22,\"passed\":294,\"failed\":0,\"notRun\":0,\"reportSha256\":\"b25804998e1ef8fa7ef734b15101ac99e32810578a1374ac3a93600e2a3e82e1\"}"
+        },
+        {
+          "level": "notice",
+          "title": "Actual MoonBit toolchain native",
+          "message": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+        }
+      ],
+      "proof": {
+        "sha": "4249cc378a480f1d2196e02611fd51abb2ca76e1",
+        "target": "native",
+        "revision": "9ef6efa01feabeb699857192ad8106fd7d990235",
+        "hashesVerified": 24,
+        "suites": 22,
+        "requiredSuites": 22,
+        "passed": 294,
+        "failed": 0,
+        "notRun": 0,
+        "reportSha256": "b25804998e1ef8fa7ef734b15101ac99e32810578a1374ac3a93600e2a3e82e1"
+      },
+      "toolchain": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+    },
+    {
+      "id": 136130301905,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/136130301905",
+      "name": "tests (js)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346/job/136130301905",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve declared Moon dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install pinned independent byte-hash references without scripts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify frozen independent Unicode golden and generated regressions",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "annotations": [
+        {
+          "level": "warning",
+          "title": "",
+          "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        },
+        {
+          "level": "notice",
+          "title": "MoonUnleash conformance proof",
+          "message": "{\"sha\":\"4249cc378a480f1d2196e02611fd51abb2ca76e1\",\"target\":\"js\",\"revision\":\"9ef6efa01feabeb699857192ad8106fd7d990235\",\"hashesVerified\":24,\"suites\":22,\"requiredSuites\":22,\"passed\":294,\"failed\":0,\"notRun\":0,\"reportSha256\":\"342f4cb332b50413c078ac10e9ab54fb7a49f924faa4d566508489737576bad0\"}"
+        },
+        {
+          "level": "notice",
+          "title": "Actual MoonBit toolchain js",
+          "message": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+        }
+      ],
+      "proof": {
+        "sha": "4249cc378a480f1d2196e02611fd51abb2ca76e1",
+        "target": "js",
+        "revision": "9ef6efa01feabeb699857192ad8106fd7d990235",
+        "hashesVerified": 24,
+        "suites": 22,
+        "requiredSuites": 22,
+        "passed": 294,
+        "failed": 0,
+        "notRun": 0,
+        "reportSha256": "342f4cb332b50413c078ac10e9ab54fb7a49f924faa4d566508489737576bad0"
+      },
+      "toolchain": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+    },
+    {
+      "id": 136130301974,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/136130301974",
+      "name": "tests (wasm-gc)",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346/job/136130301974",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native prerequisites",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check checked-in formatting",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify and regenerate pinned fixtures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check local documentation links",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve declared Moon dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Type check and test",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Generate and validate per-case conformance report",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run offline example",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned development oracle without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install pinned independent byte-hash references without scripts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verify frozen independent Unicode golden and generated regressions",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Common-profile differential and explicit Unicode diagnostics",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Real HTTP fault smoke (controlled server, not Unleash)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "annotations": [
+        {
+          "level": "warning",
+          "title": "",
+          "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        },
+        {
+          "level": "notice",
+          "title": "MoonUnleash conformance proof",
+          "message": "{\"sha\":\"4249cc378a480f1d2196e02611fd51abb2ca76e1\",\"target\":\"wasm-gc\",\"revision\":\"9ef6efa01feabeb699857192ad8106fd7d990235\",\"hashesVerified\":24,\"suites\":22,\"requiredSuites\":22,\"passed\":294,\"failed\":0,\"notRun\":0,\"reportSha256\":\"3f93c8b9c342d200846a8055a1a81132c3a3e57a27f8c56850b2c0e70903b306\"}"
+        },
+        {
+          "level": "notice",
+          "title": "Actual MoonBit toolchain wasm-gc",
+          "message": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+        }
+      ],
+      "proof": {
+        "sha": "4249cc378a480f1d2196e02611fd51abb2ca76e1",
+        "target": "wasm-gc",
+        "revision": "9ef6efa01feabeb699857192ad8106fd7d990235",
+        "hashesVerified": 24,
+        "suites": 22,
+        "requiredSuites": 22,
+        "passed": 294,
+        "failed": 0,
+        "notRun": 0,
+        "reportSha256": "3f93c8b9c342d200846a8055a1a81132c3a3e57a27f8c56850b2c0e70903b306"
+      },
+      "toolchain": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "verification-native",
+      "id": 14608210313,
+      "size": 7273,
+      "expired": false,
+      "digest": "sha256:441a1f403f421914eacb98cea463e736a4f0b6ff65bf6925dc39bd4958384ae9",
+      "createdAt": "2026-11-20T06:37:50Z",
+      "headSha": "4249cc378a480f1d2196e02611fd51abb2ca76e1"
+    },
+    {
+      "name": "verification-wasm",
+      "id": 14607821855,
+      "size": 7534,
+      "expired": false,
+      "digest": "sha256:23a0b96c970959244873bdebdfeeb3b0896f7355f48cb3b17b3b1939671e2c5f",
+      "createdAt": "2026-11-20T06:37:32Z",
+      "headSha": "4249cc378a480f1d2196e02611fd51abb2ca76e1"
+    },
+    {
+      "name": "verification-wasm-gc",
+      "id": 14607547499,
+      "size": 7282,
+      "expired": false,
+      "digest": "sha256:3c0f53e8d0a8751c2455bcda3c04e7629a027ddeea03454793f5bbb7d3e5f676",
+      "createdAt": "2026-11-20T06:37:34Z",
+      "headSha": "4249cc378a480f1d2196e02611fd51abb2ca76e1"
+    },
+    {
+      "name": "verification-js",
+      "id": 14606984831,
+      "size": 44023,
+      "expired": false,
+      "digest": "sha256:cf1ec34b2f959f1ab7c9bbbc1be1e51706298d066bfa87d0b630cc9e76a660ab",
+      "createdAt": "2026-11-20T06:37:39Z",
+      "headSha": "4249cc378a480f1d2196e02611fd51abb2ca76e1"
+    }
+  ],
+  "note": "Public API job/step status, artifact metadata and current-run verified summary annotations. Raw artifact archives are not downloaded; summary report/result hashes bind the public summaries to archived files. Compiler versions are read from actual run annotations, never inferred from the stable label."
+}
