@@ -1,0 +1,4558 @@
+{
+  "schemaVersion": 1,
+  "policy": "MurmurHash3_x86_32(UTF8(group + \":\" + stickyId), uint32 seed)",
+  "encoding": {
+    "normalization": "none; NFC and NFD remain distinct",
+    "malformedUtf16": "excluded: reject before UTF8 encoding",
+    "endianness": "little-endian",
+    "unsignedResult": true
+  },
+  "provenance": {
+    "nodeMajor": 24,
+    "inputSha256": "7d801d96ca2820e8ed81e850d2d22c221374dcdd10e985a1ec4b80bf10ed93a8",
+    "protectedFiles": {
+      "tools/generate-differential.mjs": "17bd45b1a12f69c9129a590ee9557988452e8c9f1224a66b0cfc7eb3c93bcc8b",
+      "tools/reference/pnpm-lock.yaml": "18f136de5c0b1044e1a713e1ec516ff2b9e8801905efa2be2c847e09e27907b9",
+      "artifacts/differential.initial.v1.json": "6f6f9eba3ce515a4a7eef4c36cd201f9f27d51622cc978ea5e2b3976281cef6d",
+      "artifacts/differential.json": "6f6f9eba3ce515a4a7eef4c36cd201f9f27d51622cc978ea5e2b3976281cef6d"
+    },
+    "references": [
+      {
+        "name": "murmur3hash-wasm",
+        "version": "1.0.1",
+        "gitHead": "0f042767dea6a467cf451b95bdc6c7a3f5834dfd",
+        "license": "ISC",
+        "integrity": "sha512-+TDFpNmFmg0gABC0FbaddZpkohpj/QqJQCzhMCq5zadALNpoamL3NhBgPzGE7kj9ZYh/Mi2SjU9lUV/K3xqnMQ==",
+        "files": {
+          "index.js": "ed60d402bcd92e1a5d6dd55ec5e83ffecc19a560bb708daa45abd47b988c7ca3",
+          "murmur3.js": "9bd91a1dfeb0cabaa7f8563af0a5e1659cecdac4cdc78d5c4d3f878224430b1a",
+          "murmur3.wat": "b41534b053db48e2b8a26422a770276919f46864f8b8a9504bbed77e1b22141a",
+          "test.js": "0563fa8a9f7c7278f067218753702039c94e37daff978b65beeebe30ba634496"
+        },
+        "registry": "https://registry.npmjs.org/murmur3hash-wasm/1.0.1"
+      },
+      {
+        "name": "murmur-32",
+        "version": "1.0.0",
+        "gitHead": "56279a399bcda62c8d67b75b76dc0c74bb063327",
+        "license": "MIT",
+        "integrity": "sha512-l6QKUGWXzZWHash7lmZzycpIifOrnc3PeMaoFrMv90c+xqOyOSzJU0q2T/1d15MzAdEWTpCh1paC855APqt1Gw==",
+        "files": {
+          "index.js": "ec8938e4770062445417c04231fa73f164cd320b13308c7d51b4567aa8d76613",
+          "test.js": "fa28fbfea0df04f17e8c943a047c0dfc727511f7f7a99612f4f7831593f6e142"
+        },
+        "registry": "https://registry.npmjs.org/murmur-32/1.0.0"
+      },
+      {
+        "name": "nanoassert",
+        "version": "2.0.0",
+        "gitHead": "237fd5f382f077f0be45954741a935f2c6070660",
+        "license": "ISC",
+        "integrity": "sha512-7vO7n28+aYO4J+8w96AzhmU8G+Y/xpPDJz/se19ICsqj/momRbb9mh9ZUtkoJ5X3nTnPdhEJyc0qnM6yAsHBaA==",
+        "files": {
+          "index.js": "5a3c8dce33093172d9cb3d6bdd34e464d17a1da175a8f8b74f0c0d22dde94fbb"
+        },
+        "registry": "https://registry.npmjs.org/nanoassert/2.0.0"
+      },
+      {
+        "name": "fmix",
+        "version": "1.0.0",
+        "gitHead": "83f81781ed19e182640e759753fba23dc161493b",
+        "license": "MIT",
+        "integrity": "sha512-PIaqOGvVH5P+R92Ywy5PumsNEHvondVQh42SGOmkA9A0ZTFbfguzZpjZ/Gy3WVRUqT9Ia8k5tWlJeiZQzRHA7g==",
+        "files": {
+          "index.js": "57828ca5589f42bfaf2fd409c5391542a8fa96a7aa73beba30fe11b5a093a667"
+        },
+        "registry": "https://registry.npmjs.org/fmix/1.0.0"
+      },
+      {
+        "name": "encode-utf8",
+        "version": "2.0.0",
+        "gitHead": "d61fb3e55e5573b11df69f94ff0bb7af5aee58a9",
+        "license": "MIT",
+        "integrity": "sha512-3EyMFxZj1/7oMotElDQUEQcP7N4TIe1aJ0m1uBDoyQ8I2LBHhBsXx8P3KsPbqNlGzG+NYxFwEauUwMPHZg3YDQ==",
+        "files": {
+          "index.js": "9f150528e867e9b025a5b527fd5584cdca0f6bacc8f227064afc8099e5ffd43c"
+        },
+        "registry": "https://registry.npmjs.org/encode-utf8/2.0.0"
+      }
+    ],
+    "selfTests": {
+      "wasmPublishedAssertions": 29,
+      "jsPublishedStringAssertions": 8,
+      "jsPublishedByteAssertions": 8,
+      "additionalByteCrossChecks": 40,
+      "asciiAnchorChecks": 2
+    },
+    "candidateOutputsUsed": false,
+    "legacyBridgeUsed": false
+  },
+  "primitiveVectors": [
+    {
+      "id": "utf8-0",
+      "text": "共享组-🌍:用户甲",
+      "origins": [
+        "unicode:0:unicode-rollout:boolean",
+        "unicode:0:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+      "byteLength": 24,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1483014240,
+          "hex": "58650060",
+          "bucket100": 41,
+          "bucket1000": 241
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3371132993,
+          "hex": "c8ef6841",
+          "bucket100": 94,
+          "bucket1000": 994
+        }
+      ]
+    },
+    {
+      "id": "utf8-1",
+      "text": "全局变体-ø:用户甲",
+      "origins": [
+        "unicode:0:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e794b2",
+      "byteLength": 25,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 772086157,
+          "hex": "2e05198d",
+          "bucket100": 58,
+          "bucket1000": 158
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2760591665,
+          "hex": "a48b4931",
+          "bucket100": 66,
+          "bucket1000": 666
+        }
+      ]
+    },
+    {
+      "id": "utf8-2",
+      "text": "共享组-🌍:用户乙",
+      "origins": [
+        "unicode:1:unicode-rollout:boolean",
+        "unicode:1:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e4b999",
+      "byteLength": 24,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2979338940,
+          "hex": "b1951abc",
+          "bucket100": 41,
+          "bucket1000": 941
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3255086215,
+          "hex": "c204ac87",
+          "bucket100": 16,
+          "bucket1000": 216
+        }
+      ]
+    },
+    {
+      "id": "utf8-3",
+      "text": "全局变体-ø:用户乙",
+      "origins": [
+        "unicode:1:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e4b999",
+      "byteLength": 25,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1829003578,
+          "hex": "6d04613a",
+          "bucket100": 79,
+          "bucket1000": 579
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3555707867,
+          "hex": "d3efcbdb",
+          "bucket100": 68,
+          "bucket1000": 868
+        }
+      ]
+    },
+    {
+      "id": "utf8-4",
+      "text": "共享组-🌍:é",
+      "origins": [
+        "unicode:2:unicode-rollout:boolean",
+        "unicode:2:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3a9",
+      "byteLength": 17,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3958432301,
+          "hex": "ebf0e22d",
+          "bucket100": 2,
+          "bucket1000": 302
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3230603569,
+          "hex": "c08f1931",
+          "bucket100": 70,
+          "bucket1000": 570
+        }
+      ]
+    },
+    {
+      "id": "utf8-5",
+      "text": "全局变体-ø:é",
+      "origins": [
+        "unicode:2:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ac3a9",
+      "byteLength": 18,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2718419081,
+          "hex": "a207c889",
+          "bucket100": 82,
+          "bucket1000": 82
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1836203535,
+          "hex": "6d723e0f",
+          "bucket100": 36,
+          "bucket1000": 536
+        }
+      ]
+    },
+    {
+      "id": "utf8-6",
+      "text": "共享组-🌍:é",
+      "origins": [
+        "unicode:3:unicode-rollout:boolean",
+        "unicode:3:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a65cc81",
+      "byteLength": 18,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 170815357,
+          "hex": "0a2e6f7d",
+          "bucket100": 58,
+          "bucket1000": 358
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1143477442,
+          "hex": "442814c2",
+          "bucket100": 43,
+          "bucket1000": 443
+        }
+      ]
+    },
+    {
+      "id": "utf8-7",
+      "text": "全局变体-ø:é",
+      "origins": [
+        "unicode:3:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83a65cc81",
+      "byteLength": 19,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 494268028,
+          "hex": "1d75ee7c",
+          "bucket100": 29,
+          "bucket1000": 29
+        },
+        {
+          "seed": 86028157,
+          "uint32": 830409247,
+          "hex": "317f0a1f",
+          "bucket100": 48,
+          "bucket1000": 248
+        }
+      ]
+    },
+    {
+      "id": "utf8-8",
+      "text": "共享组-🌍:😊",
+      "origins": [
+        "unicode:4:unicode-rollout:boolean",
+        "unicode:4:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f988a",
+      "byteLength": 19,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1347231358,
+          "hex": "504d1e7e",
+          "bucket100": 59,
+          "bucket1000": 359
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1199665228,
+          "hex": "4781704c",
+          "bucket100": 29,
+          "bucket1000": 229
+        }
+      ]
+    },
+    {
+      "id": "utf8-9",
+      "text": "全局变体-ø:😊",
+      "origins": [
+        "unicode:4:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83af09f988a",
+      "byteLength": 20,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 347852082,
+          "hex": "14bbcd32",
+          "bucket100": 83,
+          "bucket1000": 83
+        },
+        {
+          "seed": 86028157,
+          "uint32": 4140448899,
+          "hex": "f6ca3c83",
+          "bucket100": 100,
+          "bucket1000": 900
+        }
+      ]
+    },
+    {
+      "id": "utf8-10",
+      "text": "共享组-🌍:φriend",
+      "origins": [
+        "unicode:5:unicode-rollout:boolean",
+        "unicode:5:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3acf867269656e64",
+      "byteLength": 22,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 306309382,
+          "hex": "1241e906",
+          "bucket100": 83,
+          "bucket1000": 383
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3574806154,
+          "hex": "d513368a",
+          "bucket100": 55,
+          "bucket1000": 155
+        }
+      ]
+    },
+    {
+      "id": "utf8-11",
+      "text": "全局变体-ø:φriend",
+      "origins": [
+        "unicode:5:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83acf867269656e64",
+      "byteLength": 23,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1185457498,
+          "hex": "46a8a55a",
+          "bucket100": 99,
+          "bucket1000": 499
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2919502048,
+          "hex": "ae0410e0",
+          "bucket100": 49,
+          "bucket1000": 49
+        }
+      ]
+    },
+    {
+      "id": "utf8-12",
+      "text": "共享组-🌍:مرحبا",
+      "origins": [
+        "unicode:6:unicode-rollout:boolean",
+        "unicode:6:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ad985d8b1d8add8a8d8a7",
+      "byteLength": 25,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3904649291,
+          "hex": "e8bc384b",
+          "bucket100": 92,
+          "bucket1000": 292
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1874139470,
+          "hex": "6fb5194e",
+          "bucket100": 71,
+          "bucket1000": 471
+        }
+      ]
+    },
+    {
+      "id": "utf8-13",
+      "text": "全局变体-ø:مرحبا",
+      "origins": [
+        "unicode:6:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ad985d8b1d8add8a8d8a7",
+      "byteLength": 26,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 198768673,
+          "hex": "0bd8f821",
+          "bucket100": 74,
+          "bucket1000": 674
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3890027083,
+          "hex": "e7dd1a4b",
+          "bucket100": 84,
+          "bucket1000": 84
+        }
+      ]
+    },
+    {
+      "id": "utf8-14",
+      "text": "共享组-🌍:नमस्ते",
+      "origins": [
+        "unicode:7:unicode-rollout:boolean",
+        "unicode:7:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+      "byteLength": 33,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3360629819,
+          "hex": "c84f243b",
+          "bucket100": 20,
+          "bucket1000": 820
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3435874580,
+          "hex": "cccb4914",
+          "bucket100": 81,
+          "bucket1000": 581
+        }
+      ]
+    },
+    {
+      "id": "utf8-15",
+      "text": "全局变体-ø:नमस्ते",
+      "origins": [
+        "unicode:7:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+      "byteLength": 34,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 4146232189,
+          "hex": "f7227b7d",
+          "bucket100": 90,
+          "bucket1000": 190
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1265991123,
+          "hex": "4b757dd3",
+          "bucket100": 24,
+          "bucket1000": 124
+        }
+      ]
+    },
+    {
+      "id": "utf8-16",
+      "text": "共享组-🌍:a\u0000b",
+      "origins": [
+        "unicode:8:unicode-rollout:boolean",
+        "unicode:8:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a610062",
+      "byteLength": 18,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2405392164,
+          "hex": "8f5f5f24",
+          "bucket100": 65,
+          "bucket1000": 165
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2460294832,
+          "hex": "92a51eb0",
+          "bucket100": 33,
+          "bucket1000": 833
+        }
+      ]
+    },
+    {
+      "id": "utf8-17",
+      "text": "全局变体-ø:a\u0000b",
+      "origins": [
+        "unicode:8:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83a610062",
+      "byteLength": 19,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2463196343,
+          "hex": "92d164b7",
+          "bucket100": 44,
+          "bucket1000": 344
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3950436821,
+          "hex": "eb76e1d5",
+          "bucket100": 22,
+          "bucket1000": 822
+        }
+      ]
+    },
+    {
+      "id": "utf8-18",
+      "text": "共享组-🌍:東京",
+      "origins": [
+        "unicode:9:unicode-rollout:boolean",
+        "unicode:9:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae69db1e4baac",
+      "byteLength": 21,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3112708421,
+          "hex": "b9882945",
+          "bucket100": 22,
+          "bucket1000": 422
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2402328066,
+          "hex": "8f309e02",
+          "bucket100": 67,
+          "bucket1000": 67
+        }
+      ]
+    },
+    {
+      "id": "utf8-19",
+      "text": "全局变体-ø:東京",
+      "origins": [
+        "unicode:9:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae69db1e4baac",
+      "byteLength": 22,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2092604896,
+          "hex": "7cba9de0",
+          "bucket100": 97,
+          "bucket1000": 897
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1567320171,
+          "hex": "5d6b686b",
+          "bucket100": 72,
+          "bucket1000": 172
+        }
+      ]
+    },
+    {
+      "id": "utf8-20",
+      "text": "共享组-🌍:ø",
+      "origins": [
+        "unicode:10:unicode-rollout:boolean",
+        "unicode:10:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3b8",
+      "byteLength": 17,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 679897382,
+          "hex": "28866926",
+          "bucket100": 83,
+          "bucket1000": 383
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3404440619,
+          "hex": "caeba42b",
+          "bucket100": 20,
+          "bucket1000": 620
+        }
+      ]
+    },
+    {
+      "id": "utf8-21",
+      "text": "全局变体-ø:ø",
+      "origins": [
+        "unicode:10:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ac3b8",
+      "byteLength": 18,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1680045826,
+          "hex": "64237702",
+          "bucket100": 27,
+          "bucket1000": 827
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3218189606,
+          "hex": "bfd1ad26",
+          "bucket100": 7,
+          "bucket1000": 607
+        }
+      ]
+    },
+    {
+      "id": "utf8-22",
+      "text": "共享组-🌍:🌍",
+      "origins": [
+        "unicode:11:unicode-rollout:boolean",
+        "unicode:11:unicode-rollout:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f8c8d",
+      "byteLength": 19,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1956636703,
+          "hex": "749fe81f",
+          "bucket100": 4,
+          "bucket1000": 704
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1709807620,
+          "hex": "65e99804",
+          "bucket100": 21,
+          "bucket1000": 621
+        }
+      ]
+    },
+    {
+      "id": "utf8-23",
+      "text": "全局变体-ø:🌍",
+      "origins": [
+        "unicode:11:全局变体-ø:variant"
+      ],
+      "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83af09f8c8d",
+      "byteLength": 20,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2345561321,
+          "hex": "8bce6ce9",
+          "bucket100": 22,
+          "bucket1000": 322
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2758085174,
+          "hex": "a4650a36",
+          "bucket100": 75,
+          "bucket1000": 175
+        }
+      ]
+    },
+    {
+      "id": "utf8-24",
+      "text": "group-é:ascii-user",
+      "origins": [
+        "unicode-extra:0:ascii-feature-0:boolean",
+        "unicode-extra:0:ascii-feature-0:variant"
+      ],
+      "utf8Hex": "67726f75702dc3a93a61736369692d75736572",
+      "byteLength": 19,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1027662445,
+          "hex": "3d40e26d",
+          "bucket100": 46,
+          "bucket1000": 446
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2537808555,
+          "hex": "9743e2ab",
+          "bucket100": 56,
+          "bucket1000": 556
+        }
+      ]
+    },
+    {
+      "id": "utf8-25",
+      "text": "group-é:ascii-user",
+      "origins": [
+        "unicode-extra:0:ascii-feature-1:boolean",
+        "unicode-extra:0:ascii-feature-1:variant"
+      ],
+      "utf8Hex": "67726f75702d65cc813a61736369692d75736572",
+      "byteLength": 20,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 55859588,
+          "hex": "03545984",
+          "bucket100": 89,
+          "bucket1000": 589
+        },
+        {
+          "seed": 86028157,
+          "uint32": 923744417,
+          "hex": "370f38a1",
+          "bucket100": 18,
+          "bucket1000": 418
+        }
+      ]
+    },
+    {
+      "id": "utf8-26",
+      "text": "group-🌍:ascii-user",
+      "origins": [
+        "unicode-extra:0:ascii-feature-2:boolean",
+        "unicode-extra:0:ascii-feature-2:variant"
+      ],
+      "utf8Hex": "67726f75702df09f8c8d3a61736369692d75736572",
+      "byteLength": 21,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3983504470,
+          "hex": "ed6f7456",
+          "bucket100": 71,
+          "bucket1000": 471
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3105086297,
+          "hex": "b913db59",
+          "bucket100": 98,
+          "bucket1000": 298
+        }
+      ]
+    },
+    {
+      "id": "utf8-27",
+      "text": "共享组:ascii-user",
+      "origins": [
+        "unicode-extra:0:ascii-feature-3:boolean",
+        "unicode-extra:0:ascii-feature-3:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb843a61736369692d75736572",
+      "byteLength": 20,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1779935726,
+          "hex": "6a17a9ee",
+          "bucket100": 27,
+          "bucket1000": 727
+        },
+        {
+          "seed": 86028157,
+          "uint32": 643108291,
+          "hex": "26550dc3",
+          "bucket100": 92,
+          "bucket1000": 292
+        }
+      ]
+    },
+    {
+      "id": "utf8-28",
+      "text": "全局-é:ascii-user",
+      "origins": [
+        "unicode-extra:0:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802dc3a93a61736369692d75736572",
+      "byteLength": 20,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3008562245,
+          "hex": "b3530445",
+          "bucket100": 46,
+          "bucket1000": 246
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2048922788,
+          "hex": "7a2014a4",
+          "bucket100": 89,
+          "bucket1000": 789
+        }
+      ]
+    },
+    {
+      "id": "utf8-29",
+      "text": "全局-é:ascii-user",
+      "origins": [
+        "unicode-extra:0:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802d65cc813a61736369692d75736572",
+      "byteLength": 21,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 528006244,
+          "hex": "1f78bc64",
+          "bucket100": 45,
+          "bucket1000": 245
+        },
+        {
+          "seed": 86028157,
+          "uint32": 109528341,
+          "hex": "06874515",
+          "bucket100": 42,
+          "bucket1000": 342
+        }
+      ]
+    },
+    {
+      "id": "utf8-30",
+      "text": "全局-🌍:ascii-user",
+      "origins": [
+        "unicode-extra:0:全局-🌍:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802df09f8c8d3a61736369692d75736572",
+      "byteLength": 22,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3345737885,
+          "hex": "c76be89d",
+          "bucket100": 86,
+          "bucket1000": 886
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1634277354,
+          "hex": "616917ea",
+          "bucket100": 55,
+          "bucket1000": 355
+        }
+      ]
+    },
+    {
+      "id": "utf8-31",
+      "text": "全局-用户:ascii-user",
+      "origins": [
+        "unicode-extra:0:全局-用户:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802de794a8e688b73a61736369692d75736572",
+      "byteLength": 24,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2234449616,
+          "hex": "852efed0",
+          "bucket100": 17,
+          "bucket1000": 617
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1160960536,
+          "hex": "4532da18",
+          "bucket100": 37,
+          "bucket1000": 537
+        }
+      ]
+    },
+    {
+      "id": "utf8-32",
+      "text": "group-é:é",
+      "origins": [
+        "unicode-extra:1:ascii-feature-0:boolean",
+        "unicode-extra:1:ascii-feature-0:variant"
+      ],
+      "utf8Hex": "67726f75702dc3a93ac3a9",
+      "byteLength": 11,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3045351943,
+          "hex": "b5846207",
+          "bucket100": 44,
+          "bucket1000": 944
+        },
+        {
+          "seed": 86028157,
+          "uint32": 115810371,
+          "hex": "06e72043",
+          "bucket100": 72,
+          "bucket1000": 372
+        }
+      ]
+    },
+    {
+      "id": "utf8-33",
+      "text": "group-é:é",
+      "origins": [
+        "unicode-extra:1:ascii-feature-1:boolean",
+        "unicode-extra:1:ascii-feature-1:variant"
+      ],
+      "utf8Hex": "67726f75702d65cc813ac3a9",
+      "byteLength": 12,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1031942671,
+          "hex": "3d82320f",
+          "bucket100": 72,
+          "bucket1000": 672
+        },
+        {
+          "seed": 86028157,
+          "uint32": 26323952,
+          "hex": "0191abf0",
+          "bucket100": 53,
+          "bucket1000": 953
+        }
+      ]
+    },
+    {
+      "id": "utf8-34",
+      "text": "group-🌍:é",
+      "origins": [
+        "unicode-extra:1:ascii-feature-2:boolean",
+        "unicode-extra:1:ascii-feature-2:variant"
+      ],
+      "utf8Hex": "67726f75702df09f8c8d3ac3a9",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1265940579,
+          "hex": "4b74b863",
+          "bucket100": 80,
+          "bucket1000": 580
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1490199973,
+          "hex": "58d2a5a5",
+          "bucket100": 74,
+          "bucket1000": 974
+        }
+      ]
+    },
+    {
+      "id": "utf8-35",
+      "text": "共享组:é",
+      "origins": [
+        "unicode-extra:1:ascii-feature-3:boolean",
+        "unicode-extra:1:ascii-feature-3:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb843ac3a9",
+      "byteLength": 12,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 978797760,
+          "hex": "3a5744c0",
+          "bucket100": 61,
+          "bucket1000": 761
+        },
+        {
+          "seed": 86028157,
+          "uint32": 431029300,
+          "hex": "19b0fc34",
+          "bucket100": 1,
+          "bucket1000": 301
+        }
+      ]
+    },
+    {
+      "id": "utf8-36",
+      "text": "全局-é:é",
+      "origins": [
+        "unicode-extra:1:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802dc3a93ac3a9",
+      "byteLength": 12,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1572523987,
+          "hex": "5dbacfd3",
+          "bucket100": 88,
+          "bucket1000": 988
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1656250653,
+          "hex": "62b8611d",
+          "bucket100": 54,
+          "bucket1000": 654
+        }
+      ]
+    },
+    {
+      "id": "utf8-37",
+      "text": "全局-é:é",
+      "origins": [
+        "unicode-extra:1:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802d65cc813ac3a9",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 31628746,
+          "hex": "01e29dca",
+          "bucket100": 47,
+          "bucket1000": 747
+        },
+        {
+          "seed": 86028157,
+          "uint32": 525399566,
+          "hex": "1f50f60e",
+          "bucket100": 67,
+          "bucket1000": 567
+        }
+      ]
+    },
+    {
+      "id": "utf8-38",
+      "text": "全局-🌍:é",
+      "origins": [
+        "unicode-extra:1:全局-🌍:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802df09f8c8d3ac3a9",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 4046128903,
+          "hex": "f12b0707",
+          "bucket100": 4,
+          "bucket1000": 904
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1120016539,
+          "hex": "42c2189b",
+          "bucket100": 40,
+          "bucket1000": 540
+        }
+      ]
+    },
+    {
+      "id": "utf8-39",
+      "text": "全局-用户:é",
+      "origins": [
+        "unicode-extra:1:全局-用户:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802de794a8e688b73ac3a9",
+      "byteLength": 16,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3020814497,
+          "hex": "b40df8a1",
+          "bucket100": 98,
+          "bucket1000": 498
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2380278139,
+          "hex": "8de0297b",
+          "bucket100": 40,
+          "bucket1000": 140
+        }
+      ]
+    },
+    {
+      "id": "utf8-40",
+      "text": "group-é:é",
+      "origins": [
+        "unicode-extra:2:ascii-feature-0:boolean",
+        "unicode-extra:2:ascii-feature-0:variant"
+      ],
+      "utf8Hex": "67726f75702dc3a93a65cc81",
+      "byteLength": 12,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2783710731,
+          "hex": "a5ec0e0b",
+          "bucket100": 32,
+          "bucket1000": 732
+        },
+        {
+          "seed": 86028157,
+          "uint32": 239404465,
+          "hex": "0e4505b1",
+          "bucket100": 66,
+          "bucket1000": 466
+        }
+      ]
+    },
+    {
+      "id": "utf8-41",
+      "text": "group-é:é",
+      "origins": [
+        "unicode-extra:2:ascii-feature-1:boolean",
+        "unicode-extra:2:ascii-feature-1:variant"
+      ],
+      "utf8Hex": "67726f75702d65cc813a65cc81",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 4255510194,
+          "hex": "fda5eeb2",
+          "bucket100": 95,
+          "bucket1000": 195
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1561493138,
+          "hex": "5d127e92",
+          "bucket100": 39,
+          "bucket1000": 139
+        }
+      ]
+    },
+    {
+      "id": "utf8-42",
+      "text": "group-🌍:é",
+      "origins": [
+        "unicode-extra:2:ascii-feature-2:boolean",
+        "unicode-extra:2:ascii-feature-2:variant"
+      ],
+      "utf8Hex": "67726f75702df09f8c8d3a65cc81",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3468367861,
+          "hex": "cebb17f5",
+          "bucket100": 62,
+          "bucket1000": 862
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3320589703,
+          "hex": "c5ec2d87",
+          "bucket100": 4,
+          "bucket1000": 704
+        }
+      ]
+    },
+    {
+      "id": "utf8-43",
+      "text": "共享组:é",
+      "origins": [
+        "unicode-extra:2:ascii-feature-3:boolean",
+        "unicode-extra:2:ascii-feature-3:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb843a65cc81",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3275549571,
+          "hex": "c33ceb83",
+          "bucket100": 72,
+          "bucket1000": 572
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3549675111,
+          "hex": "d393be67",
+          "bucket100": 12,
+          "bucket1000": 112
+        }
+      ]
+    },
+    {
+      "id": "utf8-44",
+      "text": "全局-é:é",
+      "origins": [
+        "unicode-extra:2:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802dc3a93a65cc81",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 789419930,
+          "hex": "2f0d979a",
+          "bucket100": 31,
+          "bucket1000": 931
+        },
+        {
+          "seed": 86028157,
+          "uint32": 510814164,
+          "hex": "1e7267d4",
+          "bucket100": 65,
+          "bucket1000": 165
+        }
+      ]
+    },
+    {
+      "id": "utf8-45",
+      "text": "全局-é:é",
+      "origins": [
+        "unicode-extra:2:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802d65cc813a65cc81",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1142459336,
+          "hex": "44188bc8",
+          "bucket100": 37,
+          "bucket1000": 337
+        },
+        {
+          "seed": 86028157,
+          "uint32": 702575007,
+          "hex": "29e0719f",
+          "bucket100": 8,
+          "bucket1000": 8
+        }
+      ]
+    },
+    {
+      "id": "utf8-46",
+      "text": "全局-🌍:é",
+      "origins": [
+        "unicode-extra:2:全局-🌍:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802df09f8c8d3a65cc81",
+      "byteLength": 15,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 404464034,
+          "hex": "181ba1a2",
+          "bucket100": 35,
+          "bucket1000": 35
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3932223039,
+          "hex": "ea60f63f",
+          "bucket100": 40,
+          "bucket1000": 40
+        }
+      ]
+    },
+    {
+      "id": "utf8-47",
+      "text": "全局-用户:é",
+      "origins": [
+        "unicode-extra:2:全局-用户:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802de794a8e688b73a65cc81",
+      "byteLength": 17,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 4058380040,
+          "hex": "f1e5f708",
+          "bucket100": 41,
+          "bucket1000": 41
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2034159927,
+          "hex": "793ed137",
+          "bucket100": 28,
+          "bucket1000": 928
+        }
+      ]
+    },
+    {
+      "id": "utf8-48",
+      "text": "group-é:😊",
+      "origins": [
+        "unicode-extra:3:ascii-feature-0:boolean",
+        "unicode-extra:3:ascii-feature-0:variant"
+      ],
+      "utf8Hex": "67726f75702dc3a93af09f988a",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1121927618,
+          "hex": "42df41c2",
+          "bucket100": 19,
+          "bucket1000": 619
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3767906502,
+          "hex": "e095b0c6",
+          "bucket100": 3,
+          "bucket1000": 503
+        }
+      ]
+    },
+    {
+      "id": "utf8-49",
+      "text": "group-é:😊",
+      "origins": [
+        "unicode-extra:3:ascii-feature-1:boolean",
+        "unicode-extra:3:ascii-feature-1:variant"
+      ],
+      "utf8Hex": "67726f75702d65cc813af09f988a",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 4161663096,
+          "hex": "f80df078",
+          "bucket100": 97,
+          "bucket1000": 97
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3198811479,
+          "hex": "bea9fd57",
+          "bucket100": 80,
+          "bucket1000": 480
+        }
+      ]
+    },
+    {
+      "id": "utf8-50",
+      "text": "group-🌍:😊",
+      "origins": [
+        "unicode-extra:3:ascii-feature-2:boolean",
+        "unicode-extra:3:ascii-feature-2:variant"
+      ],
+      "utf8Hex": "67726f75702df09f8c8d3af09f988a",
+      "byteLength": 15,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 797457012,
+          "hex": "2f883a74",
+          "bucket100": 13,
+          "bucket1000": 13
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1123415749,
+          "hex": "42f5f6c5",
+          "bucket100": 50,
+          "bucket1000": 750
+        }
+      ]
+    },
+    {
+      "id": "utf8-51",
+      "text": "共享组:😊",
+      "origins": [
+        "unicode-extra:3:ascii-feature-3:boolean",
+        "unicode-extra:3:ascii-feature-3:variant"
+      ],
+      "utf8Hex": "e585b1e4baabe7bb843af09f988a",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3014786866,
+          "hex": "b3b1ff32",
+          "bucket100": 67,
+          "bucket1000": 867
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1152053016,
+          "hex": "44aaef18",
+          "bucket100": 17,
+          "bucket1000": 17
+        }
+      ]
+    },
+    {
+      "id": "utf8-52",
+      "text": "全局-é:😊",
+      "origins": [
+        "unicode-extra:3:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802dc3a93af09f988a",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1097794277,
+          "hex": "416f02e5",
+          "bucket100": 78,
+          "bucket1000": 278
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1713198883,
+          "hex": "661d5723",
+          "bucket100": 84,
+          "bucket1000": 884
+        }
+      ]
+    },
+    {
+      "id": "utf8-53",
+      "text": "全局-é:😊",
+      "origins": [
+        "unicode-extra:3:全局-é:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802d65cc813af09f988a",
+      "byteLength": 15,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1336024462,
+          "hex": "4fa21d8e",
+          "bucket100": 63,
+          "bucket1000": 463
+        },
+        {
+          "seed": 86028157,
+          "uint32": 328762747,
+          "hex": "1398857b",
+          "bucket100": 48,
+          "bucket1000": 748
+        }
+      ]
+    },
+    {
+      "id": "utf8-54",
+      "text": "全局-🌍:😊",
+      "origins": [
+        "unicode-extra:3:全局-🌍:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802df09f8c8d3af09f988a",
+      "byteLength": 16,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3575513477,
+          "hex": "d51e0185",
+          "bucket100": 78,
+          "bucket1000": 478
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1189737045,
+          "hex": "46e9f255",
+          "bucket100": 46,
+          "bucket1000": 46
+        }
+      ]
+    },
+    {
+      "id": "utf8-55",
+      "text": "全局-用户:😊",
+      "origins": [
+        "unicode-extra:3:全局-用户:variant"
+      ],
+      "utf8Hex": "e585a8e5b1802de794a8e688b73af09f988a",
+      "byteLength": 18,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 89481669,
+          "hex": "055561c5",
+          "bucket100": 70,
+          "bucket1000": 670
+        },
+        {
+          "seed": 86028157,
+          "uint32": 493128584,
+          "hex": "1d648b88",
+          "bucket100": 85,
+          "bucket1000": 585
+        }
+      ]
+    },
+    {
+      "id": "utf8-56",
+      "text": "",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "",
+      "byteLength": 0,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 0,
+          "hex": "00000000",
+          "bucket100": 1,
+          "bucket1000": 1
+        },
+        {
+          "seed": 86028157,
+          "uint32": 4002661964,
+          "hex": "ee93c64c",
+          "bucket100": 65,
+          "bucket1000": 965
+        }
+      ]
+    },
+    {
+      "id": "utf8-57",
+      "text": "foo",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "666f6f",
+      "byteLength": 3,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 4138058784,
+          "hex": "f6a5c420",
+          "bucket100": 85,
+          "bucket1000": 785
+        },
+        {
+          "seed": 86028157,
+          "uint32": 549754639,
+          "hex": "20c4970f",
+          "bucket100": 40,
+          "bucket1000": 640
+        }
+      ]
+    },
+    {
+      "id": "utf8-58",
+      "text": "hello",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "68656c6c6f",
+      "byteLength": 5,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 613153351,
+          "hex": "248bfa47",
+          "bucket100": 52,
+          "bucket1000": 352
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3619701165,
+          "hex": "d7c041ad",
+          "bucket100": 66,
+          "bucket1000": 166
+        }
+      ]
+    },
+    {
+      "id": "utf8-59",
+      "text": "a\u0000b",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "610062",
+      "byteLength": 3,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1871496870,
+          "hex": "6f8cc6a6",
+          "bucket100": 71,
+          "bucket1000": 871
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2973077931,
+          "hex": "b13591ab",
+          "bucket100": 32,
+          "bucket1000": 932
+        }
+      ]
+    },
+    {
+      "id": "utf8-60",
+      "text": "a:b:c",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "613a623a63",
+      "byteLength": 5,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1815718997,
+          "hex": "6c39ac55",
+          "bucket100": 98,
+          "bucket1000": 998
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2416827247,
+          "hex": "900ddb6f",
+          "bucket100": 48,
+          "bucket1000": 248
+        }
+      ]
+    },
+    {
+      "id": "utf8-61",
+      "text": "checkout:é",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "636865636b6f75743ac3a9",
+      "byteLength": 11,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2987043074,
+          "hex": "b20aa902",
+          "bucket100": 75,
+          "bucket1000": 75
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3485684207,
+          "hex": "cfc351ef",
+          "bucket100": 8,
+          "bucket1000": 208
+        }
+      ]
+    },
+    {
+      "id": "utf8-62",
+      "text": "checkout:é",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "636865636b6f75743a65cc81",
+      "byteLength": 12,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 4260123421,
+          "hex": "fdec531d",
+          "bucket100": 22,
+          "bucket1000": 422
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3211497284,
+          "hex": "bf6b8f44",
+          "bucket100": 85,
+          "bucket1000": 285
+        }
+      ]
+    },
+    {
+      "id": "utf8-63",
+      "text": "checkout:😊",
+      "origins": [
+        "primitive-anchor"
+      ],
+      "utf8Hex": "636865636b6f75743af09f988a",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3006800575,
+          "hex": "b33822bf",
+          "bucket100": 76,
+          "bucket1000": 576
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2543312902,
+          "hex": "9797e006",
+          "bucket100": 3,
+          "bucket1000": 903
+        }
+      ]
+    },
+    {
+      "id": "utf8-64",
+      "text": "尾部🌍:é",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3ac3a9",
+      "byteLength": 13,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2334306235,
+          "hex": "8b22afbb",
+          "bucket100": 36,
+          "bucket1000": 236
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3718549686,
+          "hex": "dda490b6",
+          "bucket100": 87,
+          "bucket1000": 687
+        }
+      ]
+    },
+    {
+      "id": "utf8-65",
+      "text": "尾部🌍:éx",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3ac3a978",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1133819847,
+          "hex": "4394b7c7",
+          "bucket100": 48,
+          "bucket1000": 848
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2394114377,
+          "hex": "8eb34949",
+          "bucket100": 78,
+          "bucket1000": 378
+        }
+      ]
+    },
+    {
+      "id": "utf8-66",
+      "text": "尾部🌍:éxx",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3ac3a97878",
+      "byteLength": 15,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 1952879301,
+          "hex": "746692c5",
+          "bucket100": 2,
+          "bucket1000": 302
+        },
+        {
+          "seed": 86028157,
+          "uint32": 3303093080,
+          "hex": "c4e13358",
+          "bucket100": 81,
+          "bucket1000": 81
+        }
+      ]
+    },
+    {
+      "id": "utf8-67",
+      "text": "尾部🌍:éxxx",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3ac3a9787878",
+      "byteLength": 16,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3777179748,
+          "hex": "e1233064",
+          "bucket100": 49,
+          "bucket1000": 749
+        },
+        {
+          "seed": 86028157,
+          "uint32": 4209380277,
+          "hex": "fae60bb5",
+          "bucket100": 78,
+          "bucket1000": 278
+        }
+      ]
+    },
+    {
+      "id": "utf8-68",
+      "text": "尾部🌍:é",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3a65cc81",
+      "byteLength": 14,
+      "tailLength": 2,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 651134893,
+          "hex": "26cf87ad",
+          "bucket100": 94,
+          "bucket1000": 894
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2817770032,
+          "hex": "a7f3c230",
+          "bucket100": 33,
+          "bucket1000": 33
+        }
+      ]
+    },
+    {
+      "id": "utf8-69",
+      "text": "尾部🌍:éx",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3a65cc8178",
+      "byteLength": 15,
+      "tailLength": 3,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 2656015111,
+          "hex": "9e4f9307",
+          "bucket100": 12,
+          "bucket1000": 112
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2223935627,
+          "hex": "848e908b",
+          "bucket100": 28,
+          "bucket1000": 628
+        }
+      ]
+    },
+    {
+      "id": "utf8-70",
+      "text": "尾部🌍:éxx",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3a65cc817878",
+      "byteLength": 16,
+      "tailLength": 0,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 3109721940,
+          "hex": "b95a9754",
+          "bucket100": 41,
+          "bucket1000": 941
+        },
+        {
+          "seed": 86028157,
+          "uint32": 1367343121,
+          "hex": "51800011",
+          "bucket100": 22,
+          "bucket1000": 122
+        }
+      ]
+    },
+    {
+      "id": "utf8-71",
+      "text": "尾部🌍:éxxx",
+      "origins": [
+        "full-block-plus-tail-0..3"
+      ],
+      "utf8Hex": "e5b0bee983a8f09f8c8d3a65cc81787878",
+      "byteLength": 17,
+      "tailLength": 1,
+      "hashes": [
+        {
+          "seed": 0,
+          "uint32": 600439737,
+          "hex": "23c9fbb9",
+          "bucket100": 38,
+          "bucket1000": 738
+        },
+        {
+          "seed": 86028157,
+          "uint32": 2820449024,
+          "hex": "a81ca300",
+          "bucket100": 25,
+          "bucket1000": 25
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "unicode-hash-diagnostic-v1",
+      "state": {
+        "version": 2,
+        "features": [
+          {
+            "name": "unicode-rollout",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "flexibleRollout",
+                "parameters": {
+                  "rollout": "37",
+                  "groupId": "共享组-🌍",
+                  "stickiness": "userId"
+                },
+                "constraints": []
+              }
+            ]
+          },
+          {
+            "name": "全局变体-ø",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "default",
+                "parameters": {},
+                "constraints": []
+              }
+            ],
+            "variants": [
+              {
+                "name": "control",
+                "weight": 250
+              },
+              {
+                "name": "treatment",
+                "weight": 750,
+                "payload": {
+                  "type": "string",
+                  "value": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "id": "unicode:0:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "用户甲"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-0",
+            "text": "共享组-🌍:用户甲",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+            "byteLength": 24,
+            "seed": 0,
+            "uint32": 1483014240,
+            "scale": 100,
+            "bucket": 41,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:0:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "用户甲"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-0",
+            "text": "共享组-🌍:用户甲",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+            "byteLength": 24,
+            "seed": 0,
+            "uint32": 1483014240,
+            "scale": 100,
+            "bucket": 41,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:0:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "用户甲"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:0:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "用户甲"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-1",
+            "text": "全局变体-ø:用户甲",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e794b2",
+            "byteLength": 25,
+            "seed": 86028157,
+            "uint32": 2760591665,
+            "scale": 1000,
+            "bucket": 666,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:1:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "用户乙"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-2",
+            "text": "共享组-🌍:用户乙",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e4b999",
+            "byteLength": 24,
+            "seed": 0,
+            "uint32": 2979338940,
+            "scale": 100,
+            "bucket": 41,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:1:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "用户乙"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-2",
+            "text": "共享组-🌍:用户乙",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e4b999",
+            "byteLength": 24,
+            "seed": 0,
+            "uint32": 2979338940,
+            "scale": 100,
+            "bucket": 41,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:1:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "用户乙"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:1:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "用户乙"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-3",
+            "text": "全局变体-ø:用户乙",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e4b999",
+            "byteLength": 25,
+            "seed": 86028157,
+            "uint32": 3555707867,
+            "scale": 1000,
+            "bucket": 868,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:2:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-4",
+            "text": "共享组-🌍:é",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3a9",
+            "byteLength": 17,
+            "seed": 0,
+            "uint32": 3958432301,
+            "scale": 100,
+            "bucket": 2,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:2:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-4",
+            "text": "共享组-🌍:é",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3a9",
+            "byteLength": 17,
+            "seed": 0,
+            "uint32": 3958432301,
+            "scale": 100,
+            "bucket": 2,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:2:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:2:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-5",
+            "text": "全局变体-ø:é",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ac3a9",
+            "byteLength": 18,
+            "seed": 86028157,
+            "uint32": 1836203535,
+            "scale": 1000,
+            "bucket": 536,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:3:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-6",
+            "text": "共享组-🌍:é",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a65cc81",
+            "byteLength": 18,
+            "seed": 0,
+            "uint32": 170815357,
+            "scale": 100,
+            "bucket": 58,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:3:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-6",
+            "text": "共享组-🌍:é",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a65cc81",
+            "byteLength": 18,
+            "seed": 0,
+            "uint32": 170815357,
+            "scale": 100,
+            "bucket": 58,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:3:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:3:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-7",
+            "text": "全局变体-ø:é",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83a65cc81",
+            "byteLength": 19,
+            "seed": 86028157,
+            "uint32": 830409247,
+            "scale": 1000,
+            "bucket": 248,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:4:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-8",
+            "text": "共享组-🌍:😊",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f988a",
+            "byteLength": 19,
+            "seed": 0,
+            "uint32": 1347231358,
+            "scale": 100,
+            "bucket": 59,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:4:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-8",
+            "text": "共享组-🌍:😊",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f988a",
+            "byteLength": 19,
+            "seed": 0,
+            "uint32": 1347231358,
+            "scale": 100,
+            "bucket": 59,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:4:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:4:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-9",
+            "text": "全局变体-ø:😊",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83af09f988a",
+            "byteLength": 20,
+            "seed": 86028157,
+            "uint32": 4140448899,
+            "scale": 1000,
+            "bucket": 900,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:5:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "φriend"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-10",
+            "text": "共享组-🌍:φriend",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3acf867269656e64",
+            "byteLength": 22,
+            "seed": 0,
+            "uint32": 306309382,
+            "scale": 100,
+            "bucket": 83,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:5:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "φriend"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-10",
+            "text": "共享组-🌍:φriend",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3acf867269656e64",
+            "byteLength": 22,
+            "seed": 0,
+            "uint32": 306309382,
+            "scale": 100,
+            "bucket": 83,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:5:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "φriend"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:5:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "φriend"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-11",
+            "text": "全局变体-ø:φriend",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83acf867269656e64",
+            "byteLength": 23,
+            "seed": 86028157,
+            "uint32": 2919502048,
+            "scale": 1000,
+            "bucket": 49,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:6:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "مرحبا"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-12",
+            "text": "共享组-🌍:مرحبا",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ad985d8b1d8add8a8d8a7",
+            "byteLength": 25,
+            "seed": 0,
+            "uint32": 3904649291,
+            "scale": 100,
+            "bucket": 92,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:6:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "مرحبا"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-12",
+            "text": "共享组-🌍:مرحبا",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ad985d8b1d8add8a8d8a7",
+            "byteLength": 25,
+            "seed": 0,
+            "uint32": 3904649291,
+            "scale": 100,
+            "bucket": 92,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:6:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "مرحبا"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:6:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "مرحبا"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-13",
+            "text": "全局变体-ø:مرحبا",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ad985d8b1d8add8a8d8a7",
+            "byteLength": 26,
+            "seed": 86028157,
+            "uint32": 3890027083,
+            "scale": 1000,
+            "bucket": 84,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:7:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "नमस्ते"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-14",
+            "text": "共享组-🌍:नमस्ते",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+            "byteLength": 33,
+            "seed": 0,
+            "uint32": 3360629819,
+            "scale": 100,
+            "bucket": 20,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:7:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "नमस्ते"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-14",
+            "text": "共享组-🌍:नमस्ते",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+            "byteLength": 33,
+            "seed": 0,
+            "uint32": 3360629819,
+            "scale": 100,
+            "bucket": 20,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:7:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "नमस्ते"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:7:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "नमस्ते"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-15",
+            "text": "全局变体-ø:नमस्ते",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+            "byteLength": 34,
+            "seed": 86028157,
+            "uint32": 1265991123,
+            "scale": 1000,
+            "bucket": 124,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:8:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "a\u0000b"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-16",
+            "text": "共享组-🌍:a\u0000b",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a610062",
+            "byteLength": 18,
+            "seed": 0,
+            "uint32": 2405392164,
+            "scale": 100,
+            "bucket": 65,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:8:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "a\u0000b"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-16",
+            "text": "共享组-🌍:a\u0000b",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a610062",
+            "byteLength": 18,
+            "seed": 0,
+            "uint32": 2405392164,
+            "scale": 100,
+            "bucket": 65,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:8:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "a\u0000b"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:8:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "a\u0000b"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-17",
+            "text": "全局变体-ø:a\u0000b",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83a610062",
+            "byteLength": 19,
+            "seed": 86028157,
+            "uint32": 3950436821,
+            "scale": 1000,
+            "bucket": 822,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:9:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "東京"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-18",
+            "text": "共享组-🌍:東京",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae69db1e4baac",
+            "byteLength": 21,
+            "seed": 0,
+            "uint32": 3112708421,
+            "scale": 100,
+            "bucket": 22,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:9:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "東京"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-18",
+            "text": "共享组-🌍:東京",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae69db1e4baac",
+            "byteLength": 21,
+            "seed": 0,
+            "uint32": 3112708421,
+            "scale": 100,
+            "bucket": 22,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:9:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "東京"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:9:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "東京"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-19",
+            "text": "全局变体-ø:東京",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae69db1e4baac",
+            "byteLength": 22,
+            "seed": 86028157,
+            "uint32": 1567320171,
+            "scale": 1000,
+            "bucket": 172,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:10:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "ø"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-20",
+            "text": "共享组-🌍:ø",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3b8",
+            "byteLength": 17,
+            "seed": 0,
+            "uint32": 679897382,
+            "scale": 100,
+            "bucket": 83,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:10:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "ø"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-20",
+            "text": "共享组-🌍:ø",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3b8",
+            "byteLength": 17,
+            "seed": 0,
+            "uint32": 679897382,
+            "scale": 100,
+            "bucket": 83,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:10:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "ø"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:10:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "ø"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-21",
+            "text": "全局变体-ø:ø",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ac3b8",
+            "byteLength": 18,
+            "seed": 86028157,
+            "uint32": 3218189606,
+            "scale": 1000,
+            "bucket": 607,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode:11:unicode-rollout:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "🌍"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-22",
+            "text": "共享组-🌍:🌍",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f8c8d",
+            "byteLength": 19,
+            "seed": 0,
+            "uint32": 1956636703,
+            "scale": 100,
+            "bucket": 4,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode:11:unicode-rollout:variant",
+          "profile": "unicode-diagnostic",
+          "name": "unicode-rollout",
+          "context": {
+            "userId": "🌍"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-22",
+            "text": "共享组-🌍:🌍",
+            "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f8c8d",
+            "byteLength": 19,
+            "seed": 0,
+            "uint32": 1956636703,
+            "scale": 100,
+            "bucket": 4,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode:11:全局变体-ø:boolean",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "🌍"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode:11:全局变体-ø:variant",
+          "profile": "unicode-diagnostic",
+          "name": "全局变体-ø",
+          "context": {
+            "userId": "🌍"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-23",
+            "text": "全局变体-ø:🌍",
+            "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83af09f8c8d",
+            "byteLength": 20,
+            "seed": 86028157,
+            "uint32": 2758085174,
+            "scale": 1000,
+            "bucket": 175,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unicode-isolated-components-v1",
+      "state": {
+        "version": 2,
+        "features": [
+          {
+            "name": "ascii-feature-0",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "flexibleRollout",
+                "parameters": {
+                  "rollout": "37",
+                  "groupId": "group-é",
+                  "stickiness": "userId"
+                }
+              }
+            ]
+          },
+          {
+            "name": "ascii-feature-1",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "flexibleRollout",
+                "parameters": {
+                  "rollout": "37",
+                  "groupId": "group-é",
+                  "stickiness": "userId"
+                }
+              }
+            ]
+          },
+          {
+            "name": "ascii-feature-2",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "flexibleRollout",
+                "parameters": {
+                  "rollout": "37",
+                  "groupId": "group-🌍",
+                  "stickiness": "userId"
+                }
+              }
+            ]
+          },
+          {
+            "name": "ascii-feature-3",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "flexibleRollout",
+                "parameters": {
+                  "rollout": "37",
+                  "groupId": "共享组",
+                  "stickiness": "userId"
+                }
+              }
+            ]
+          },
+          {
+            "name": "全局-é",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "default"
+              }
+            ],
+            "variants": [
+              {
+                "name": "control",
+                "weight": 250
+              },
+              {
+                "name": "treatment",
+                "weight": 750,
+                "payload": {
+                  "type": "string",
+                  "value": "blue"
+                }
+              }
+            ]
+          },
+          {
+            "name": "全局-é",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "default"
+              }
+            ],
+            "variants": [
+              {
+                "name": "control",
+                "weight": 250
+              },
+              {
+                "name": "treatment",
+                "weight": 750,
+                "payload": {
+                  "type": "string",
+                  "value": "blue"
+                }
+              }
+            ]
+          },
+          {
+            "name": "全局-🌍",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "default"
+              }
+            ],
+            "variants": [
+              {
+                "name": "control",
+                "weight": 250
+              },
+              {
+                "name": "treatment",
+                "weight": 750,
+                "payload": {
+                  "type": "string",
+                  "value": "blue"
+                }
+              }
+            ]
+          },
+          {
+            "name": "全局-用户",
+            "enabled": true,
+            "strategies": [
+              {
+                "name": "default"
+              }
+            ],
+            "variants": [
+              {
+                "name": "control",
+                "weight": 250
+              },
+              {
+                "name": "treatment",
+                "weight": 750,
+                "payload": {
+                  "type": "string",
+                  "value": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "id": "unicode-extra:0:ascii-feature-0:boolean",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-24",
+            "text": "group-é:ascii-user",
+            "utf8Hex": "67726f75702dc3a93a61736369692d75736572",
+            "byteLength": 19,
+            "seed": 0,
+            "uint32": 1027662445,
+            "scale": 100,
+            "bucket": 46,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:0:ascii-feature-0:variant",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-24",
+            "text": "group-é:ascii-user",
+            "utf8Hex": "67726f75702dc3a93a61736369692d75736572",
+            "byteLength": 19,
+            "seed": 0,
+            "uint32": 1027662445,
+            "scale": 100,
+            "bucket": 46,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:0:ascii-feature-1:boolean",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-25",
+            "text": "group-é:ascii-user",
+            "utf8Hex": "67726f75702d65cc813a61736369692d75736572",
+            "byteLength": 20,
+            "seed": 0,
+            "uint32": 55859588,
+            "scale": 100,
+            "bucket": 89,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:0:ascii-feature-1:variant",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-25",
+            "text": "group-é:ascii-user",
+            "utf8Hex": "67726f75702d65cc813a61736369692d75736572",
+            "byteLength": 20,
+            "seed": 0,
+            "uint32": 55859588,
+            "scale": 100,
+            "bucket": 89,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:0:ascii-feature-2:boolean",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-26",
+            "text": "group-🌍:ascii-user",
+            "utf8Hex": "67726f75702df09f8c8d3a61736369692d75736572",
+            "byteLength": 21,
+            "seed": 0,
+            "uint32": 3983504470,
+            "scale": 100,
+            "bucket": 71,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:0:ascii-feature-2:variant",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-26",
+            "text": "group-🌍:ascii-user",
+            "utf8Hex": "67726f75702df09f8c8d3a61736369692d75736572",
+            "byteLength": 21,
+            "seed": 0,
+            "uint32": 3983504470,
+            "scale": 100,
+            "bucket": 71,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:0:ascii-feature-3:boolean",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-27",
+            "text": "共享组:ascii-user",
+            "utf8Hex": "e585b1e4baabe7bb843a61736369692d75736572",
+            "byteLength": 20,
+            "seed": 0,
+            "uint32": 1779935726,
+            "scale": 100,
+            "bucket": 27,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:0:ascii-feature-3:variant",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-27",
+            "text": "共享组:ascii-user",
+            "utf8Hex": "e585b1e4baabe7bb843a61736369692d75736572",
+            "byteLength": 20,
+            "seed": 0,
+            "uint32": 1779935726,
+            "scale": 100,
+            "bucket": 27,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-28",
+            "text": "全局-é:ascii-user",
+            "utf8Hex": "e585a8e5b1802dc3a93a61736369692d75736572",
+            "byteLength": 20,
+            "seed": 86028157,
+            "uint32": 2048922788,
+            "scale": 1000,
+            "bucket": 789,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-29",
+            "text": "全局-é:ascii-user",
+            "utf8Hex": "e585a8e5b1802d65cc813a61736369692d75736572",
+            "byteLength": 21,
+            "seed": 86028157,
+            "uint32": 109528341,
+            "scale": 1000,
+            "bucket": 342,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-🌍:boolean",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-🌍:variant",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-30",
+            "text": "全局-🌍:ascii-user",
+            "utf8Hex": "e585a8e5b1802df09f8c8d3a61736369692d75736572",
+            "byteLength": 22,
+            "seed": 86028157,
+            "uint32": 1634277354,
+            "scale": 1000,
+            "bucket": 355,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-用户:boolean",
+          "name": "全局-用户",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:0:全局-用户:variant",
+          "name": "全局-用户",
+          "context": {
+            "userId": "ascii-user"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-31",
+            "text": "全局-用户:ascii-user",
+            "utf8Hex": "e585a8e5b1802de794a8e688b73a61736369692d75736572",
+            "byteLength": 24,
+            "seed": 86028157,
+            "uint32": 1160960536,
+            "scale": 1000,
+            "bucket": 537,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-0:boolean",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-32",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702dc3a93ac3a9",
+            "byteLength": 11,
+            "seed": 0,
+            "uint32": 3045351943,
+            "scale": 100,
+            "bucket": 44,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-0:variant",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-32",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702dc3a93ac3a9",
+            "byteLength": 11,
+            "seed": 0,
+            "uint32": 3045351943,
+            "scale": 100,
+            "bucket": 44,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-1:boolean",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-33",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702d65cc813ac3a9",
+            "byteLength": 12,
+            "seed": 0,
+            "uint32": 1031942671,
+            "scale": 100,
+            "bucket": 72,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-1:variant",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-33",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702d65cc813ac3a9",
+            "byteLength": 12,
+            "seed": 0,
+            "uint32": 1031942671,
+            "scale": 100,
+            "bucket": 72,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-2:boolean",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-34",
+            "text": "group-🌍:é",
+            "utf8Hex": "67726f75702df09f8c8d3ac3a9",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 1265940579,
+            "scale": 100,
+            "bucket": 80,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-2:variant",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-34",
+            "text": "group-🌍:é",
+            "utf8Hex": "67726f75702df09f8c8d3ac3a9",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 1265940579,
+            "scale": 100,
+            "bucket": 80,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-3:boolean",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-35",
+            "text": "共享组:é",
+            "utf8Hex": "e585b1e4baabe7bb843ac3a9",
+            "byteLength": 12,
+            "seed": 0,
+            "uint32": 978797760,
+            "scale": 100,
+            "bucket": 61,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:1:ascii-feature-3:variant",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-35",
+            "text": "共享组:é",
+            "utf8Hex": "e585b1e4baabe7bb843ac3a9",
+            "byteLength": 12,
+            "seed": 0,
+            "uint32": 978797760,
+            "scale": 100,
+            "bucket": 61,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-36",
+            "text": "全局-é:é",
+            "utf8Hex": "e585a8e5b1802dc3a93ac3a9",
+            "byteLength": 12,
+            "seed": 86028157,
+            "uint32": 1656250653,
+            "scale": 1000,
+            "bucket": 654,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-37",
+            "text": "全局-é:é",
+            "utf8Hex": "e585a8e5b1802d65cc813ac3a9",
+            "byteLength": 13,
+            "seed": 86028157,
+            "uint32": 525399566,
+            "scale": 1000,
+            "bucket": 567,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-🌍:boolean",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-🌍:variant",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-38",
+            "text": "全局-🌍:é",
+            "utf8Hex": "e585a8e5b1802df09f8c8d3ac3a9",
+            "byteLength": 14,
+            "seed": 86028157,
+            "uint32": 1120016539,
+            "scale": 1000,
+            "bucket": 540,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-用户:boolean",
+          "name": "全局-用户",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:1:全局-用户:variant",
+          "name": "全局-用户",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-39",
+            "text": "全局-用户:é",
+            "utf8Hex": "e585a8e5b1802de794a8e688b73ac3a9",
+            "byteLength": 16,
+            "seed": 86028157,
+            "uint32": 2380278139,
+            "scale": 1000,
+            "bucket": 140,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-0:boolean",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-40",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702dc3a93a65cc81",
+            "byteLength": 12,
+            "seed": 0,
+            "uint32": 2783710731,
+            "scale": 100,
+            "bucket": 32,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-0:variant",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-40",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702dc3a93a65cc81",
+            "byteLength": 12,
+            "seed": 0,
+            "uint32": 2783710731,
+            "scale": 100,
+            "bucket": 32,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-1:boolean",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-41",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702d65cc813a65cc81",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 4255510194,
+            "scale": 100,
+            "bucket": 95,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-1:variant",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-41",
+            "text": "group-é:é",
+            "utf8Hex": "67726f75702d65cc813a65cc81",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 4255510194,
+            "scale": 100,
+            "bucket": 95,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-2:boolean",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-42",
+            "text": "group-🌍:é",
+            "utf8Hex": "67726f75702df09f8c8d3a65cc81",
+            "byteLength": 14,
+            "seed": 0,
+            "uint32": 3468367861,
+            "scale": 100,
+            "bucket": 62,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-2:variant",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-42",
+            "text": "group-🌍:é",
+            "utf8Hex": "67726f75702df09f8c8d3a65cc81",
+            "byteLength": 14,
+            "seed": 0,
+            "uint32": 3468367861,
+            "scale": 100,
+            "bucket": 62,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-3:boolean",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-43",
+            "text": "共享组:é",
+            "utf8Hex": "e585b1e4baabe7bb843a65cc81",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 3275549571,
+            "scale": 100,
+            "bucket": 72,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:2:ascii-feature-3:variant",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-43",
+            "text": "共享组:é",
+            "utf8Hex": "e585b1e4baabe7bb843a65cc81",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 3275549571,
+            "scale": 100,
+            "bucket": 72,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-44",
+            "text": "全局-é:é",
+            "utf8Hex": "e585a8e5b1802dc3a93a65cc81",
+            "byteLength": 13,
+            "seed": 86028157,
+            "uint32": 510814164,
+            "scale": 1000,
+            "bucket": 165,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-45",
+            "text": "全局-é:é",
+            "utf8Hex": "e585a8e5b1802d65cc813a65cc81",
+            "byteLength": 14,
+            "seed": 86028157,
+            "uint32": 702575007,
+            "scale": 1000,
+            "bucket": 8,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-🌍:boolean",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-🌍:variant",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-46",
+            "text": "全局-🌍:é",
+            "utf8Hex": "e585a8e5b1802df09f8c8d3a65cc81",
+            "byteLength": 15,
+            "seed": 86028157,
+            "uint32": 3932223039,
+            "scale": 1000,
+            "bucket": 40,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-用户:boolean",
+          "name": "全局-用户",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:2:全局-用户:variant",
+          "name": "全局-用户",
+          "context": {
+            "userId": "é"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-47",
+            "text": "全局-用户:é",
+            "utf8Hex": "e585a8e5b1802de794a8e688b73a65cc81",
+            "byteLength": 17,
+            "seed": 86028157,
+            "uint32": 2034159927,
+            "scale": 1000,
+            "bucket": 928,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-0:boolean",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-48",
+            "text": "group-é:😊",
+            "utf8Hex": "67726f75702dc3a93af09f988a",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 1121927618,
+            "scale": 100,
+            "bucket": 19,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-0:variant",
+          "name": "ascii-feature-0",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-48",
+            "text": "group-é:😊",
+            "utf8Hex": "67726f75702dc3a93af09f988a",
+            "byteLength": 13,
+            "seed": 0,
+            "uint32": 1121927618,
+            "scale": 100,
+            "bucket": 19,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-1:boolean",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-49",
+            "text": "group-é:😊",
+            "utf8Hex": "67726f75702d65cc813af09f988a",
+            "byteLength": 14,
+            "seed": 0,
+            "uint32": 4161663096,
+            "scale": 100,
+            "bucket": 97,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-1:variant",
+          "name": "ascii-feature-1",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-49",
+            "text": "group-é:😊",
+            "utf8Hex": "67726f75702d65cc813af09f988a",
+            "byteLength": 14,
+            "seed": 0,
+            "uint32": 4161663096,
+            "scale": 100,
+            "bucket": 97,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-2:boolean",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "primitiveId": "utf8-50",
+            "text": "group-🌍:😊",
+            "utf8Hex": "67726f75702df09f8c8d3af09f988a",
+            "byteLength": 15,
+            "seed": 0,
+            "uint32": 797457012,
+            "scale": 100,
+            "bucket": 13,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-2:variant",
+          "name": "ascii-feature-2",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-50",
+            "text": "group-🌍:😊",
+            "utf8Hex": "67726f75702df09f8c8d3af09f988a",
+            "byteLength": 15,
+            "seed": 0,
+            "uint32": 797457012,
+            "scale": 100,
+            "bucket": 13,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-3:boolean",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": false,
+          "trace": {
+            "primitiveId": "utf8-51",
+            "text": "共享组:😊",
+            "utf8Hex": "e585b1e4baabe7bb843af09f988a",
+            "byteLength": 14,
+            "seed": 0,
+            "uint32": 3014786866,
+            "scale": 100,
+            "bucket": 67,
+            "rule": "bucket <= 37"
+          }
+        },
+        {
+          "id": "unicode-extra:3:ascii-feature-3:variant",
+          "name": "ascii-feature-3",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "disabled",
+            "enabled": false,
+            "feature_enabled": false
+          },
+          "trace": {
+            "primitiveId": "utf8-51",
+            "text": "共享组:😊",
+            "utf8Hex": "e585b1e4baabe7bb843af09f988a",
+            "byteLength": 14,
+            "seed": 0,
+            "uint32": 3014786866,
+            "scale": 100,
+            "bucket": 67,
+            "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-52",
+            "text": "全局-é:😊",
+            "utf8Hex": "e585a8e5b1802dc3a93af09f988a",
+            "byteLength": 14,
+            "seed": 86028157,
+            "uint32": 1713198883,
+            "scale": 1000,
+            "bucket": 884,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-é:boolean",
+          "name": "全局-é",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-é:variant",
+          "name": "全局-é",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-53",
+            "text": "全局-é:😊",
+            "utf8Hex": "e585a8e5b1802d65cc813af09f988a",
+            "byteLength": 15,
+            "seed": 86028157,
+            "uint32": 328762747,
+            "scale": 1000,
+            "bucket": 748,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-🌍:boolean",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-🌍:variant",
+          "name": "全局-🌍",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "control",
+            "enabled": true,
+            "feature_enabled": true
+          },
+          "trace": {
+            "primitiveId": "utf8-54",
+            "text": "全局-🌍:😊",
+            "utf8Hex": "e585a8e5b1802df09f8c8d3af09f988a",
+            "byteLength": 16,
+            "seed": 86028157,
+            "uint32": 1189737045,
+            "scale": 1000,
+            "bucket": 46,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-用户:boolean",
+          "name": "全局-用户",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "boolean",
+          "expected": true,
+          "trace": {
+            "rule": "default strategy is enabled; this Boolean does not hash"
+          }
+        },
+        {
+          "id": "unicode-extra:3:全局-用户:variant",
+          "name": "全局-用户",
+          "context": {
+            "userId": "😊"
+          },
+          "kind": "variant",
+          "expected": {
+            "name": "treatment",
+            "enabled": true,
+            "feature_enabled": true,
+            "payload": {
+              "type": "string",
+              "value": "blue"
+            }
+          },
+          "trace": {
+            "primitiveId": "utf8-55",
+            "text": "全局-用户:😊",
+            "utf8Hex": "e585a8e5b1802de794a8e688b73af09f988a",
+            "byteLength": 18,
+            "seed": 86028157,
+            "uint32": 493128584,
+            "scale": 1000,
+            "bucket": 585,
+            "rule": "1..250 control; 251..1000 treatment"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -15,17 +15,14 @@ test "explicit disabled is never overridden by fallback" {
 }
 
 ///|
-test "unknown inverted operator rejects whole snapshot" {
+test "unknown inverted operator fails closed without blocking unrelated flags" {
   let source =
-    #|{"version":2,"features":[{"name":"danger","enabled":true,"strategies":[{"name":"default","constraints":[{"contextName":"userId","operator":"FUTURE_OP","inverted":true}]}]}]}
-  let rejected = try {
-    ignore(@sdk.Snapshot::parse(source))
-    false
-  } catch {
-    @sdk.ConfigError::Unsupported(_) => true
-    _ => false
-  }
-  assert_true(rejected)
+    #|{"version":2,"features":[{"name":"danger","enabled":true,"strategies":[{"name":"default","constraints":[{"contextName":"userId","operator":"FUTURE_OP","inverted":true}]}]},{"name":"other","enabled":true,"strategies":[{"name":"default"}]}]}
+  let state = @sdk.Snapshot::parse(source)
+  let ctx = @sdk.Context::new(user_id="user-1")
+  assert_false(state.is_enabled("danger", ctx, fallback=true))
+  assert_false(state.get_variant("danger", ctx).feature_enabled)
+  assert_true(state.is_enabled("other", ctx))
 }
 
 ///|
@@ -46,7 +43,7 @@ test "duplicate fields and duplicate flags rejected" {
 }
 
 ///|
-test "unsupported dependencies and malformed global variants cannot be ignored" {
+test "malformed dependencies and malformed global variants cannot be ignored" {
   for key in ["dependencies", "variants"] {
     let source = "{\"version\":2,\"features\":[{\"name\":\"x\",\"enabled\":true,\"strategies\":[{\"name\":\"default\",\"variants\":[{\"name\":\"v\",\"weight\":1}]}],\"\{key}\":[{\"name\":\"parent\"}]}]}"
     let rejected = try {

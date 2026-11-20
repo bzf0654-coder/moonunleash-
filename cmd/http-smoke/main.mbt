@@ -22,6 +22,7 @@ async fn main {
   for i = 0; i < expected.length(); i = i + 1 {
     let accepted = client.refresh()
     assert_eq(accepted, expected[i])
+    assert_true(client.is_registered())
     assert_eq(client.status().generation, generations[i])
     assert_eq(client.is_enabled("checkout", @sdk.Context::new()), i < 4)
     checks.push(

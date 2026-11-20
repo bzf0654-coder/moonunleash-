@@ -8,7 +8,7 @@ for (const f of manifest.files) {
   if (createHash('sha256').update(bytes).digest('hex') !== f.sha256) throw Error(`Fixture digest mismatch: ${f.name}`);
 }
 const index = JSON.parse(await readFile(new URL('index.json', base), 'utf8'));
-const mandatory = new Set(['01', '02', '03', '04', '05', '07', '08', '09', '10', '11', '12', '16', '18']);
+const mandatory = new Set(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22']);
 const inventory = [];
 let runtimeData = '// Generated from hash-verified official fixtures; used only by conformance tools.\n';
 const entries = [];

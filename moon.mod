@@ -24,3 +24,7 @@ keywords = [ "unleash", "feature-flags", "sdk", "rollout" ]
 preferred_target = "wasm"
 
 description = "MoonBit-native Unleash evaluation core and explicitly scoped server-side SDK"
+
+import {
+  "moonbitlang/regexp@0.3.7",
+}

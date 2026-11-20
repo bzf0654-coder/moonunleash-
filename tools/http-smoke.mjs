@@ -16,7 +16,8 @@ const server = createServer((req, res) => {
     req.on('end', () => {
       try {
         const data = JSON.parse(body);
-        if (typeof data.appName !== 'string' || typeof data.interval !== 'number' || data.interval <= 0 || typeof data.started !== 'number' || Math.abs(data.started - Date.now() / 1000) > 60 || !Array.isArray(data.strategies) || data.strategies.length !== 6) throw Error('registration schema');
+        const strategies = ['default', 'flexibleRollout', 'gradualRolloutRandom', 'gradualRolloutSessionId', 'gradualRolloutUserId', 'remoteAddress', 'userWithId'];
+        if (typeof data.appName !== 'string' || typeof data.instanceId !== 'string' || !data.instanceId.startsWith('moon-') || data.sdkVersion !== 'moonunleash:0.1.0' || typeof data.interval !== 'number' || data.interval <= 0 || typeof data.started !== 'string' || !Number.isFinite(Date.parse(data.started)) || Math.abs(Date.parse(data.started) - Date.now()) > 60000 || !Array.isArray(data.strategies) || JSON.stringify([...data.strategies].sort()) !== JSON.stringify(strategies)) throw Error('registration schema');
         registered++; res.writeHead(202).end();
       } catch { res.writeHead(400).end(); }
     });
@@ -50,7 +51,7 @@ try {
   const [code] = await once(child, 'close');
   clearTimeout(timer);
   if (code !== 0) throw Error(`MoonBit HTTP smoke exited ${code}`);
-  if (step !== 6 || redirected || registered !== 2) throw Error('HTTP request sequence / redirect / registration check failed');
+  if (step !== 6 || redirected || registered !== 2) throw Error(`HTTP request sequence / redirect / registration check failed: ${JSON.stringify({step, redirected, registered})}`);
   if (JSON.stringify(etags) !== JSON.stringify([null, 'v1', 'v1', 'v1', 'v1', 'v2'])) throw Error(`Wrong ETag acceptance: ${JSON.stringify(etags)}`);
   const report = { kind: 'controlled-http-not-unleash', passed: true, steps: step, registrations: registered, redirected, etags, checkedAt: new Date().toISOString() };
   await mkdir(new URL('../artifacts/', import.meta.url), { recursive: true });

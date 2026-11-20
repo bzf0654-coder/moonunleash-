@@ -1,0 +1,2470 @@
+{
+  "schemaVersion": 1,
+  "goldenSha256": "cedb1ab11e87318093a69ab1a6430d8df4559b4a5d22c972b2d6c54fdeec8de1",
+  "inputSha256": "7d801d96ca2820e8ed81e850d2d22c221374dcdd10e985a1ec4b80bf10ed93a8",
+  "referenceTests": {
+    "wasmPublishedAssertions": 29,
+    "jsPublishedStringAssertions": 8,
+    "jsPublishedByteAssertions": 8,
+    "additionalByteCrossChecks": 40,
+    "asciiAnchorChecks": 2
+  },
+  "summary": {
+    "originalCases": 48,
+    "nodeMatches": 28,
+    "nodeMismatches": 20,
+    "mismatchCategories": {
+      "rollout-boolean": 7,
+      "propagated-feature-enabled": 7,
+      "weighted-variant": 6
+    },
+    "additionalApiCases": 64,
+    "primitiveTexts": 72,
+    "primitiveSeedChecks": 144,
+    "moonTests": 2,
+    "moonExecutedByThisScript": false
+  },
+  "oracle": {
+    "name": "unleash-client",
+    "version": "6.12.2",
+    "gitHead": "dc113ce745f6c0efe65ae3f6b49a439144ac4aa3",
+    "modified": false
+  },
+  "verdict": "Keep UTF8 byte hashing as explicit policy; non-ASCII bucket inputs are a Node6.12.2 compatibility exception, not a parity pass.",
+  "records": [
+    {
+      "id": "unicode:0:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "用户甲"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 41 versus legacy bucket 12 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-0",
+        "text": "共享组-🌍:用户甲",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 1483014240,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283732",
+        "byteLength": 10,
+        "uint32": 3785767911,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 12
+      }
+    },
+    {
+      "id": "unicode:0:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "用户甲"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 41, legacy 12).",
+      "utf8Trace": {
+        "primitiveId": "utf8-0",
+        "text": "共享组-🌍:用户甲",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 1483014240,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283732",
+        "byteLength": 10,
+        "uint32": 3785767911,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 12
+      }
+    },
+    {
+      "id": "unicode:0:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "用户甲"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:0:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "用户甲"
+      },
+      "utf8Expected": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-1",
+        "text": "全局变体-ø:用户甲",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e794b2",
+        "byteLength": 25,
+        "seed": 86028157,
+        "uint32": 2760591665,
+        "scale": 1000,
+        "bucket": 666,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a283732",
+        "byteLength": 10,
+        "uint32": 1828298720,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 721
+      }
+    },
+    {
+      "id": "unicode:1:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "用户乙"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 41 versus legacy bucket 30 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-2",
+        "text": "共享组-🌍:用户乙",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e4b999",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 2979338940,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283759",
+        "byteLength": 10,
+        "uint32": 895103129,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 30
+      }
+    },
+    {
+      "id": "unicode:1:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "用户乙"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 41, legacy 30).",
+      "utf8Trace": {
+        "primitiveId": "utf8-2",
+        "text": "共享组-🌍:用户乙",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e4b999",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 2979338940,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283759",
+        "byteLength": 10,
+        "uint32": 895103129,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 30
+      }
+    },
+    {
+      "id": "unicode:1:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "用户乙"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:1:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "用户乙"
+      },
+      "utf8Expected": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-3",
+        "text": "全局变体-ø:用户乙",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae794a8e688b7e4b999",
+        "byteLength": 25,
+        "seed": 86028157,
+        "uint32": 3555707867,
+        "scale": 1000,
+        "bucket": 868,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a283759",
+        "byteLength": 10,
+        "uint32": 4152327267,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 268
+      }
+    },
+    {
+      "id": "unicode:2:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-4",
+        "text": "共享组-🌍:é",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3a9",
+        "byteLength": 17,
+        "seed": 0,
+        "uint32": 3958432301,
+        "scale": 100,
+        "bucket": 2,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3ae9",
+        "byteLength": 8,
+        "uint32": 3670870717,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 18
+      }
+    },
+    {
+      "id": "unicode:2:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-4",
+        "text": "共享组-🌍:é",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3a9",
+        "byteLength": 17,
+        "seed": 0,
+        "uint32": 3958432301,
+        "scale": 100,
+        "bucket": 2,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3ae9",
+        "byteLength": 8,
+        "uint32": 3670870717,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 18
+      }
+    },
+    {
+      "id": "unicode:2:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:2:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-5",
+        "text": "全局变体-ø:é",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ac3a9",
+        "byteLength": 18,
+        "seed": 86028157,
+        "uint32": 1836203535,
+        "scale": 1000,
+        "bucket": 536,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83ae9",
+        "byteLength": 8,
+        "uint32": 2206015614,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 615
+      }
+    },
+    {
+      "id": "unicode:3:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 58 versus legacy bucket 18 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-6",
+        "text": "共享组-🌍:é",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a65cc81",
+        "byteLength": 18,
+        "seed": 0,
+        "uint32": 170815357,
+        "scale": 100,
+        "bucket": 58,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a6501",
+        "byteLength": 9,
+        "uint32": 3468152217,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 18
+      }
+    },
+    {
+      "id": "unicode:3:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 58, legacy 18).",
+      "utf8Trace": {
+        "primitiveId": "utf8-6",
+        "text": "共享组-🌍:é",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a65cc81",
+        "byteLength": 18,
+        "seed": 0,
+        "uint32": 170815357,
+        "scale": 100,
+        "bucket": 58,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a6501",
+        "byteLength": 9,
+        "uint32": 3468152217,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 18
+      }
+    },
+    {
+      "id": "unicode:3:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:3:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 248, legacy 996); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-7",
+        "text": "全局变体-ø:é",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83a65cc81",
+        "byteLength": 19,
+        "seed": 86028157,
+        "uint32": 830409247,
+        "scale": 1000,
+        "bucket": 248,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a6501",
+        "byteLength": 9,
+        "uint32": 3029224995,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 996
+      }
+    },
+    {
+      "id": "unicode:4:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "😊"
+      },
+      "utf8Expected": false,
+      "node6122": false,
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-8",
+        "text": "共享组-🌍:😊",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f988a",
+        "byteLength": 19,
+        "seed": 0,
+        "uint32": 1347231358,
+        "scale": 100,
+        "bucket": 59,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a3d0a",
+        "byteLength": 9,
+        "uint32": 1877400097,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 98
+      }
+    },
+    {
+      "id": "unicode:4:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "😊"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-8",
+        "text": "共享组-🌍:😊",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f988a",
+        "byteLength": 19,
+        "seed": 0,
+        "uint32": 1347231358,
+        "scale": 100,
+        "bucket": 59,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a3d0a",
+        "byteLength": 9,
+        "uint32": 1877400097,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 98
+      }
+    },
+    {
+      "id": "unicode:4:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "😊"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:4:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "😊"
+      },
+      "utf8Expected": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-9",
+        "text": "全局变体-ø:😊",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83af09f988a",
+        "byteLength": 20,
+        "seed": 86028157,
+        "uint32": 4140448899,
+        "scale": 1000,
+        "bucket": 900,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a3d0a",
+        "byteLength": 9,
+        "uint32": 4268958901,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 902
+      }
+    },
+    {
+      "id": "unicode:5:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "φriend"
+      },
+      "utf8Expected": false,
+      "node6122": false,
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-10",
+        "text": "共享组-🌍:φriend",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3acf867269656e64",
+        "byteLength": 22,
+        "seed": 0,
+        "uint32": 306309382,
+        "scale": 100,
+        "bucket": 83,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3ac67269656e64",
+        "byteLength": 13,
+        "uint32": 813510980,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 81
+      }
+    },
+    {
+      "id": "unicode:5:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "φriend"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-10",
+        "text": "共享组-🌍:φriend",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3acf867269656e64",
+        "byteLength": 22,
+        "seed": 0,
+        "uint32": 306309382,
+        "scale": 100,
+        "bucket": 83,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3ac67269656e64",
+        "byteLength": 13,
+        "uint32": 813510980,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 81
+      }
+    },
+    {
+      "id": "unicode:5:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "φriend"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:5:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "φriend"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 49, legacy 902); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-11",
+        "text": "全局变体-ø:φriend",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83acf867269656e64",
+        "byteLength": 23,
+        "seed": 86028157,
+        "uint32": 2919502048,
+        "scale": 1000,
+        "bucket": 49,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83ac67269656e64",
+        "byteLength": 13,
+        "uint32": 3733234901,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 902
+      }
+    },
+    {
+      "id": "unicode:6:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "مرحبا"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 92 versus legacy bucket 29 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-12",
+        "text": "共享组-🌍:مرحبا",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ad985d8b1d8add8a8d8a7",
+        "byteLength": 25,
+        "seed": 0,
+        "uint32": 3904649291,
+        "scale": 100,
+        "bucket": 92,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a45312d2827",
+        "byteLength": 12,
+        "uint32": 2691121728,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 29
+      }
+    },
+    {
+      "id": "unicode:6:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "مرحبا"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 92, legacy 29).",
+      "utf8Trace": {
+        "primitiveId": "utf8-12",
+        "text": "共享组-🌍:مرحبا",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ad985d8b1d8add8a8d8a7",
+        "byteLength": 25,
+        "seed": 0,
+        "uint32": 3904649291,
+        "scale": 100,
+        "bucket": 92,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a45312d2827",
+        "byteLength": 12,
+        "uint32": 2691121728,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 29
+      }
+    },
+    {
+      "id": "unicode:6:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "مرحبا"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:6:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "مرحبا"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 84, legacy 519); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-13",
+        "text": "全局变体-ø:مرحبا",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ad985d8b1d8add8a8d8a7",
+        "byteLength": 26,
+        "seed": 86028157,
+        "uint32": 3890027083,
+        "scale": 1000,
+        "bucket": 84,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a45312d2827",
+        "byteLength": 12,
+        "uint32": 2407987518,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 519
+      }
+    },
+    {
+      "id": "unicode:7:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "नमस्ते"
+      },
+      "utf8Expected": true,
+      "node6122": false,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 20 versus legacy bucket 49 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-14",
+        "text": "共享组-🌍:नमस्ते",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+        "byteLength": 33,
+        "seed": 0,
+        "uint32": 3360629819,
+        "scale": 100,
+        "bucket": 20,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a282e384d2447",
+        "byteLength": 13,
+        "uint32": 1934631348,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 49
+      }
+    },
+    {
+      "id": "unicode:7:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "नमस्ते"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 20, legacy 49).",
+      "utf8Trace": {
+        "primitiveId": "utf8-14",
+        "text": "共享组-🌍:नमस्ते",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+        "byteLength": 33,
+        "seed": 0,
+        "uint32": 3360629819,
+        "scale": 100,
+        "bucket": 20,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a282e384d2447",
+        "byteLength": 13,
+        "uint32": 1934631348,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 49
+      }
+    },
+    {
+      "id": "unicode:7:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "नमस्ते"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:7:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "नमस्ते"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 124, legacy 409); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-15",
+        "text": "全局变体-ø:नमस्ते",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+        "byteLength": 34,
+        "seed": 86028157,
+        "uint32": 1265991123,
+        "scale": 1000,
+        "bucket": 124,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a282e384d2447",
+        "byteLength": 13,
+        "uint32": 4213301408,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 409
+      }
+    },
+    {
+      "id": "unicode:8:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "a\u0000b"
+      },
+      "utf8Expected": false,
+      "node6122": false,
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-16",
+        "text": "共享组-🌍:a\u0000b",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a610062",
+        "byteLength": 18,
+        "seed": 0,
+        "uint32": 2405392164,
+        "scale": 100,
+        "bucket": 65,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a610062",
+        "byteLength": 10,
+        "uint32": 3058779641,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 42
+      }
+    },
+    {
+      "id": "unicode:8:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "a\u0000b"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-16",
+        "text": "共享组-🌍:a\u0000b",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a610062",
+        "byteLength": 18,
+        "seed": 0,
+        "uint32": 2405392164,
+        "scale": 100,
+        "bucket": 65,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a610062",
+        "byteLength": 10,
+        "uint32": 3058779641,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 42
+      }
+    },
+    {
+      "id": "unicode:8:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "a\u0000b"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:8:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "a\u0000b"
+      },
+      "utf8Expected": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-17",
+        "text": "全局变体-ø:a\u0000b",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83a610062",
+        "byteLength": 19,
+        "seed": 86028157,
+        "uint32": 3950436821,
+        "scale": 1000,
+        "bucket": 822,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a610062",
+        "byteLength": 10,
+        "uint32": 3207166782,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 783
+      }
+    },
+    {
+      "id": "unicode:9:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "東京"
+      },
+      "utf8Expected": true,
+      "node6122": false,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 22 versus legacy bucket 95 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-18",
+        "text": "共享组-🌍:東京",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae69db1e4baac",
+        "byteLength": 21,
+        "seed": 0,
+        "uint32": 3112708421,
+        "scale": 100,
+        "bucket": 22,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a71ac",
+        "byteLength": 9,
+        "uint32": 801973394,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 95
+      }
+    },
+    {
+      "id": "unicode:9:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "東京"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 22, legacy 95).",
+      "utf8Trace": {
+        "primitiveId": "utf8-18",
+        "text": "共享组-🌍:東京",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae69db1e4baac",
+        "byteLength": 21,
+        "seed": 0,
+        "uint32": 3112708421,
+        "scale": 100,
+        "bucket": 22,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a71ac",
+        "byteLength": 9,
+        "uint32": 801973394,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 95
+      }
+    },
+    {
+      "id": "unicode:9:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "東京"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:9:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "東京"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 172, legacy 512); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-19",
+        "text": "全局变体-ø:東京",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae69db1e4baac",
+        "byteLength": 22,
+        "seed": 86028157,
+        "uint32": 1567320171,
+        "scale": 1000,
+        "bucket": 172,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a71ac",
+        "byteLength": 9,
+        "uint32": 3338827511,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 512
+      }
+    },
+    {
+      "id": "unicode:10:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "ø"
+      },
+      "utf8Expected": false,
+      "node6122": false,
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-20",
+        "text": "共享组-🌍:ø",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3b8",
+        "byteLength": 17,
+        "seed": 0,
+        "uint32": 679897382,
+        "scale": 100,
+        "bucket": 83,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3af8",
+        "byteLength": 8,
+        "uint32": 1664991664,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 65
+      }
+    },
+    {
+      "id": "unicode:10:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "ø"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-20",
+        "text": "共享组-🌍:ø",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ac3b8",
+        "byteLength": 17,
+        "seed": 0,
+        "uint32": 679897382,
+        "scale": 100,
+        "bucket": 83,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3af8",
+        "byteLength": 8,
+        "uint32": 1664991664,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 65
+      }
+    },
+    {
+      "id": "unicode:10:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "ø"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:10:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "ø"
+      },
+      "utf8Expected": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": true,
+      "category": "match",
+      "reason": "Same final decision does not prove equal hashes; threshold/interval may mask the encoding difference.",
+      "utf8Trace": {
+        "primitiveId": "utf8-21",
+        "text": "全局变体-ø:ø",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ac3b8",
+        "byteLength": 18,
+        "seed": 86028157,
+        "uint32": 3218189606,
+        "scale": 1000,
+        "bucket": 607,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83af8",
+        "byteLength": 8,
+        "uint32": 1012555682,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 683
+      }
+    },
+    {
+      "id": "unicode:11:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "🌍"
+      },
+      "utf8Expected": true,
+      "node6122": false,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 4 versus legacy bucket 74 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-22",
+        "text": "共享组-🌍:🌍",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f8c8d",
+        "byteLength": 19,
+        "seed": 0,
+        "uint32": 1956636703,
+        "scale": 100,
+        "bucket": 4,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a3c0d",
+        "byteLength": 9,
+        "uint32": 1481633573,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 74
+      }
+    },
+    {
+      "id": "unicode:11:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "🌍"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 4, legacy 74).",
+      "utf8Trace": {
+        "primitiveId": "utf8-22",
+        "text": "共享组-🌍:🌍",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f8c8d",
+        "byteLength": 19,
+        "seed": 0,
+        "uint32": 1956636703,
+        "scale": 100,
+        "bucket": 4,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a3c0d",
+        "byteLength": 9,
+        "uint32": 1481633573,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 74
+      }
+    },
+    {
+      "id": "unicode:11:全局变体-ø:boolean",
+      "name": "全局变体-ø",
+      "kind": "boolean",
+      "context": {
+        "userId": "🌍"
+      },
+      "utf8Expected": true,
+      "node6122": true,
+      "matched": true,
+      "category": "match",
+      "reason": "Default-strategy Boolean is constant true and does not hash.",
+      "utf8Trace": {
+        "rule": "default strategy is enabled; this Boolean does not hash"
+      }
+    },
+    {
+      "id": "unicode:11:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "🌍"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 175, legacy 988); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-23",
+        "text": "全局变体-ø:🌍",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83af09f8c8d",
+        "byteLength": 20,
+        "seed": 86028157,
+        "uint32": 2758085174,
+        "scale": 1000,
+        "bucket": 175,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a3c0d",
+        "byteLength": 9,
+        "uint32": 3163879987,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 988
+      }
+    }
+  ],
+  "mismatches": [
+    {
+      "id": "unicode:0:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "用户甲"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 41 versus legacy bucket 12 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-0",
+        "text": "共享组-🌍:用户甲",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 1483014240,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283732",
+        "byteLength": 10,
+        "uint32": 3785767911,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 12
+      }
+    },
+    {
+      "id": "unicode:0:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "用户甲"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 41, legacy 12).",
+      "utf8Trace": {
+        "primitiveId": "utf8-0",
+        "text": "共享组-🌍:用户甲",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e794b2",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 1483014240,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283732",
+        "byteLength": 10,
+        "uint32": 3785767911,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 12
+      }
+    },
+    {
+      "id": "unicode:1:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "用户乙"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 41 versus legacy bucket 30 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-2",
+        "text": "共享组-🌍:用户乙",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e4b999",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 2979338940,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283759",
+        "byteLength": 10,
+        "uint32": 895103129,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 30
+      }
+    },
+    {
+      "id": "unicode:1:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "用户乙"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 41, legacy 30).",
+      "utf8Trace": {
+        "primitiveId": "utf8-2",
+        "text": "共享组-🌍:用户乙",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae794a8e688b7e4b999",
+        "byteLength": 24,
+        "seed": 0,
+        "uint32": 2979338940,
+        "scale": 100,
+        "bucket": 41,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a283759",
+        "byteLength": 10,
+        "uint32": 895103129,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 30
+      }
+    },
+    {
+      "id": "unicode:3:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 58 versus legacy bucket 18 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-6",
+        "text": "共享组-🌍:é",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a65cc81",
+        "byteLength": 18,
+        "seed": 0,
+        "uint32": 170815357,
+        "scale": 100,
+        "bucket": 58,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a6501",
+        "byteLength": 9,
+        "uint32": 3468152217,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 18
+      }
+    },
+    {
+      "id": "unicode:3:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 58, legacy 18).",
+      "utf8Trace": {
+        "primitiveId": "utf8-6",
+        "text": "共享组-🌍:é",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3a65cc81",
+        "byteLength": 18,
+        "seed": 0,
+        "uint32": 170815357,
+        "scale": 100,
+        "bucket": 58,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a6501",
+        "byteLength": 9,
+        "uint32": 3468152217,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 18
+      }
+    },
+    {
+      "id": "unicode:3:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "é"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 248, legacy 996); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-7",
+        "text": "全局变体-ø:é",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83a65cc81",
+        "byteLength": 19,
+        "seed": 86028157,
+        "uint32": 830409247,
+        "scale": 1000,
+        "bucket": 248,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a6501",
+        "byteLength": 9,
+        "uint32": 3029224995,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 996
+      }
+    },
+    {
+      "id": "unicode:5:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "φriend"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 49, legacy 902); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-11",
+        "text": "全局变体-ø:φriend",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83acf867269656e64",
+        "byteLength": 23,
+        "seed": 86028157,
+        "uint32": 2919502048,
+        "scale": 1000,
+        "bucket": 49,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83ac67269656e64",
+        "byteLength": 13,
+        "uint32": 3733234901,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 902
+      }
+    },
+    {
+      "id": "unicode:6:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "مرحبا"
+      },
+      "utf8Expected": false,
+      "node6122": true,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 92 versus legacy bucket 29 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-12",
+        "text": "共享组-🌍:مرحبا",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ad985d8b1d8add8a8d8a7",
+        "byteLength": 25,
+        "seed": 0,
+        "uint32": 3904649291,
+        "scale": 100,
+        "bucket": 92,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a45312d2827",
+        "byteLength": 12,
+        "uint32": 2691121728,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 29
+      }
+    },
+    {
+      "id": "unicode:6:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "مرحبا"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 92, legacy 29).",
+      "utf8Trace": {
+        "primitiveId": "utf8-12",
+        "text": "共享组-🌍:مرحبا",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ad985d8b1d8add8a8d8a7",
+        "byteLength": 25,
+        "seed": 0,
+        "uint32": 3904649291,
+        "scale": 100,
+        "bucket": 92,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a45312d2827",
+        "byteLength": 12,
+        "uint32": 2691121728,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 29
+      }
+    },
+    {
+      "id": "unicode:6:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "مرحبا"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 84, legacy 519); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-13",
+        "text": "全局变体-ø:مرحبا",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ad985d8b1d8add8a8d8a7",
+        "byteLength": 26,
+        "seed": 86028157,
+        "uint32": 3890027083,
+        "scale": 1000,
+        "bucket": 84,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a45312d2827",
+        "byteLength": 12,
+        "uint32": 2407987518,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 519
+      }
+    },
+    {
+      "id": "unicode:7:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "नमस्ते"
+      },
+      "utf8Expected": true,
+      "node6122": false,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 20 versus legacy bucket 49 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-14",
+        "text": "共享组-🌍:नमस्ते",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+        "byteLength": 33,
+        "seed": 0,
+        "uint32": 3360629819,
+        "scale": 100,
+        "bucket": 20,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a282e384d2447",
+        "byteLength": 13,
+        "uint32": 1934631348,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 49
+      }
+    },
+    {
+      "id": "unicode:7:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "नमस्ते"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 20, legacy 49).",
+      "utf8Trace": {
+        "primitiveId": "utf8-14",
+        "text": "共享组-🌍:नमस्ते",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+        "byteLength": 33,
+        "seed": 0,
+        "uint32": 3360629819,
+        "scale": 100,
+        "bucket": 20,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a282e384d2447",
+        "byteLength": 13,
+        "uint32": 1934631348,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 49
+      }
+    },
+    {
+      "id": "unicode:7:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "नमस्ते"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 124, legacy 409); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-15",
+        "text": "全局变体-ø:नमस्ते",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae0a4a8e0a4aee0a4b8e0a58de0a4a4e0a587",
+        "byteLength": 34,
+        "seed": 86028157,
+        "uint32": 1265991123,
+        "scale": 1000,
+        "bucket": 124,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a282e384d2447",
+        "byteLength": 13,
+        "uint32": 4213301408,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 409
+      }
+    },
+    {
+      "id": "unicode:9:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "東京"
+      },
+      "utf8Expected": true,
+      "node6122": false,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 22 versus legacy bucket 95 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-18",
+        "text": "共享组-🌍:東京",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae69db1e4baac",
+        "byteLength": 21,
+        "seed": 0,
+        "uint32": 3112708421,
+        "scale": 100,
+        "bucket": 22,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a71ac",
+        "byteLength": 9,
+        "uint32": 801973394,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 95
+      }
+    },
+    {
+      "id": "unicode:9:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "東京"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 22, legacy 95).",
+      "utf8Trace": {
+        "primitiveId": "utf8-18",
+        "text": "共享组-🌍:東京",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3ae69db1e4baac",
+        "byteLength": 21,
+        "seed": 0,
+        "uint32": 3112708421,
+        "scale": 100,
+        "bucket": 22,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a71ac",
+        "byteLength": 9,
+        "uint32": 801973394,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 95
+      }
+    },
+    {
+      "id": "unicode:9:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "東京"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 172, legacy 512); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-19",
+        "text": "全局变体-ø:東京",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83ae69db1e4baac",
+        "byteLength": 22,
+        "seed": 86028157,
+        "uint32": 1567320171,
+        "scale": 1000,
+        "bucket": 172,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a71ac",
+        "byteLength": 9,
+        "uint32": 3338827511,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 512
+      }
+    },
+    {
+      "id": "unicode:11:unicode-rollout:boolean",
+      "name": "unicode-rollout",
+      "kind": "boolean",
+      "context": {
+        "userId": "🌍"
+      },
+      "utf8Expected": true,
+      "node6122": false,
+      "matched": false,
+      "category": "rollout-boolean",
+      "reason": "UTF8 bucket 4 versus legacy bucket 74 cross rollout <=37.",
+      "utf8Trace": {
+        "primitiveId": "utf8-22",
+        "text": "共享组-🌍:🌍",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f8c8d",
+        "byteLength": 19,
+        "seed": 0,
+        "uint32": 1956636703,
+        "scale": 100,
+        "bucket": 4,
+        "rule": "bucket <= 37"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a3c0d",
+        "byteLength": 9,
+        "uint32": 1481633573,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 74
+      }
+    },
+    {
+      "id": "unicode:11:unicode-rollout:variant",
+      "name": "unicode-rollout",
+      "kind": "variant",
+      "context": {
+        "userId": "🌍"
+      },
+      "utf8Expected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "matched": false,
+      "category": "propagated-feature-enabled",
+      "reason": "No variants exist; feature_enabled propagates the differing rollout <=37 decision (UTF8 4, legacy 74).",
+      "utf8Trace": {
+        "primitiveId": "utf8-22",
+        "text": "共享组-🌍:🌍",
+        "utf8Hex": "e585b1e4baabe7bb842df09f8c8d3af09f8c8d",
+        "byteLength": 19,
+        "seed": 0,
+        "uint32": 1956636703,
+        "scale": 100,
+        "bucket": 4,
+        "rule": "no variants: disabled variant, feature_enabled propagates rollout Boolean"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "71abc42d3c0d3a3c0d",
+        "byteLength": 9,
+        "uint32": 1481633573,
+        "seed": 0,
+        "scale": 100,
+        "bucket": 74
+      }
+    },
+    {
+      "id": "unicode:11:全局变体-ø:variant",
+      "name": "全局变体-ø",
+      "kind": "variant",
+      "context": {
+        "userId": "🌍"
+      },
+      "utf8Expected": {
+        "name": "control",
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "node6122": {
+        "name": "treatment",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "blue"
+        }
+      },
+      "matched": false,
+      "category": "weighted-variant",
+      "reason": "Weighted boundary 250/1000 crossed (UTF8 175, legacy 988); treatment alone carries string payload blue.",
+      "utf8Trace": {
+        "primitiveId": "utf8-23",
+        "text": "全局变体-ø:🌍",
+        "utf8Hex": "e585a8e5b180e58f98e4bd932dc3b83af09f8c8d",
+        "byteLength": 20,
+        "seed": 86028157,
+        "uint32": 2758085174,
+        "scale": 1000,
+        "bucket": 175,
+        "rule": "1..250 control; 251..1000 treatment"
+      },
+      "legacyTrace": {
+        "encoding": "one low byte per UTF16 code unit, not UTF8 or UTF16LE",
+        "hex": "6840d8532df83a3c0d",
+        "byteLength": 9,
+        "uint32": 3163879987,
+        "seed": 86028157,
+        "scale": 1000,
+        "bucket": 988
+      }
+    }
+  ]
+}

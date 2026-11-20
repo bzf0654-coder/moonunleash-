@@ -1,0 +1,21 @@
+{
+  "name": "moonunleash-independent-hash-reference",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.28.5",
+  "engines": { "node": "24.x" },
+  "scripts": {
+    "selftest": "node selftest.mjs",
+    "verify": "node ../unicode-verdict.mjs",
+    "test-verifier": "node test-verifier.mjs",
+    "audit": "node audit-packages.mjs"
+  },
+  "dependencies": {
+    "encode-utf8": "2.0.0",
+    "fmix": "1.0.0",
+    "murmur-32": "1.0.0",
+    "murmur3hash-wasm": "1.0.1",
+    "nanoassert": "2.0.0"
+  }
+}

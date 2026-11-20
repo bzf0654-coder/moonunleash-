@@ -14,6 +14,7 @@ options(
   targets: {
     "client.mbt": [ "native", "wasm" ],
     "client_test.mbt": [ "native", "wasm" ],
+    "metrics_test.mbt": [ "native", "wasm" ],
     "context_defaults_test.mbt": [ "native", "wasm" ],
     "http_transport_wbtest.mbt": [ "native", "wasm" ],
   },

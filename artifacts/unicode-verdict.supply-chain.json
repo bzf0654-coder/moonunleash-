@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "registry": "https://registry.npmjs.org/",
+  "lifecycleScriptsExecuted": false,
+  "packages": [
+    {
+      "name": "murmur3hash-wasm",
+      "version": "1.0.1",
+      "registry": "https://registry.npmjs.org/murmur3hash-wasm/1.0.1",
+      "gitHead": "0f042767dea6a467cf451b95bdc6c7a3f5834dfd",
+      "license": "ISC",
+      "integrity": "sha512-+TDFpNmFmg0gABC0FbaddZpkohpj/QqJQCzhMCq5zadALNpoamL3NhBgPzGE7kj9ZYh/Mi2SjU9lUV/K3xqnMQ==",
+      "tarball": "https://registry.npmjs.org/murmur3hash-wasm/-/murmur3hash-wasm-1.0.1.tgz",
+      "tarballSha256": "d4a7ef6a88b478d48fcc3ea0d582d1f10df9082e7556f86a62f7b9de9dff3b23",
+      "installedFilesMatchTarball": true,
+      "publishedLicenseFiles": [
+        "package/LICENSE"
+      ],
+      "sourceSha256": {
+        "index.js": "ed60d402bcd92e1a5d6dd55ec5e83ffecc19a560bb708daa45abd47b988c7ca3",
+        "murmur3.js": "9bd91a1dfeb0cabaa7f8563af0a5e1659cecdac4cdc78d5c4d3f878224430b1a",
+        "murmur3.wat": "b41534b053db48e2b8a26422a770276919f46864f8b8a9504bbed77e1b22141a",
+        "test.js": "0563fa8a9f7c7278f067218753702039c94e37daff978b65beeebe30ba634496"
+      }
+    },
+    {
+      "name": "murmur-32",
+      "version": "1.0.0",
+      "registry": "https://registry.npmjs.org/murmur-32/1.0.0",
+      "gitHead": "56279a399bcda62c8d67b75b76dc0c74bb063327",
+      "license": "MIT",
+      "integrity": "sha512-l6QKUGWXzZWHash7lmZzycpIifOrnc3PeMaoFrMv90c+xqOyOSzJU0q2T/1d15MzAdEWTpCh1paC855APqt1Gw==",
+      "tarball": "https://registry.npmjs.org/murmur-32/-/murmur-32-1.0.0.tgz",
+      "tarballSha256": "60f3fb8caa6d080fc45f902905ee283fa05fdeca5837cc3d47e9bfc521929b1c",
+      "installedFilesMatchTarball": true,
+      "publishedLicenseFiles": [],
+      "sourceSha256": {
+        "index.js": "ec8938e4770062445417c04231fa73f164cd320b13308c7d51b4567aa8d76613",
+        "test.js": "fa28fbfea0df04f17e8c943a047c0dfc727511f7f7a99612f4f7831593f6e142"
+      }
+    },
+    {
+      "name": "nanoassert",
+      "version": "2.0.0",
+      "registry": "https://registry.npmjs.org/nanoassert/2.0.0",
+      "gitHead": "237fd5f382f077f0be45954741a935f2c6070660",
+      "license": "ISC",
+      "integrity": "sha512-7vO7n28+aYO4J+8w96AzhmU8G+Y/xpPDJz/se19ICsqj/momRbb9mh9ZUtkoJ5X3nTnPdhEJyc0qnM6yAsHBaA==",
+      "tarball": "https://registry.npmjs.org/nanoassert/-/nanoassert-2.0.0.tgz",
+      "tarballSha256": "0735342358773e39ffaa78bd0d9841423c88692ed284a663476892c8839d0064",
+      "installedFilesMatchTarball": true,
+      "publishedLicenseFiles": [
+        "package/LICENSE"
+      ],
+      "sourceSha256": {
+        "index.js": "5a3c8dce33093172d9cb3d6bdd34e464d17a1da175a8f8b74f0c0d22dde94fbb"
+      }
+    },
+    {
+      "name": "fmix",
+      "version": "1.0.0",
+      "registry": "https://registry.npmjs.org/fmix/1.0.0",
+      "gitHead": "83f81781ed19e182640e759753fba23dc161493b",
+      "license": "MIT",
+      "integrity": "sha512-PIaqOGvVH5P+R92Ywy5PumsNEHvondVQh42SGOmkA9A0ZTFbfguzZpjZ/Gy3WVRUqT9Ia8k5tWlJeiZQzRHA7g==",
+      "tarball": "https://registry.npmjs.org/fmix/-/fmix-1.0.0.tgz",
+      "tarballSha256": "7ef32eddfa61ea73a7329bd8168ded5f078ed4a0178e6c913cf21fe4151ea0de",
+      "installedFilesMatchTarball": true,
+      "publishedLicenseFiles": [
+        "package/LICENSE"
+      ],
+      "sourceSha256": {
+        "index.js": "57828ca5589f42bfaf2fd409c5391542a8fa96a7aa73beba30fe11b5a093a667"
+      }
+    },
+    {
+      "name": "encode-utf8",
+      "version": "2.0.0",
+      "registry": "https://registry.npmjs.org/encode-utf8/2.0.0",
+      "gitHead": "d61fb3e55e5573b11df69f94ff0bb7af5aee58a9",
+      "license": "MIT",
+      "integrity": "sha512-3EyMFxZj1/7oMotElDQUEQcP7N4TIe1aJ0m1uBDoyQ8I2LBHhBsXx8P3KsPbqNlGzG+NYxFwEauUwMPHZg3YDQ==",
+      "tarball": "https://registry.npmjs.org/encode-utf8/-/encode-utf8-2.0.0.tgz",
+      "tarballSha256": "2c7c514e0784f0143e9983592bbbb895a96699daf085ceb78b3134bf02bce16b",
+      "installedFilesMatchTarball": true,
+      "publishedLicenseFiles": [],
+      "sourceSha256": {
+        "index.js": "9f150528e867e9b025a5b527fd5584cdca0f6bacc8f227064afc8099e5ffd43c"
+      }
+    }
+  ]
+}

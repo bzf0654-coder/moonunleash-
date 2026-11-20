@@ -43,6 +43,8 @@ jobs:
           git diff --exit-code -- fixtures_generated_test.mbt internal/specdata/specs_generated.mbt docs/spec-inventory.json
       - name: Check local documentation links
         run: node tools/check-links.mjs
+      - name: Resolve declared Moon dependencies
+        run: moon update
       - name: Type check and test
         run: |
           node tools/ci-command.test.mjs
@@ -60,6 +62,15 @@ jobs:
       - name: Install pinned development oracle without lifecycle scripts
         if: matrix.target == 'js'
         run: pnpm --dir tools/reference install --frozen-lockfile --ignore-scripts --node-linker=hoisted
+      - name: Install pinned independent byte-hash references without scripts
+        if: matrix.target == 'js'
+        run: pnpm --dir tools/hash-reference install --frozen-lockfile --ignore-scripts --node-linker=hoisted --store-dir="$PWD/tools/hash-reference/.pnpm-store" --cache-dir="$PWD/tools/hash-reference/.cache"
+      - name: Verify frozen independent Unicode golden and generated regressions
+        if: matrix.target == 'js'
+        run: |
+          node tools/hash-reference/selftest.mjs
+          node tools/unicode-verdict.mjs
+          node tools/hash-reference/test-verifier.mjs
       - name: Common-profile differential and explicit Unicode diagnostics
         if: matrix.target == 'js'
         env:
@@ -69,6 +80,7 @@ jobs:
           node tools/hash-diagnostic.mjs
           node tools/context-defaults.mjs
           node tools/strategy-variants.mjs
+          node tools/dependencies.mjs
       - name: Real HTTP fault smoke (controlled server, not Unleash)
         if: matrix.target == 'wasm'
         run: |

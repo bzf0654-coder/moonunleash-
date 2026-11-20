@@ -1,5 +1,9 @@
 # 公开发布与云端验收
 
+## 2026-11-20：当前增量尚待新云端验收
+
+三个本地运行后端已各达到 **294 Pass / 0 Fail / 0 NotRun**，测试为 wasm **96/96**、wasm-gc/JS 各 **81/81**；Windows native 严格类型检查通过。公共 delta、完整约束/依赖、有界 metrics 与独立 UTF-8 Golden 已实现，见[当前验收清单](<ACCEPTANCE.md>)。新的[固定真实服务器门](<REAL_SERVER.md>)仍待实际执行；以下四目标 104 条或93条结果均仅为历史证据，不代表这次 294 条增量的 native、metrics 入库或新同 SHA 云端已经通过。
+
 ## 实际发布
 
 用户给出的正确仓库是 [bzf0654-coder/moonunleash-](https://github.com/bzf0654-coder/moonunleash-)（名称末尾有连字符）。公开 API 先确认 owner/public，分支列表与 SSH 远程引用再确认空仓库后，才添加 origin 并普通 push main；没有 force，也未改动已有 moonshop。

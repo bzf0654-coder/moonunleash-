@@ -17,9 +17,15 @@ pub struct Client {
 pub fn Client::close(Self) -> Unit
 pub fn Client::evaluate(Self, String, @sdk.Context, fallback? : Bool) -> @sdk.EvaluatedDecision
 pub fn Client::evaluate_many(Self, Array[String], @sdk.Context, fallback? : Bool) -> @sdk.BatchDecision
+pub async fn Client::flush_metrics(Self) -> Bool
 pub fn Client::get_variant(Self, String, @sdk.Context) -> @sdk.Variant
+pub fn Client::instance_id(Self) -> String
 pub fn Client::is_enabled(Self, String, @sdk.Context, fallback? : Bool) -> Bool
 pub fn Client::is_registered(Self) -> Bool
+pub fn Client::last_metrics_status(Self) -> Int32?
+pub fn Client::last_poll_status(Self) -> Int32?
+pub fn Client::last_registration_status(Self) -> Int32?
+pub fn Client::metrics_error(Self) -> String?
 pub fn Client::new(Options, transport? : Transport) -> Self raise
 pub async fn Client::refresh(Self) -> Bool
 pub fn Client::status(Self) -> @sdk.Status
@@ -28,7 +34,7 @@ pub async fn Client::wait_ready(Self, timeout_ms? : Int32) -> Unit
 pub struct Options {
   // private fields
 }
-pub fn Options::new(String, String, String, environment? : String, allow_http_loopback? : Bool, refresh_ms? : Int32, timeout_ms? : Int32, max_response_bytes? : Int32, stale_after_ms? : Int64, max_stale_ms? : Int64) -> Self raise @sdk.ConfigError
+pub fn Options::new(String, String, String, environment? : String, allow_http_loopback? : Bool, refresh_ms? : Int32, timeout_ms? : Int32, max_response_bytes? : Int32, stale_after_ms? : Int64, max_stale_ms? : Int64, instance_id? : String, metrics_ms? : Int32, disable_metrics? : Bool) -> Self raise @sdk.ConfigError
 
 pub(all) struct Response {
   status : Int32
@@ -39,6 +45,7 @@ pub(all) struct Response {
 pub(all) struct Transport {
   request : async (String, String, String?, String?) -> Response
 }
+pub fn Transport::http(Options) -> Self
 
 // Type aliases
 

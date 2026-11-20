@@ -34,6 +34,8 @@ pub extend Decision with Eq::{equal, not_equal}
 pub struct Snapshot {
   priv features : Map[String, @json.Json]
   priv segments : Map[String, Array[@json.Json]]
+  priv regexes : Map[String, @regexp.Regexp?]
+  priv cursor : Int64?
 }
 
 ///|
@@ -130,18 +132,47 @@ fn validate_constraint(c : @json.Json) -> Unit raise ConfigError {
   ignore(required_text(c, "contextName"))
   let op = required_text(c, "operator")
   match op {
-    "IN" | "NOT_IN" | "STR_ENDS_WITH" | "STR_STARTS_WITH" | "STR_CONTAINS" =>
+    "IN"
+    | "NOT_IN"
+    | "STR_ENDS_WITH"
+    | "STR_STARTS_WITH"
+    | "STR_CONTAINS"
+    | "IN_CIDR" =>
       for v in optional_array(c, "values") {
         guard v is String(_) else {
           raise Invalid("constraint.values: expected strings")
         }
       }
-    "NUM_EQ" | "NUM_GT" | "NUM_GTE" | "NUM_LT" | "NUM_LTE" => {
+    "NUM_EQ"
+    | "NUM_GT"
+    | "NUM_GTE"
+    | "NUM_LT"
+    | "NUM_LTE"
+    | "SEMVER_EQ"
+    | "SEMVER_GT"
+    | "SEMVER_GTE"
+    | "SEMVER_LT"
+    | "SEMVER_LTE"
+    | "DATE_BEFORE"
+    | "DATE_AFTER"
+    | "REGEX" => {
       guard field(c, "value") is String(_) else {
         raise Invalid("constraint.value: expected string")
       }
     }
-    _ => raise Unsupported("constraint operator: \{op}")
+    _ => {
+      // Unknown operators are well-formed but unsatisfied, even if inverted.
+      // This is distinct from malformed data, which still rejects installation.
+      for value in optional_array(c, "values") {
+        guard value is String(_) else {
+          raise Invalid("constraint.values: expected strings")
+        }
+      }
+      match field(c, "value") {
+        Null | String(_) => ()
+        _ => raise Invalid("constraint.value: expected string")
+      }
+    }
   }
   for key in ["inverted", "caseInsensitive"] {
     match field(c, key) {
@@ -154,35 +185,21 @@ fn validate_constraint(c : @json.Json) -> Unit raise ConfigError {
 ///|
 /// Parses a supported full-state response. Nothing is published on failure.
 pub fn Snapshot::parse(source : String) -> Snapshot raise {
-  if source.length() > 8 * 1024 * 1024 ||
-    @utf8.encode(source).length() > 8 * 1024 * 1024 {
-    raise Invalid("response exceeds 8 MiB UTF-8 budget")
-  }
-  let root = @json.parse(
-    source,
-    max_nesting_depth=64,
-    reject_duplicate_keys=true,
-  )
-  require_object(root, "state")
+  let root = parse_configuration(source)
   match field(root, "version") {
     Number(v, ..) if v == 1 || v == 2 => ()
     _ => raise Unsupported("state.version must be 1 or 2")
   }
   let features : Map[String, @json.Json] = Map([])
   let segments : Map[String, Array[@json.Json]] = Map([])
+  let regexes : Map[String, @regexp.Regexp?] = Map([])
   for segment in optional_array(root, "segments") {
-    require_object(segment, "segment")
-    let id = match field(segment, "id") {
-      Number(n, ..) if n >= 0 && n == n.to_int().to_double() =>
-        n.to_int().to_string()
-      _ => raise Invalid("segment.id: expected nonnegative integer")
-    }
+    let (id, cs) = validate_segment_definition(segment)
     if segments.contains(id) {
       raise Invalid("duplicate segment: \{id}")
     }
-    let cs = optional_array(segment, "constraints")
     for c in cs {
-      validate_constraint(c)
+      register_regex(regexes, c)
     }
     segments[id] = cs
   }
@@ -193,64 +210,18 @@ pub fn Snapshot::parse(source : String) -> Snapshot raise {
     raise Invalid("configuration count budget exceeded")
   }
   for feature in fs {
-    require_object(feature, "feature")
-    let name = required_text(feature, "name")
+    let name = validate_feature_definition(feature)
     if features.contains(name) {
       raise Invalid("duplicate flag: \{name}")
     }
-    guard field(feature, "enabled") is (True | False) else {
-      raise Invalid("\{name}.enabled: expected boolean")
-    }
-    if optional_array(feature, "dependencies").length() > 0 {
-      raise Unsupported("\{name}.dependencies")
-    }
-    validate_variants(optional_array(feature, "variants"))
-    for strategy in optional_array(feature, "strategies") {
-      require_object(strategy, "strategy")
-      let kind = required_text(strategy, "name")
-      match kind {
-        "default"
-        | "userWithId"
-        | "flexibleRollout"
-        | "gradualRolloutUserId"
-        | "gradualRolloutSessionId"
-        | "gradualRolloutRandom" => ()
-        _ => raise Unsupported("strategy: \{kind}")
-      }
-      match field(strategy, "parameters") {
-        Null => ()
-        Object(params) =>
-          for _, v in params {
-            guard v is String(_) else {
-              raise Invalid("strategy parameters: expected strings")
-            }
-          }
-        _ => raise Invalid("strategy.parameters: expected object")
-      }
-      let strategy_variants = optional_array(strategy, "variants")
-      validate_variants(strategy_variants)
-      for variant in strategy_variants {
-        match field(variant, "weightType") {
-          Null | String("fix") | String("variable") => ()
-          _ => raise Invalid("variant.weightType: expected fix or variable")
-        }
-      }
-      let cs = optional_array(strategy, "constraints")
-      if cs.length() > 100 {
-        raise Invalid("too many strategy constraints")
-      }
-      for c in cs {
-        validate_constraint(c)
-      }
-      for id in optional_array(strategy, "segments") {
-        guard id is Number(n, ..) && n >= 0 && n == n.to_int().to_double() else {
-          raise Invalid("strategy.segments: expected integer ids")
-        }
+    for strategy in items(field(feature, "strategies")) {
+      for constraint in items(field(strategy, "constraints")) {
+        register_regex(regexes, constraint)
       }
     }
     features[name] = feature
   }
-  { features, segments, }
+  { features, segments, regexes, cursor: None, }
 }
 
 ///|
@@ -311,7 +282,11 @@ fn Context::get(self : Context, name : String) -> String? {
 }
 
 ///|
-fn matches_constraint(c : @json.Json, ctx : Context) -> Bool {
+fn Snapshot::matches_constraint(
+  self : Snapshot,
+  c : @json.Json,
+  ctx : Context,
+) -> Bool {
   let op = str(c, "operator")
   let actual = ctx.get(str(c, "contextName"))
   let insensitive = boolean(field(c, "caseInsensitive"))
@@ -346,7 +321,16 @@ fn matches_constraint(c : @json.Json, ctx : Context) -> Bool {
           })
         }
       }
-    _ =>
+    "REGEX" => self.matches_regex(c, actual)
+    "IN_CIDR" =>
+      match actual {
+        Some(ip) => values.any(fn(range) { ip_in_range(ip, range) })
+        None => false
+      }
+    "SEMVER_EQ" | "SEMVER_GT" | "SEMVER_GTE" | "SEMVER_LT" | "SEMVER_LTE" =>
+      matches_semver(op, actual, str(c, "value"))
+    "DATE_BEFORE" | "DATE_AFTER" => matches_date(op, ctx, str(c, "value"))
+    "NUM_EQ" | "NUM_GT" | "NUM_GTE" | "NUM_LT" | "NUM_LTE" =>
       match (actual.bind(numeric), numeric(str(c, "value"))) {
         (Some(a), Some(b)) =>
           match op {
@@ -359,6 +343,7 @@ fn matches_constraint(c : @json.Json, ctx : Context) -> Bool {
           }
         _ => false
       }
+    _ => return false
   }
   if boolean(field(c, "inverted")) {
     !result
@@ -375,7 +360,7 @@ fn Snapshot::strategy_matches(
   random : () -> Double,
 ) -> Bool {
   for c in items(field(strategy, "constraints")) {
-    if !matches_constraint(c, ctx) {
+    if !self.matches_constraint(c, ctx) {
       return false
     }
   }
@@ -385,13 +370,15 @@ fn Snapshot::strategy_matches(
       _ => ""
     }
     guard self.segments.get(key) is Some(cs) else { return false }
-    if !cs.all(fn(c) { matches_constraint(c, ctx) }) {
+    if !cs.all(fn(c) { self.matches_constraint(c, ctx) }) {
       return false
     }
   }
   let p = field(strategy, "parameters")
   match str(strategy, "name") {
     "default" => true
+    "remoteAddress" =>
+      matches_remote_address(str(p, "IPs"), ctx.get("remoteAddress"))
     "userWithId" =>
       match ctx.get("userId") {
         None => false
@@ -433,7 +420,8 @@ fn Snapshot::strategy_matches(
 }
 
 ///|
-/// Evaluation performs no I/O. Inject a random source for reproducible tests.
+/// Evaluation performs no network/disk I/O. Inject randomness and currentTime
+/// in the context for reproducibility; absent date context reads the local clock.
 pub fn Snapshot::evaluate(
   self : Snapshot,
   name : String,
@@ -460,6 +448,9 @@ fn Snapshot::evaluate_with_strategy(
   }
   if !boolean(field(feature, "enabled")) {
     return ({ enabled: false, reason: "disabled", }, None)
+  }
+  if !self.dependencies_satisfied(feature, ctx, random) {
+    return ({ enabled: false, reason: "dependency_not_satisfied", }, None)
   }
   let strategies = items(field(feature, "strategies"))
   if strategies.is_empty() {

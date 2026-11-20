@@ -14,11 +14,27 @@ hashing policy, and first-match strategy variants with single evaluation and
 legacy fallback. This is a modified implementation, not an official SDK or an
 unmodified redistribution of the Node SDK. Node is a development-only reference.
 
+The compiled SDK imports moonbitlang/regexp 0.3.7, a MoonBit-native VM engine:
+Copyright 2025 International Digital Economy Academy (Apache-2.0).
+Its unmodified full license and original attribution NOTICE are retained at
+third_party/moonbitlang-regexp/LICENSE and third_party/moonbitlang-regexp/NOTICE.
+That NOTICE includes the Russ Cox/Google re1 and Go Authors BSD terms.
+
 The MurmurHash3 x86_32 algorithm originates with Austin Appleby (public domain).
 Its Unleash normalization policy is attributed separately above.
 
+UTC civil-date conversion adapts Howard Hinnant's public-domain civil_from_days
+algorithm, specialized to nonnegative epoch milliseconds through year 9999:
+https://howardhinnant.github.io/date_algorithms.html#civil_from_days
+MoonBit validation, formatting, and metrics accumulation are project additions.
+
 Official client-specification fixtures are redistributed unmodified under their
 original Apache-2.0 license, retained at tests/fixtures/upstream/LICENSE.
+
+Development-only independent Unicode references and their original license
+records are described at third_party/hash-reference/README.md and THIRD_PARTY.md.
+They are not production SDK dependencies. Two exact reference tarballs declare
+MIT but omit a standalone full license; this gap is disclosed, not fabricated.
 
 This notice was supplied by the MoonUnleash project. It is not a claim that the
 upstream repositories distributed a NOTICE file.

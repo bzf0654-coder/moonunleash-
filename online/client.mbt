@@ -22,6 +22,9 @@ pub struct Options {
   priv max_response_bytes : Int32
   priv stale_after_ms : Int64
   priv max_stale_ms : Int64?
+  priv instance_id : String?
+  priv metrics_ms : Int32
+  priv disable_metrics : Bool
 }
 
 ///|
@@ -36,6 +39,9 @@ pub fn Options::new(
   max_response_bytes~ : Int32 = 8388608,
   stale_after_ms~ : Int64 = 60000L,
   max_stale_ms? : Int64,
+  instance_id? : String,
+  metrics_ms~ : Int32 = 60000,
+  disable_metrics~ : Bool = false,
 ) -> Options raise @sdk.ConfigError {
   if app_name == "" || environment == "" || token == "" {
     raise @sdk.ConfigError::Invalid(
@@ -88,6 +94,16 @@ pub fn Options::new(
       "invalid refresh, timeout or body-size budget",
     )
   }
+  if metrics_ms < 1 {
+    raise @sdk.ConfigError::Invalid("metrics interval must be positive")
+  }
+  if instance_id is Some(id) {
+    if id == "" ||
+      id.length() > 128 ||
+      id.to_array().any(fn(c) { c < ' ' || c == '\u007f' }) {
+      raise @sdk.ConfigError::Invalid("invalid instance id")
+    }
+  }
   ignore(@sdk.SnapshotStore::new(stale_after_ms~, max_stale_ms?))
   {
     base_url: url,
@@ -99,6 +115,9 @@ pub fn Options::new(
     max_response_bytes,
     stale_after_ms,
     max_stale_ms,
+    instance_id,
+    metrics_ms,
+    disable_metrics,
   }
 }
 
@@ -169,17 +188,32 @@ fn http_transport(options : Options) -> Transport {
 }
 
 ///|
+/// The same bounded direct HTTP transport used by Client::new. Useful for
+/// observational decorators; an injected transport must preserve the contract.
+pub fn Transport::http(options : Options) -> Transport {
+  http_transport(options)
+}
+
+///|
 pub struct Client {
   priv options : Options
   priv transport : Transport
   priv store : @sdk.SnapshotStore
   priv mut etag : String?
   priv mut registered : Bool
+  priv mut registering : Bool
   priv mut refreshing : Bool
   priv mut closed : Bool
   priv mut last_clock : Int64
   priv mut poll_task : @async.Task[Unit]?
-  priv started_at : Int64
+  priv instance_id : String
+  priv metrics : @sdk.Metrics
+  priv mut flushing_metrics : Bool
+  priv mut metrics_task : @async.Task[Unit]?
+  priv mut registration_status : Int32?
+  priv mut poll_status : Int32?
+  priv mut metrics_status : Int32?
+  priv mut metrics_error : String?
 }
 
 ///|
@@ -187,6 +221,10 @@ pub struct Client {
 pub fn Client::new(options : Options, transport? : Transport) -> Client raise {
   let max_stale_ms = options.max_stale_ms
   let started_at = @async.now()
+  let instance_id = options.instance_id.unwrap_or_else(fn() {
+    let rng = @random.Rand::chacha8()
+    "moon-\{started_at}-\{rng.int(limit=1000000000)}-\{rng.int(limit=1000000000)}"
+  })
   {
     options,
     transport: transport.unwrap_or_else(fn() { http_transport(options) }),
@@ -196,10 +234,18 @@ pub fn Client::new(options : Options, transport? : Transport) -> Client raise {
     ),
     etag: None,
     registered: false,
+    registering: false,
     refreshing: false,
     closed: false,
     last_clock: started_at,
-    started_at,
+    instance_id,
+    metrics: @sdk.Metrics::new(started_at),
+    flushing_metrics: false,
+    metrics_task: None,
+    registration_status: None,
+    poll_status: None,
+    metrics_status: None,
+    metrics_error: None,
     poll_task: None,
   }
 }
@@ -240,6 +286,56 @@ async fn Client::send(
 }
 
 ///|
+async fn Client::register(self : Client) -> Bool {
+  if self.closed || self.registered || self.registering {
+    return self.registered && !self.closed
+  }
+  self.registering = true
+  defer {
+    self.registering = false
+  }
+  let payload = @json.Json::object(
+    Map([
+      ("appName", @json.Json::string(self.options.app_name)),
+      ("instanceId", @json.Json::string(self.instance_id)),
+      ("sdkVersion", @json.Json::string("moonunleash:0.1.0")),
+      // Fixed server v7.4.0's documented interval is feature polling seconds.
+      (
+        "interval",
+        @json.Json::number(self.options.refresh_ms.to_double() / 1000),
+      ),
+      // RFC3339 avoids the server OpenAPI/Joi numeric timestamp unit ambiguity.
+      ("started", @json.Json::string(self.metrics.started_at())),
+      (
+        "strategies",
+        @json.Json::array(
+          [
+            "default", "userWithId", "remoteAddress", "flexibleRollout", "gradualRolloutUserId",
+            "gradualRolloutSessionId", "gradualRolloutRandom",
+          ].map(@json.Json::string),
+        ),
+      ),
+    ]),
+  )
+  self.registration_status = None
+  try {
+    let response = self.send(
+      "POST",
+      "/client/register",
+      Some(payload.stringify()),
+      None,
+    )
+    self.registration_status = Some(response.status)
+    if !self.closed {
+      self.registered = response.status >= 200 && response.status < 300
+    }
+  } catch {
+    error => if @async.is_being_cancelled() { raise error }
+  }
+  self.registered && !self.closed
+}
+
+///|
 /// Poll once, preserving the last good snapshot and ETag on any failed update.
 pub async fn Client::refresh(self : Client) -> Bool {
   if self.closed || self.refreshing {
@@ -249,42 +345,12 @@ pub async fn Client::refresh(self : Client) -> Bool {
   defer {
     self.refreshing = false
   }
-  if !self.registered {
-    let payload : @json.Json = @json.Json::object(
-      Map([
-        ("appName", @json.Json::string(self.options.app_name)),
-        ("sdkVersion", @json.Json::string("moonunleash:0.1.0")),
-        (
-          "interval",
-          @json.Json::number(self.options.refresh_ms.to_double() / 1000),
-        ),
-        ("started", @json.Json::number(self.started_at.to_double() / 1000)),
-        (
-          "strategies",
-          @json.Json::array(
-            [
-              "default", "userWithId", "flexibleRollout", "gradualRolloutUserId",
-              "gradualRolloutSessionId", "gradualRolloutRandom",
-            ].map(@json.Json::string),
-          ),
-        ),
-      ]),
-    )
-    try {
-      let r = self.send(
-        "POST",
-        "/client/register",
-        Some(payload.stringify()),
-        None,
-      )
-      self.registered = r.status >= 200 && r.status < 300
-    } catch {
-      error => if @async.is_being_cancelled() { raise error }
-    }
-  }
+  ignore(self.register())
   let _ = self.now()
+  self.poll_status = None
   try {
     let r = self.send("GET", "/client/features", None, self.etag)
+    self.poll_status = Some(r.status)
     if self.closed {
       return false
     }
@@ -328,7 +394,7 @@ pub fn Client::is_registered(self : Client) -> Bool {
 }
 
 ///|
-pub fn Client::evaluate(
+fn Client::evaluate_raw(
   self : Client,
   name : String,
   ctx : @sdk.Context,
@@ -346,13 +412,40 @@ pub fn Client::evaluate(
 }
 
 ///|
+fn Client::count(
+  self : Client,
+  name : String,
+  enabled : Bool,
+  variant? : String,
+) -> Unit {
+  if !self.closed && !self.options.disable_metrics {
+    self.metrics.count(name, enabled, variant?)
+  }
+}
+
+///|
+/// One public boolean decision counts one yes/no; only get_variant counts variants.
+pub fn Client::evaluate(
+  self : Client,
+  name : String,
+  ctx : @sdk.Context,
+  fallback~ : Bool = false,
+) -> @sdk.EvaluatedDecision {
+  let result = self.evaluate_raw(name, ctx, fallback~)
+  self.count(name, result.decision.enabled)
+  result
+}
+
+///|
 pub fn Client::is_enabled(
   self : Client,
   name : String,
   ctx : @sdk.Context,
   fallback~ : Bool = false,
 ) -> Bool {
-  self.evaluate(name, ctx, fallback~).decision.enabled
+  let enabled = self.evaluate_raw(name, ctx, fallback~).decision.enabled
+  self.count(name, enabled)
+  enabled
 }
 
 ///|
@@ -362,7 +455,7 @@ pub fn Client::evaluate_many(
   ctx : @sdk.Context,
   fallback~ : Bool = false,
 ) -> @sdk.BatchDecision {
-  self.store.evaluate_many(
+  let result = self.store.evaluate_many(
     names,
     ctx.with_defaults(
       self.options.app_name,
@@ -371,6 +464,11 @@ pub fn Client::evaluate_many(
     self.now(),
     fallback~,
   )
+  for i = 0; i < names.length(); i = i + 1 {
+    let decision = result.decisions[i]
+    self.count(names[i], decision.enabled)
+  }
+  result
 }
 
 ///|
@@ -379,7 +477,7 @@ pub fn Client::get_variant(
   name : String,
   ctx : @sdk.Context,
 ) -> @sdk.Variant {
-  self.store.get_variant(
+  let variant = self.store.get_variant(
     name,
     ctx.with_defaults(
       self.options.app_name,
@@ -387,6 +485,96 @@ pub fn Client::get_variant(
     ),
     self.now(),
   )
+  self.count(name, variant.feature_enabled, variant=variant.name)
+  variant
+}
+
+///|
+pub fn Client::instance_id(self : Client) -> String {
+  self.instance_id
+}
+
+///|
+pub fn Client::last_registration_status(self : Client) -> Int32? {
+  self.registration_status
+}
+
+///|
+pub fn Client::last_poll_status(self : Client) -> Int32? {
+  self.poll_status
+}
+
+///|
+pub fn Client::last_metrics_status(self : Client) -> Int32? {
+  self.metrics_status
+}
+
+///|
+/// Metrics failures are isolated from configuration readiness/freshness.
+pub fn Client::metrics_error(self : Client) -> String? {
+  self.metrics_error
+}
+
+///|
+/// Freeze/send one bounded bucket. Only classic metrics 202 acknowledges it.
+/// Failures retain the exact pending bucket while new calls collect separately.
+/// Retrying an ambiguous response is at-least-once, never exactly-once delivery.
+pub async fn Client::flush_metrics(self : Client) -> Bool {
+  if self.closed || self.flushing_metrics {
+    return false
+  }
+  if self.options.disable_metrics {
+    return true
+  }
+  self.flushing_metrics = true
+  defer {
+    self.flushing_metrics = false
+  }
+  try {
+    guard self.metrics.prepare(self.now()) is Some(bucket) else {
+      self.metrics_error = None
+      return true
+    }
+    if !self.register() {
+      self.metrics_error = Some("metrics_registration_unavailable")
+      return false
+    }
+    let payload = @json.Json::object(
+      Map([
+        ("appName", @json.Json::string(self.options.app_name)),
+        ("instanceId", @json.Json::string(self.instance_id)),
+        ("sdkVersion", @json.Json::string("moonunleash:0.1.0")),
+        ("bucket", @json.parse(bucket)),
+      ]),
+    )
+    self.metrics_status = None
+    let response = self.send(
+      "POST",
+      "/client/metrics",
+      Some(payload.stringify()),
+      None,
+    )
+    self.metrics_status = Some(response.status)
+    if self.closed {
+      return false
+    }
+    if response.status == 202 {
+      self.metrics.acknowledge()
+      self.metrics_error = None
+      true
+    } else {
+      self.metrics_error = Some("metrics_http_\{response.status}")
+      false
+    }
+  } catch {
+    error => {
+      if @async.is_being_cancelled() {
+        raise error
+      }
+      self.metrics_error = Some("metrics_transport_clock_or_decode_error")
+      false
+    }
+  }
 }
 
 ///|
@@ -411,6 +599,10 @@ pub fn Client::close(self : Client) -> Unit {
     task.cancel()
   }
   self.poll_task = None
+  if self.metrics_task is Some(task) {
+    task.cancel()
+  }
+  self.metrics_task = None
   self.etag = None
   self.store.close()
 }
@@ -445,6 +637,18 @@ pub async fn with_client(
       }
     })
     client.poll_task = Some(task)
+    if !options.disable_metrics {
+      client.metrics_task = Some(
+        group.spawn(async fn() {
+          while !client.closed {
+            @async.sleep(options.metrics_ms)
+            if !client.closed {
+              ignore(client.flush_metrics())
+            }
+          }
+        }),
+      )
+    }
     callback(client)
     group.return_immediately()
   }

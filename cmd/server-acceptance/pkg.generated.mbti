@@ -1,0 +1,13 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonunleash/sdk/cmd/server-acceptance"
+
+// Values
+
+// Errors
+
+// Types and methods
+type Observations
+
+// Type aliases
+
+// Traits

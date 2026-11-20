@@ -496,6 +496,105 @@ let fixture_05 : String =
   #|}
 
 ///|
+let fixture_06 : String =
+  #|{
+  #|  "name": "06-remote-address-strategy",
+  #|  "state": {
+  #|    "version": 1,
+  #|    "features": [
+  #|      {
+  #|        "name": "Feature.remoteAddress.A",
+  #|        "description": "Enabled toggle for localhost",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "remoteAddress",
+  #|            "parameters": {
+  #|              "IPs": "127.0.0.1"
+  #|            }
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "Feature.remoteAddress.B",
+  #|        "description": "Enabled toggle for list of IPs",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "remoteAddress",
+  #|            "parameters": {
+  #|              "IPs": "192.168.0.1, 192.168.0.2, 192.168.0.3"
+  #|            }
+  #|          }
+  #|        ]
+  #|      }
+  #|      ,
+  #|      {
+  #|        "name": "Feature.remoteAddress.C",
+  #|        "description": "Ignore invalid IP's in list",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "remoteAddress",
+  #|            "parameters": {
+  #|              "IPs": "192.168.0.1, 192.invalid, 192.168.0.2, 192.168.0.3"
+  #|            }
+  #|          }
+  #|        ]
+  #|      }
+  #|    ]
+  #|  },
+  #|  "tests": [
+  #|    {
+  #|      "description": "Feature.remoteAddress.A should be enabled for localhost",
+  #|      "context": {
+  #|        "remoteAddress": "127.0.0.1"
+  #|      },
+  #|      "toggleName": "Feature.remoteAddress.A",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Feature.remoteAddress.A should not be enabled for missing remoteAddress on context",
+  #|      "context": {},
+  #|      "toggleName": "Feature.remoteAddress.A",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Feature.remoteAddress.B should be enabled for remoteAddress 192.168.0.1",
+  #|      "context": {
+  #|        "remoteAddress": "192.168.0.1"
+  #|      },
+  #|      "toggleName": "Feature.remoteAddress.B",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Feature.remoteAddress.B should not be enabled for remoteAddress 192.168.0.3",
+  #|      "context": {
+  #|        "remoteAddress": "192.168.0.3"
+  #|      },
+  #|      "toggleName": "Feature.remoteAddress.B",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Feature.remoteAddress.B should not be enabled for remoteAddress 217.100.10.11",
+  #|      "context": {
+  #|        "remoteAddress": "217.100.10.11"
+  #|      },
+  #|      "toggleName": "Feature.remoteAddress.B",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Feature.remoteAddress.C should be enabled for remoteAddress 192.168.0.3",
+  #|      "context": {
+  #|        "remoteAddress": "192.168.0.3"
+  #|      },
+  #|      "toggleName": "Feature.remoteAddress.C",
+  #|      "expectedResult": true
+  #|    }
+  #|  ]
+  #|}
+
+///|
 let fixture_07 : String =
   #|{
   #|  "name": "07-multiple-strategies",
@@ -1933,6 +2032,1818 @@ let fixture_12 : String =
   #|}
 
 ///|
+let fixture_13 : String =
+  #|{
+  #|    "name": "13-constraint-operators",
+  #|    "state": {
+  #|        "version": 1,
+  #|        "features": [
+  #|            {
+  #|                "name": "F1.startsWith",
+  #|                "description": "startsWith",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "customField",
+  #|                                "operator": "STR_STARTS_WITH",
+  #|                                "values": ["some-string"]
+  #|
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F2.startsWith.multiple",
+  #|                "description": "starts with",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "customField",
+  #|                                "operator": "STR_STARTS_WITH",
+  #|                                "values": ["e1", "e2"]
+  #|
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F2.startsWith.caseInsensitve",
+  #|                "description": "starts with case insensitive",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "customField",
+  #|                                "operator": "STR_STARTS_WITH",
+  #|                                "values": ["TEST"],
+  #|                                "caseInsensitive": true
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F3.endsWith",
+  #|                "description": "endsWith",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "email",
+  #|                                "operator": "STR_ENDS_WITH",
+  #|                                "values": ["some-email.com"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F3.endsWith.ignoringCase",
+  #|                "description": "endsWith",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "email",
+  #|                                "operator": "STR_ENDS_WITH",
+  #|                                "values": ["some-email.com"],
+  #|                                "caseInsensitive": true
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F4.contains",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "email",
+  #|                                "operator": "STR_CONTAINS",
+  #|                                "values": ["email"]
+  #|
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F4.contains.inverted",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "email",
+  #|                                "operator": "STR_CONTAINS",
+  #|                                "values": ["email"],
+  #|                                "inverted": true
+  #|
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F5.numEq",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_EQ",
+  #|                                "value": "12"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F5.numEq.float",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_EQ",
+  #|                                "value": "12.0"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F5.numEq.inverted",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_EQ",
+  #|                                "value": "12",
+  #|                                "inverted": true
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F5.numGT",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_GT",
+  #|                                "value": "12"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F5.numGTE",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_GTE",
+  #|                                "value": "12"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F5.numLT",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_LT",
+  #|                                "value": "12"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F5.numLTE",
+  #|                "description": "contains",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_LTE",
+  #|                                "value": "12"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F6.number-range",
+  #|                "description": "range of numbers",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_GT",
+  #|                                "value": "12"
+  #|                            },
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NUM_LT",
+  #|                                "value": "16"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F7.dateAfter",
+  #|                "description": "dates",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "currentTime",
+  #|                                "operator": "DATE_AFTER",
+  #|                                "value": "2022-01-29T13:00:00.000Z"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F7.dateBefore",
+  #|                "description": "dates",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "currentTime",
+  #|                                "operator": "DATE_BEFORE",
+  #|                                "value": "2022-01-29T13:00:00.000Z"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F7.date-range",
+  #|                "description": "dates",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "currentTime",
+  #|                                "operator": "DATE_AFTER",
+  #|                                "value": "2022-01-22T13:00:00.000Z"
+  #|                            },
+  #|                            {
+  #|                                "contextName": "currentTime",
+  #|                                "operator": "DATE_BEFORE",
+  #|                                "value": "2022-01-29T13:00:00.000Z"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F7.date-with-timezone",
+  #|                "description": "dates",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "currentTime",
+  #|                                "operator": "DATE_AFTER",
+  #|                                "value": "2022-01-22T13:00:00.000+02:00"
+  #|                            },
+  #|                            {
+  #|                                "contextName": "currentTime",
+  #|                                "operator": "DATE_BEFORE",
+  #|                                "value": "2022-01-22T14:00:00.000+02:00"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F7.invalid-operator",
+  #|                "description": "invalid",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "customField",
+  #|                                "operator": "NOT_A_VALID_OPERATOR",
+  #|                                "value": "2022-01-22T13:00:00.000Z"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.missing-field.IN",
+  #|                "description": "missing field",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "customFieldMissing",
+  #|                                "operator": "IN",
+  #|                                "values": ["s1"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.missing-field.NOT_IN",
+  #|                "description": "missing field",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "customFieldMissing",
+  #|                                "operator": "NOT_IN",
+  #|                                "values": ["s1"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F9.inverted.IN",
+  #|                "description": "inverted IN",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "IN",
+  #|                                "values": ["s1","s2"],
+  #|                                "inverted": true
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F10.inverted.NOT_IN",
+  #|                "description": "inverted NOT_IN",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "someValue",
+  #|                                "operator": "NOT_IN",
+  #|                                "values": ["s1","s2"],
+  #|                                "inverted": true
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            }
+  #|        ]
+  #|    },
+  #|    "tests": [
+  #|        {
+  #|          "description": "F1.startsWith should be enabled",
+  #|          "context": {
+  #|              "properties": {
+  #|                  "customField": "some-string-is-cool"
+  #|              }
+  #|          },
+  #|          "toggleName": "F1.startsWith",
+  #|          "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F1.startsWith should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "customField": "some2-is-cool-string"
+  #|                }
+  #|            },
+  #|            "toggleName": "F1.startsWith",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F2.startsWith.multiple should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "customField": "e2 cool"
+  #|                }
+  #|            },
+  #|            "toggleName": "F2.startsWith.multiple",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F2.startsWith.multiple should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "customField": "cool e1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F2.startsWith.multiple",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F2.startsWith.caseInsensitve should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "customField": "test@example.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F2.startsWith.caseInsensitve",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F2.startsWith.caseInsensitve should handle various cases when enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "customField": "TEsT@example.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F2.startsWith.caseInsensitve",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F3.endsWith should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "email": "test@some-email.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F3.endsWith",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F3.endsWith should be disabled when casing is incorrect",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "email": "test@some-EMAIL.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F3.endsWith",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F3.endsWith.ignoringCase should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "email": "test@SOME-EMAIL.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F3.endsWith.ignoringCase",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F3.endsWith should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "email": "test@another-email.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F3.endsWith",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F4.contains should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "email": "test@some-email.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F4.contains",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F4.contains should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "email": "test@another.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F4.contains",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F4.contains.inverted should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "email": "test@another.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "F4.contains.inverted",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numEq",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numEq",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numEq works for floats",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12.0"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numEq",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numEq.inverted should be false",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numEq.inverted",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F5.numEq.float works for floats",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12.0"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numEq.float",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numEq.float works for integers",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numEq.float",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numEq.inverted should be true",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "13"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numEq.inverted",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numGT should be true",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "13"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numGT",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numGT should be false",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numGT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F5.numGTE should be true when equal",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numGTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numGTE should be true when larger",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "13"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numGTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numGTE should be false when lower",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "11"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numGTE",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F5.numLTE should be false when higher",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "13"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numLTE",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F5.numLTE should be true when equal",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numLTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numLTE should be true when lower",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "0"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numLTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numLT should be true when lower",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "0"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numLT",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F5.numLT should be false when equal",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F5.numLT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F6.number-range should be false when not in range",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "11"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F6.number-range",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F6.number-range should be true when in range",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "14"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F6.number-range",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F7.dateAfter should be enabled",
+  #|            "context": {
+  #|                "currentTime": "2022-01-30T13:00:00.000Z"
+  #|            },
+  #|            "toggleName":  "F7.dateAfter",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F7.dateAfter should be disabled",
+  #|            "context": {
+  #|                "currentTime": "2022-01-28T13:00:00.000Z"
+  #|            },
+  #|            "toggleName":  "F7.dateAfter",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F7.dateAfter is exclusive of date parameter",
+  #|            "context": {
+  #|                "currentTime": "2022-01-29T13:00:00.000Z"
+  #|            },
+  #|            "toggleName":  "F7.dateAfter",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F7.dateBefore should be enabled",
+  #|            "context": {
+  #|                "currentTime": "2022-01-28T13:00:00.000Z"
+  #|            },
+  #|            "toggleName":  "F7.dateBefore",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F7.dateBefore should be disabled",
+  #|            "context": {
+  #|                "currentTime": "2022-01-30T13:00:00.000Z"
+  #|            },
+  #|            "toggleName":  "F7.dateBefore",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F7.dateBefore is exclusive of date parameter",
+  #|            "context": {
+  #|                "currentTime": "2022-01-29T13:00:00.000Z"
+  #|            },
+  #|            "toggleName":  "F7.dateBefore",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F7.date-range should be enabled",
+  #|            "context": {
+  #|                "currentTime": "2022-01-25T13:00:00.000Z"
+  #|            },
+  #|            "toggleName":  "F7.date-range",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F7.date-with-timezone should respect timezone",
+  #|            "context": {
+  #|                "currentTime": "2022-01-22T11:30:00.000Z"
+  #|            },
+  #|            "toggleName": "F7.date-with-timezone",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F7.invalid-operator should always return false",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "12"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F7.invalid-operator",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.missing-field.IN should return false",
+  #|            "context": {},
+  #|            "toggleName":  "F8.missing-field.IN",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.missing-field.IN should return true when present",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "customFieldMissing": "s1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.missing-field.IN",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.missing-field.NOT_IN should return true",
+  #|            "context": {},
+  #|            "toggleName":  "F8.missing-field.NOT_IN",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.missing-field.NOT_IN should return true when null",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "customFieldMissing": null
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.missing-field.NOT_IN",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F9.inverted.IN should return false when present but inverted",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "s1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F9.inverted.IN",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F10.inverted.NOT_IN should return true when present but inverted",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "someValue": "s1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F10.inverted.NOT_IN",
+  #|            "expectedResult": true
+  #|        }
+  #|    ]
+  #|}
+
+///|
+let fixture_14 : String =
+  #|{
+  #|    "name": "14-constraint-semver-operators",
+  #|    "state": {
+  #|        "version": 2,
+  #|        "features": [
+  #|            {
+  #|                "name": "F8.semverEQ",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_EQ",
+  #|                                "value": "1.2.2"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverGT",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_GT",
+  #|                                "value": "1.2.2"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverGTE",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_GTE",
+  #|                                "value": "1.2.2"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverLT",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_LT",
+  #|                                "value": "1.2.2"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverLTE",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_LTE",
+  #|                                "value": "1.2.2"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverAlphaGT",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_GT",
+  #|                                "value": "2.0.0-alpha.1"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverAlphaLT",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_LT",
+  #|                                "value": "2.0.0-alpha.1"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverAlphaVersioning",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_LT",
+  #|                                "value": "2.0.0-alpha.3"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.alphaUnnumbered",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_GT",
+  #|                                "value": "2.0.0-alpha"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.releaseCandidate",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_GT",
+  #|                                "value": "2.0.0-rc"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.invalidSemverWithLeadingV",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_EQ",
+  #|                                "value": "v2.0.0"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverMetadataEQ",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_EQ",
+  #|                                "value": "1.2.2+metadata"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverPreReleaseMetadataEQ",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_EQ",
+  #|                                "value": "1.2.2-alpha.1+metadata"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverPreReleaseMetadataLT",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_LT",
+  #|                                "value": "1.2.2-alpha.1+metadata"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "F8.semverPreReleaseMetadataGT",
+  #|                "description": "semver",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "version",
+  #|                                "operator": "SEMVER_GT",
+  #|                                "value": "1.2.2-alpha.1+metadata.1"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            }
+  #|        ]
+  #|    },
+  #|    "tests": [
+  #|        {
+  #|            "description": "F8.semverEQ should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverEQ should be enabled for metadata",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2+metadata"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverEQ should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.0"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverEQ",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverGT should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.3"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverGT",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverGT should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.0"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverGT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverGT should be disabled if only metadata differs",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2+metadata"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverGT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverGTE should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverGTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverGTE should be enabled for greater",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.3"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverGTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverGTE should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverGTE",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverLT should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverLT",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverLT should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.3"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverLT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverLT should be disabled if only metadata differs",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2+metadata"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverLT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverLTE should be enabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverLTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverLTE should be enabled for less",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverLTE",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverLTE should be disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.3"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverLTE",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverAlphaGT is less than beta",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0-beta.1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.semverAlphaGT",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverAlphaGT operator is less than release",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.semverAlphaGT",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverAlphaLT is less than beta",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0-beta.1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.semverAlphaLT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverAlphaLT is greater than old beta",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.9.1-beta.1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.semverAlphaLT",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverAlphaLT is less than release",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.semverAlphaLT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverAlphaVersioning alpha.1 is less than alpha.3",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0-alpha.1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.semverAlphaVersioning",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverAlphaVersioning alpha.4 is greater than alpha.3",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0-alpha.4"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.semverAlphaVersioning",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.alphaUnnumbered - unnumbered is LT than numbered",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0-alpha.1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.alphaUnnumbered",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.releaseCandidate - alpha is not greater than rc",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0-alpha.1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.releaseCandidate",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.releaseCandidate - beta is not greater tha rc",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0-beta.1"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.releaseCandidate",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.releaseCandidate - release is greater than rc",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "2.0.0"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.releaseCandidate",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.invalidSemverWithLeadingV - invalid semver resolves to false",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "v2.0.0"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.invalidSemverWithLeadingV",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.invalidSemverWithLeadingV - broken semver resolves to false",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "not a semver"
+  #|                }
+  #|            },
+  #|            "toggleName": "F8.invalidSemverWithLeadingV",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverMetadataEQ should be enabled if only metadata differs",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverMetadataEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverMetadataEQ should be enabled if only metadata differs and contains a dot",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2+metadata.1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverMetadataEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverMetadataEQ should be enabled if metadata matches",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2+metadata"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverMetadataEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2-alpha.1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverPreReleaseMetadataEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs and contains a dot",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2-alpha.1+metadata.1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverPreReleaseMetadataEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2-alpha.1+metadata"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverPreReleaseMetadataEQ",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "F8.semverPreReleaseMetadataLT should be disabled as both are equal after discarding metadata",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2-alpha.1"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverPreReleaseMetadataLT",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "F8.semverPreReleaseMetadataGT should be disabled for higher metadata cause metadata is ignored and both are equal",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "version": "1.2.2-alpha.1+metadata.2"
+  #|                }
+  #|            },
+  #|            "toggleName":  "F8.semverPreReleaseMetadataGT",
+  #|            "expectedResult": false
+  #|        }
+  #|    ]
+  #|}
+
+///|
+let fixture_15 : String =
+  #|{
+  #|  "name": "15-global-constraints",
+  #|  "state": {
+  #|    "version": 2,
+  #|    "features": [
+  #|      {
+  #|        "name": "F9.globalSegmentOn",
+  #|        "description": "With global segment referencing constraint in on state",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "default",
+  #|            "parameters": {},
+  #|            "segments": [1]
+  #|          }
+  #|        ],
+  #|        "variants": [
+  #|            {
+  #|                "name": "blue",
+  #|                "weight": 25,
+  #|                "stickiness": "customField",
+  #|                "payload": {
+  #|                    "type": "string",
+  #|                    "value": "val1"
+  #|                }
+  #|            },
+  #|            {
+  #|                "name": "red",
+  #|                "weight": 25,
+  #|                "stickiness": "customField",
+  #|                "payload": {
+  #|                    "type": "string",
+  #|                    "value": "val1"
+  #|                }
+  #|            },
+  #|            {
+  #|                "name": "green",
+  #|                "weight": 25,
+  #|                "stickiness": "customField",
+  #|                "payload": {
+  #|                    "type": "string",
+  #|                    "value": "val1"
+  #|                }
+  #|            },
+  #|            {
+  #|                "name": "yellow",
+  #|                "weight": 25,
+  #|                "stickiness": "customField",
+  #|                "payload": {
+  #|                    "type": "string",
+  #|                    "value": "val1"
+  #|                }
+  #|            }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "F9.globalSegmentOff",
+  #|        "description": "With global segment referencing constraint in off state",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "default",
+  #|            "parameters": {},
+  #|            "segments": [2]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "F9.globalSegmentAndConstraint",
+  #|        "description": "With global segment and constraint both on",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "default",
+  #|            "parameters": {},
+  #|            "constraints": [
+  #|              {
+  #|                "contextName": "version",
+  #|                "operator": "SEMVER_EQ",
+  #|                "value": "1.2.2"
+  #|              }
+  #|            ],
+  #|            "segments": [1]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "F9.withMissingSegment",
+  #|        "description": "With global segment that doesn't exist",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "default",
+  #|            "parameters": {},
+  #|            "constraints": [
+  #|              {
+  #|                "contextName": "version",
+  #|                "operator": "SEMVER_EQ",
+  #|                "value": "1.2.2"
+  #|              }
+  #|            ],
+  #|            "segments": [404]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "F9.withSeveralConstraintsAndSegments",
+  #|        "description": "With several segments and constraints",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "default",
+  #|            "parameters": {},
+  #|            "constraints": [
+  #|              {
+  #|                "contextName": "customNumber",
+  #|                "operator": "NUM_LT",
+  #|                "value": "10"
+  #|              },
+  #|              {
+  #|                "contextName": "version",
+  #|                "operator": "SEMVER_LT",
+  #|                "value": "3.2.2"
+  #|              }
+  #|            ],
+  #|            "segments": [1, 4, 5]
+  #|          }
+  #|        ]
+  #|      }
+  #|    ],
+  #|    "segments": [
+  #|      {
+  #|        "id": 1,
+  #|        "constraints": [
+  #|          {
+  #|            "contextName": "version",
+  #|            "operator": "SEMVER_EQ",
+  #|            "value": "1.2.2"
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "id": 2,
+  #|        "constraints": [
+  #|          {
+  #|            "contextName": "version",
+  #|            "operator": "SEMVER_EQ",
+  #|            "value": "3.1.4"
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "id": 3,
+  #|        "constraints": [
+  #|          {
+  #|            "contextName": "version",
+  #|            "operator": "SEMVER_EQ",
+  #|            "value": "3.1.4"
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "id": 4,
+  #|        "constraints": [
+  #|          {
+  #|            "contextName": "customName",
+  #|            "operator": "STR_CONTAINS",
+  #|            "values": ["Pi"]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "id": 5,
+  #|        "constraints": [
+  #|          {
+  #|            "contextName": "slicesLeft",
+  #|            "operator": "NUM_LTE",
+  #|            "value": "4"
+  #|          }
+  #|        ]
+  #|      }
+  #|    ]
+  #|  },
+  #|  "tests": [
+  #|    {
+  #|      "description": "F9.globalSegmentOn should be enabled",
+  #|      "context": {
+  #|        "properties": {
+  #|          "version": "1.2.2"
+  #|        }
+  #|      },
+  #|      "toggleName": "F9.globalSegmentOn",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "F9.globalSegmentOff should be disabled",
+  #|      "context": {
+  #|        "properties": {
+  #|          "version": "3.2.2"
+  #|        }
+  #|      },
+  #|      "toggleName": "F9.globalSegmentOff",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "F9.globalSegmentAndConstraint should be enabled",
+  #|      "context": {
+  #|        "properties": {
+  #|          "version": "1.2.2"
+  #|        }
+  #|      },
+  #|      "toggleName": "F9.globalSegmentAndConstraint",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "F9.withMissingSegment should force evaluation to false",
+  #|      "context": {
+  #|        "properties": {
+  #|          "version": "1.2.2"
+  #|        }
+  #|      },
+  #|      "toggleName": "F9.withMissingSegment",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "F9.withSeveralConstraintsAndSegments should be enabled",
+  #|      "context": {
+  #|        "properties": {
+  #|          "version": "1.2.2",
+  #|          "customNumber": "3.14",
+  #|          "customName": "Pie",
+  #|          "slicesLeft": "4"
+  #|        }
+  #|      },
+  #|      "toggleName": "F9.withSeveralConstraintsAndSegments",
+  #|      "expectedResult": true
+  #|    }
+  #|  ],
+  #|  "variantTests": [
+  #|    {
+  #|        "description": "F9.globalSegmentOn and customField=616 yields green",
+  #|        "context": {
+  #|          "properties": {
+  #|            "version": "1.2.2",
+  #|            "customField": "616"
+  #|          }
+  #|        },
+  #|        "toggleName": "F9.globalSegmentOn",
+  #|        "expectedResult": {
+  #|            "name": "green",
+  #|            "payload": {
+  #|                "type": "string",
+  #|                "value": "val1"
+  #|            },
+  #|            "enabled": true,
+  #|            "feature_enabled": true
+  #|        }
+  #|    }
+  #|  ]
+  #|}
+
+///|
 let fixture_16 : String =
   #|{
   #|  "name": "16-strategy-variants",
@@ -2364,6 +4275,1124 @@ let fixture_16 : String =
   #|}
 
 ///|
+let fixture_17 : String =
+  #|{
+  #|  "name": "17-dependent-features",
+  #|  "state": {
+  #|    "version": 1,
+  #|    "features": [
+  #|      {
+  #|        "name": "parent.enabled",
+  #|        "description": "Parent feature that is always enabled",
+  #|        "enabled": true,
+  #|        "strategies": [{
+  #|          "name": "default"
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.disabled",
+  #|        "description": "Parent feature that is always disabled",
+  #|        "enabled": false,
+  #|        "strategies": [{
+  #|          "name": "default"
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.with.variant",
+  #|        "description": "Parent feature with variant",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "flexibleRollout",
+  #|            "parameters": {
+  #|              "rollout": "100",
+  #|              "stickiness": "default",
+  #|              "groupId": "parent"
+  #|            },
+  #|            "variants": [
+  #|              {
+  #|                "name": "parent.variant",
+  #|                "weight": 1,
+  #|                "payload": {
+  #|                  "type": "string",
+  #|                  "value": "variantValue"
+  #|                }
+  #|              }
+  #|            ]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "parent.with.constraint",
+  #|        "description": "Parent feature with constraint",
+  #|        "enabled": true,
+  #|        "strategies": [
+  #|          {
+  #|            "name": "flexibleRollout",
+  #|            "parameters": {
+  #|              "rollout": "100",
+  #|              "stickiness": "default",
+  #|              "groupId": "parent"
+  #|            },
+  #|            "constraints": [
+  #|              {
+  #|                "contextName": "environment",
+  #|                "operator": "IN",
+  #|                "values": ["prod"]
+  #|
+  #|              }
+  #|            ],
+  #|            "variants": [
+  #|              {
+  #|                "name": "parent.variant",
+  #|                "weight": 1,
+  #|                "payload": {
+  #|                  "type": "string",
+  #|                  "value": "variantValue"
+  #|                }
+  #|              }
+  #|            ]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "child.with.matching.constraint",
+  #|        "description": "Child with parent matching constraint",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.constraint"
+  #|        }],
+  #|        "strategies": [
+  #|          {
+  #|            "name": "flexibleRollout",
+  #|            "parameters": {
+  #|              "rollout": "100",
+  #|              "stickiness": "default",
+  #|              "groupId": "parent"
+  #|            },
+  #|            "constraints": [
+  #|              {
+  #|                "contextName": "environment",
+  #|                "operator": "IN",
+  #|                "values": ["prod"]
+  #|
+  #|              }
+  #|            ],
+  #|            "variants": [
+  #|              {
+  #|                "name": "child.variant",
+  #|                "weight": 1,
+  #|                "payload": {
+  #|                  "type": "string",
+  #|                  "value": "variantValue"
+  #|                }
+  #|              }
+  #|            ]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "child.with.non.matching.constraint",
+  #|        "description": "Child with parent not matching constraint",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.constraint"
+  #|        }],
+  #|        "strategies": [
+  #|          {
+  #|            "name": "flexibleRollout",
+  #|            "parameters": {
+  #|              "rollout": "100",
+  #|              "stickiness": "default",
+  #|              "groupId": "parent"
+  #|            },
+  #|            "constraints": [
+  #|              {
+  #|                "contextName": "environment",
+  #|                "operator": "IN",
+  #|                "values": ["dev"]
+  #|
+  #|              }
+  #|            ],
+  #|            "variants": [
+  #|              {
+  #|                "name": "child.variant",
+  #|                "weight": 1,
+  #|                "payload": {
+  #|                  "type": "string",
+  #|                  "value": "variantValue"
+  #|                }
+  #|              }
+  #|            ]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "parent.with.cycle",
+  #|        "description": "Parent with cycle to child",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "child.with.cycle"
+  #|        }],
+  #|        "strategies": [
+  #|          {
+  #|            "name": "flexibleRollout",
+  #|            "parameters": {
+  #|              "rollout": "100",
+  #|              "stickiness": "default",
+  #|              "groupId": "parent"
+  #|            },
+  #|            "variants": [
+  #|              {
+  #|                "name": "parent.variant",
+  #|                "weight": 1,
+  #|                "payload": {
+  #|                  "type": "string",
+  #|                  "value": "variantValue"
+  #|                }
+  #|              }
+  #|            ]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "child.with.cycle",
+  #|        "description": "Child with cycle to parent",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.cycle"
+  #|        }],
+  #|        "strategies": [
+  #|          {
+  #|            "name": "flexibleRollout",
+  #|            "parameters": {
+  #|              "rollout": "100",
+  #|              "stickiness": "default",
+  #|              "groupId": "parent"
+  #|            },
+  #|            "variants": [
+  #|              {
+  #|                "name": "parent.variant",
+  #|                "weight": 1,
+  #|                "payload": {
+  #|                  "type": "string",
+  #|                  "value": "variantValue"
+  #|                }
+  #|              }
+  #|            ]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "child.with.transitive.dependency",
+  #|        "description": "Child with transitive dependency",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled.child.enabled"
+  #|        }],
+  #|        "strategies": [
+  #|          {
+  #|            "name": "flexibleRollout",
+  #|            "parameters": {
+  #|              "rollout": "100",
+  #|              "stickiness": "default",
+  #|              "groupId": "parent"
+  #|            },
+  #|            "variants": [
+  #|              {
+  #|                "name": "parent.variant",
+  #|                "weight": 1,
+  #|                "payload": {
+  #|                  "type": "string",
+  #|                  "value": "variantValue"
+  #|                }
+  #|              }
+  #|            ]
+  #|          }
+  #|        ]
+  #|      },
+  #|      {
+  #|        "name": "parent.explicitly.enabled.child.enabled",
+  #|        "description": "Parent explicitly enabled, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled",
+  #|          "enabled": true
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.enabled.child.enabled",
+  #|        "description": "Parent enabled, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled"
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.enabled.child.disabled",
+  #|        "description": "Parent enabled, child disabled",
+  #|        "enabled": false,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled"
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.disabled.child.enabled",
+  #|        "description": "Parent disabled, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.disabled"
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.disabled.child.disabled",
+  #|        "description": "Parent disabled, child disabled",
+  #|        "enabled": false,
+  #|        "dependencies": [{
+  #|          "feature": "parent.disabled"
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.default.variant.child.enabled",
+  #|        "description": "Parent enabled with no explicit variant, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled",
+  #|          "variants": ["disabled"]
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.disabled.satisfied.child.enabled",
+  #|        "description": "Parent disabled expectation satisfied, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.disabled",
+  #|          "enabled": false
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.disabled.not.satisfied.child.enabled",
+  #|        "description": "Parent disabled expectation not satisfied, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled",
+  #|          "enabled": false
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.single.variant.child.enabled",
+  #|        "description": "Parent single variant match, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.variant",
+  #|          "variants": ["parent.variant"]
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.multiple.variants.child.enabled",
+  #|        "description": "Parent multiples variants match, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.variant",
+  #|          "variants": ["parent.variant", "nonmatching.variant"]
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.empty.variants.child.enabled",
+  #|        "description": "Parent empty variants match, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.variant",
+  #|          "variants": []
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.non.matching.variant.child.enabled",
+  #|        "description": "Parent non matching variant, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.variant",
+  #|          "variants": ["nonmatching.variant"]
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "multiple.parents.satisfied.child.enabled",
+  #|        "description": "Multiple parents satisfied, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled"
+  #|        }, {
+  #|          "feature": "parent.disabled",
+  #|          "enabled": false
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "multiple.parents.not.satisfied.child.enabled",
+  #|        "description": "Multiple parents not satisfied, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.enabled"
+  #|        }, {
+  #|          "feature": "parent.disabled"
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parents.not.exist.child.enabled",
+  #|        "description": "Parent does not exist, child enabled",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.not.exist"
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.disabled.child.expects.disabled.variant",
+  #|        "description": "The parent is disabled. The child expects the parent's variant to be \"disabled\".",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.disabled",
+  #|          "variants": ["disabled"]
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": []
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.with.constraint.child.expects.disabled",
+  #|        "description": "The parent is enabled and has a constraint. The child expects the parent to be disabled.",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.constraint",
+  #|          "enabled": false
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      },
+  #|      {
+  #|        "name": "parent.with.constraint.child.expects.disabled.variant",
+  #|        "description": "The parent is enabled and has a constraint. The child expects the parent's variant to be \"disabled\".",
+  #|        "enabled": true,
+  #|        "dependencies": [{
+  #|          "feature": "parent.with.constraint",
+  #|          "variants": ["disabled"]
+  #|        }],
+  #|        "strategies": [{
+  #|          "name": "flexibleRollout",
+  #|          "parameters": {
+  #|            "rollout": "100",
+  #|            "stickiness": "default",
+  #|            "groupId": "groupId"
+  #|          },
+  #|          "variants": [
+  #|            {
+  #|              "name": "child.variant",
+  #|              "weight": 1,
+  #|              "payload": {
+  #|                "type": "string",
+  #|                "value": "variantValue"
+  #|              }
+  #|            }
+  #|          ]
+  #|        }]
+  #|      }
+  #|    ]
+  #|  },
+  #|  "tests": [
+  #|    {
+  #|      "description": "Both parent and child must be enabled for the child to be enabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.enabled.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Both explicitly enabled parent and child must be enabled for the child to be enabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.explicitly.enabled.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "If parent is enabled but child is not, the child remains disabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.enabled.child.disabled",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "If parent is disabled, the child is also disabled, irrespective of its own state.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.child.enabled",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Both parent and child being disabled results in the child being disabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.child.disabled",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled only if the parent is expectedly disabled and indeed is.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.satisfied.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if the parent is expected to be disabled but is actually enabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.not.satisfied.child.enabled",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled if its parent matches a specific variant.",
+  #|      "context": {},
+  #|      "toggleName": "parent.single.variant.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled if its parent matches any of the specified variants.",
+  #|      "context": {},
+  #|      "toggleName": "parent.multiple.variants.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled if the parent is enabled, regardless of empty variant dependencies.",
+  #|      "context": {},
+  #|      "toggleName": "parent.empty.variants.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if the parent's variant does not match the specified one.",
+  #|      "context": {},
+  #|      "toggleName": "parent.non.matching.variant.child.enabled",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled if all of its multiple parents are enabled.",
+  #|      "context": {},
+  #|      "toggleName": "multiple.parents.satisfied.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if any one of its multiple parents is disabled.",
+  #|      "context": {},
+  #|      "toggleName": "multiple.parents.not.satisfied.child.enabled",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if the specified parent does not exist.",
+  #|      "context": {},
+  #|      "toggleName": "parents.not.exist.child.enabled",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if there's a cyclic dependency with the parent.",
+  #|      "context": {},
+  #|      "toggleName": "child.with.cycle",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if a transitive dependency exists.",
+  #|      "context": {},
+  #|      "toggleName": "child.with.transitive.dependency",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled if its parent is enabled with child context.",
+  #|      "context": {
+  #|        "environment": "prod"
+  #|      },
+  #|      "toggleName": "child.with.matching.constraint",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if its parent is disabled with child context.",
+  #|      "context": {
+  #|        "environment": "dev"
+  #|      },
+  #|      "toggleName": "child.with.non.matching.constraint",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled if its parent's default variant is satisfied.",
+  #|      "context": {},
+  #|      "toggleName": "parent.default.variant.child.enabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled if the parent is disabled, even if the child's expected variant is the disabled variant",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.child.expects.disabled.variant",
+  #|      "expectedResult": false
+  #|    },
+  #|    {
+  #|      "description": "Child is enabled if the parent is expected to be disabled and the parent's constraint does not match.",
+  #|      "context": {
+  #|        "environment": "dev"
+  #|      },
+  #|      "toggleName": "parent.with.constraint.child.expects.disabled",
+  #|      "expectedResult": true
+  #|    },
+  #|    {
+  #|      "description": "Child is disabled when it requires the parent's variant to be \"disabled\" and the parent is off because its constraint does not match.",
+  #|      "context": {
+  #|        "environment": "dev"
+  #|      },
+  #|      "toggleName": "parent.with.constraint.child.expects.disabled.variant",
+  #|      "expectedResult": false
+  #|    }
+  #|  ],
+  #|  "variantTests": [
+  #|    {
+  #|      "description": "Child yields its variant when both parent and child are enabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.enabled.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when both explicitly enabled parent and child are enabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.explicitly.enabled.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant when the parent is enabled, but the child is not.",
+  #|      "context": {},
+  #|      "toggleName": "parent.enabled.child.disabled",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant when the parent is disabled, even if the child is enabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant when both the parent and child are disabled.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.child.disabled",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when the parent's disabled state is as expected.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.satisfied.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant when the parent's disabled state is not as expected.",
+  #|      "context": {},
+  #|      "toggleName": "parent.disabled.not.satisfied.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when the parent matches a specific variant.",
+  #|      "context": {},
+  #|      "toggleName": "parent.single.variant.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when the parent matches any given variant.",
+  #|      "context": {},
+  #|      "toggleName": "parent.multiple.variants.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when the parent is enabled, even with empty variant dependencies.",
+  #|      "context": {},
+  #|      "toggleName": "parent.empty.variants.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant if the parent's variant doesn't match the required one.",
+  #|      "context": {},
+  #|      "toggleName": "parent.non.matching.variant.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when all its parents are enabled.",
+  #|      "context": {},
+  #|      "toggleName": "multiple.parents.satisfied.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant if any of its parents is disabled.",
+  #|      "context": {},
+  #|      "toggleName": "multiple.parents.not.satisfied.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant in the absence of a specified parent.",
+  #|      "context": {},
+  #|      "toggleName": "parents.not.exist.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant due to a cyclic dependency with the parent.",
+  #|      "context": {},
+  #|      "toggleName": "child.with.cycle",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant because of a transitive dependency.",
+  #|      "context": {},
+  #|      "toggleName": "child.with.transitive.dependency",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when parent is enabled with child context.",
+  #|      "context": {
+  #|        "environment": "prod"
+  #|      },
+  #|      "toggleName": "child.with.matching.constraint",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant when parent is disabled with child context.",
+  #|      "context": {
+  #|        "environment": "dev"
+  #|      },
+  #|      "toggleName": "child.with.non.matching.constraint",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when the parent's default variant is met.",
+  #|      "context": {},
+  #|      "toggleName": "parent.default.variant.child.enabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields its variant when the parent is expected to be disabled and the parent's constraint does not match.",
+  #|      "context": {
+  #|        "environment": "dev"
+  #|      },
+  #|      "toggleName": "parent.with.constraint.child.expects.disabled",
+  #|      "expectedResult": {
+  #|        "name": "child.variant",
+  #|        "payload": {
+  #|          "type": "string",
+  #|          "value": "variantValue"
+  #|        },
+  #|        "enabled": true,
+  #|        "feature_enabled": true
+  #|      }
+  #|    },
+  #|    {
+  #|      "description": "Child yields a disabled variant when it requires the parent's variant to be \"disabled\" and the parent is off because its constraint does not match.",
+  #|      "context": {
+  #|        "environment": "dev"
+  #|      },
+  #|      "toggleName": "parent.with.constraint.child.expects.disabled.variant",
+  #|      "expectedResult": {
+  #|        "name": "disabled",
+  #|        "enabled": false,
+  #|        "feature_enabled": false
+  #|      }
+  #|    }
+  #|  ]
+  #|}
+
+///|
 let fixture_18 : String =
   #|{
   #|  "name": "18-utf8-flag-names",
@@ -2406,4 +5435,1059 @@ let fixture_18 : String =
   #|      "expectedResult": true
   #|    }
   #|  ]
+  #|}
+
+///|
+let fixture_19 : String =
+  #|{
+  #|    "name": "19-delta-api-hydration",
+  #|    "state": {
+  #|        "events": [
+  #|            {
+  #|                "eventId": 1,
+  #|                "type": "hydration",
+  #|                "segments": [
+  #|                    {
+  #|                        "id": 1,
+  #|                        "name": "delta.api.hydration.segment",
+  #|                        "constraints": [
+  #|                            {
+  #|                                "values": [
+  #|                                    "abc",
+  #|                                    "edf",
+  #|                                    "gbd"
+  #|                                ],
+  #|                                "inverted": false,
+  #|                                "operator": "IN",
+  #|                                "contextName": "appName",
+  #|                                "caseInsensitive": false
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ],
+  #|                "features": [
+  #|                    {
+  #|                        "impressionData": false,
+  #|                        "enabled": true,
+  #|                        "name": "delta.api.hydration",
+  #|                        "description": null,
+  #|                        "project": "default",
+  #|                        "stale": false,
+  #|                        "type": "release",
+  #|                        "variants": [],
+  #|                        "segments": [
+  #|                            1
+  #|                        ],
+  #|                        "strategies": [
+  #|                            {
+  #|                                "name": "flexibleRollout",
+  #|                                "constraints": [],
+  #|                                "parameters": {
+  #|                                    "groupId": "delta.api.hydration",
+  #|                                    "rollout": "100",
+  #|                                    "stickiness": "default"
+  #|                                },
+  #|                                "variants": []
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            }
+  #|        ]
+  #|    },
+  #|    "tests": [
+  #|        {
+  #|            "description": "Hydration feature should be enabled when context criteria are met",
+  #|            "context": {
+  #|                "appName": "abc"
+  #|            },
+  #|            "toggleName": "delta.api.hydration",
+  #|            "expectedResult": true
+  #|        }
+  #|    ]
+  #|}
+
+///|
+let fixture_20 : String =
+  #|{
+  #|    "name": "20-delta-api-events",
+  #|    "state": {
+  #|        "events": [
+  #|            {
+  #|                "eventId": 1,
+  #|                "type": "feature-updated",
+  #|                "feature": {
+  #|                    "impressionData": false,
+  #|                    "enabled": true,
+  #|                    "name": "delta.api.events.updated.1",
+  #|                    "description": null,
+  #|                    "project": "default",
+  #|                    "stale": false,
+  #|                    "type": "release",
+  #|                    "variants": [],
+  #|                    "strategies": [
+  #|                        {
+  #|                            "name": "default"
+  #|                        }
+  #|                    ]
+  #|                }
+  #|            },
+  #|            {
+  #|                "eventId": 2,
+  #|                "type": "feature-updated",
+  #|                "feature": {
+  #|                    "impressionData": false,
+  #|                    "enabled": true,
+  #|                    "name": "delta.api.events.updated.2",
+  #|                    "description": null,
+  #|                    "project": "default",
+  #|                    "stale": false,
+  #|                    "type": "release",
+  #|                    "variants": [],
+  #|                    "strategies": [
+  #|                        {
+  #|                            "name": "default"
+  #|                        }
+  #|                    ]
+  #|                }
+  #|            },
+  #|            {
+  #|                "eventId": 3,
+  #|                "type": "feature-removed",
+  #|                "featureName": "delta.api.events.updated.2",
+  #|                "project" : "default"
+  #|            },
+  #|            {
+  #|            "eventId": 4,
+  #|            "type": "segment-updated",
+  #|            "segment": {
+  #|                "id": 1,
+  #|                "name": "my-segment",
+  #|                "constraints": [
+  #|                        {
+  #|                            "values": [
+  #|                                "abc",
+  #|                                "edf",
+  #|                                "gbd"
+  #|                            ],
+  #|                            "inverted": false,
+  #|                            "operator": "IN",
+  #|                            "contextName": "appName",
+  #|                            "caseInsensitive": false
+  #|                        }
+  #|                    ]
+  #|                }
+  #|            },
+  #|            {
+  #|                "eventId": 5,
+  #|                "type": "feature-updated",
+  #|                "feature": {
+  #|                    "impressionData": false,
+  #|                    "enabled": true,
+  #|                    "name": "delta.api.events.updated.3",
+  #|                    "description": null,
+  #|                    "project": "default",
+  #|                    "stale": false,
+  #|                    "type": "release",
+  #|                    "variants": [],
+  #|                    "strategies": [
+  #|                        {
+  #|                            "name": "default",
+  #|                            "segments": [1]
+  #|                        }
+  #|                    ]
+  #|                }
+  #|            }
+  #|        ]
+  #|    },
+  #|    "tests": [
+  #|        {
+  #|            "description": "delta.api.events.updated.1 should be enabled",
+  #|            "context": {},
+  #|            "toggleName": "delta.api.events.updated.1",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "delta.api.events.updated.2 should be disabled",
+  #|            "context": {},
+  #|            "toggleName": "delta.api.events.updated.2",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "delta.api.events.updated.3 should be enabled with segment",
+  #|            "context": { "appName": "abc" },
+  #|            "toggleName": "delta.api.events.updated.3",
+  #|            "expectedResult": true
+  #|        }
+  #|    ]
+  #|}
+
+///|
+let fixture_21 : String =
+  #|{
+  #|    "name": "21-regex-constraint-operators",
+  #|    "state": {
+  #|        "version": 1,
+  #|        "features": [
+  #|            {
+  #|                "name": "regex.case.sensitive",
+  #|                "description": "Regex constraints are case sensitive by default",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^cat$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "invalid-regex-defaults-to-false",
+  #|                "description": "Invalid regex always results in toggle being disabled",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "(regex"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R01.literal_and_anchors",
+  #|                "description": "Anchors ^ $ basic email-ish check",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^[^@]+@[^@]+$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R01.literal_and_anchors.referencing.property",
+  #|                "description": "Anchors ^ $ basic email-ish check",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "nested",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^[^@]+@[^@]+$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R02.perl_digit_class",
+  #|                "description": "\\d and quantifiers",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^user\\d{3}$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R03.ascii_class",
+  #|                "description": "[[:alpha:]] and +",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^[[:alpha:]]+$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R04.word_boundary_ascii",
+  #|                "description": "\\b word boundary (ASCII semantics)",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "\\bcat\\b"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R05.alternation_prefer_left",
+  #|                "description": "Alternation prefers left branch",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^(foo|fo)$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R06.grouping_and_optional",
+  #|                "description": "Capturing group + optional ?",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^(ab)?c$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R07.repetition_range_limits",
+  #|                "description": "Bounded repetition {n,m}",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^a{2,4}$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R08.greedy_vs_nongreedy",
+  #|                "description": "Non-greedy quantifier *?",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^a.*?b$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R09.inline_flag_i",
+  #|                "description": "Inline (?i) case-insensitive",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^(?i)abc$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "Global.case.insensitive",
+  #|                "description": "Global case-insensitive flag (should work the same as inline (?i))",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^abc$",
+  #|                                "caseInsensitive": true
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "Inverted.constraint",
+  #|                "description": "Inverted regex constraint (should enable when regex does NOT match)",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^abc$",
+  #|                                "inverted": true
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R10.inline_flag_m",
+  #|                "description": "Inline (?m) multiline anchors",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "(?m)^foo$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R11.inline_flag_s_dotall",
+  #|                "description": "Inline (?s) dot matches newline",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^(?s)a.b$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R90.reject_lookahead",
+  #|                "description": "Should be rejected by server validation (lookahead not supported in RE2)",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^(?=a)b$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "R91.reject_backreference",
+  #|                "description": "Should be rejected by server validation (backrefs not supported in RE2)",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "userId",
+  #|                                "operator": "REGEX",
+  #|                                "value": "^(a)\\1$"
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            }
+  #|        ]
+  #|    },
+  #|    "tests": [
+  #|        {
+  #|            "description": "Basic email match should be enabled when regex matches",
+  #|            "context": {
+  #|                "userId": "test@example.com"
+  #|            },
+  #|            "toggleName": "R01.literal_and_anchors",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Broken regex should not match anything",
+  #|            "context": {
+  #|                "userId": "not-an-email"
+  #|            },
+  #|            "toggleName": "R01.literal_and_anchors",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Invalid regex should result in toggle being disabled",
+  #|            "context": {
+  #|                "userId": "any-value"
+  #|            },
+  #|            "toggleName": "invalid-regex-defaults-to-false",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Null value should result in toggle being disabled",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "nested": null
+  #|                }
+  #|            },
+  #|            "toggleName": "R01.literal_and_anchors.referencing.property",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Sanity check for 'Null value should result in toggle being disabled'",
+  #|            "context": {
+  #|                "properties": {
+  #|                    "nested": "test@example.com"
+  #|                }
+  #|            },
+  #|            "toggleName": "R01.literal_and_anchors.referencing.property",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Undefined value should result in toggle being disabled",
+  #|            "context": {},
+  #|            "toggleName": "R01.literal_and_anchors",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R01 matches basic email-ish",
+  #|            "context": {
+  #|                "userId": "test@example.com"
+  #|            },
+  #|            "toggleName": "R01.literal_and_anchors",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R01 rejects missing @",
+  #|            "context": {
+  #|                "userId": "not-an-email"
+  #|            },
+  #|            "toggleName": "R01.literal_and_anchors",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R02 matches user + 3 digits",
+  #|            "context": {
+  #|                "userId": "user123"
+  #|            },
+  #|            "toggleName": "R02.perl_digit_class",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R02 rejects wrong digit count",
+  #|            "context": {
+  #|                "userId": "user12"
+  #|            },
+  #|            "toggleName": "R02.perl_digit_class",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R03 matches ASCII alpha only",
+  #|            "context": {
+  #|                "userId": "AlphaBeta"
+  #|            },
+  #|            "toggleName": "R03.ascii_class",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R03 rejects digits",
+  #|            "context": {
+  #|                "userId": "Alpha1"
+  #|            },
+  #|            "toggleName": "R03.ascii_class",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R04 matches whole word cat",
+  #|            "context": {
+  #|                "userId": "a cat b"
+  #|            },
+  #|            "toggleName": "R04.word_boundary_ascii",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R04 does not match inside 'concatenate'",
+  #|            "context": {
+  #|                "userId": "concatenate"
+  #|            },
+  #|            "toggleName": "R04.word_boundary_ascii",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R05 matches foo",
+  #|            "context": {
+  #|                "userId": "foo"
+  #|            },
+  #|            "toggleName": "R05.alternation_prefer_left",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R05 matches fo",
+  #|            "context": {
+  #|                "userId": "fo"
+  #|            },
+  #|            "toggleName": "R05.alternation_prefer_left",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R05 rejects f",
+  #|            "context": {
+  #|                "userId": "f"
+  #|            },
+  #|            "toggleName": "R05.alternation_prefer_left",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R06 matches abc (optional 'ab')",
+  #|            "context": {
+  #|                "userId": "abc"
+  #|            },
+  #|            "toggleName": "R06.grouping_and_optional",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R06 matches c",
+  #|            "context": {
+  #|                "userId": "c"
+  #|            },
+  #|            "toggleName": "R06.grouping_and_optional",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R06 rejects ac (missing b)",
+  #|            "context": {
+  #|                "userId": "ac"
+  #|            },
+  #|            "toggleName": "R06.grouping_and_optional",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R07 matches aaaa (4 a's)",
+  #|            "context": {
+  #|                "userId": "aaaa"
+  #|            },
+  #|            "toggleName": "R07.repetition_range_limits",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R07 rejects a (too short)",
+  #|            "context": {
+  #|                "userId": "a"
+  #|            },
+  #|            "toggleName": "R07.repetition_range_limits",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R07 rejects aaaaa (too long)",
+  #|            "context": {
+  #|                "userId": "aaaaa"
+  #|            },
+  #|            "toggleName": "R07.repetition_range_limits",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R08 non-greedy still matches full string ending in b",
+  #|            "context": {
+  #|                "userId": "a___b___b"
+  #|            },
+  #|            "toggleName": "R08.greedy_vs_nongreedy",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R08 rejects missing ending b",
+  #|            "context": {
+  #|                "userId": "a___b___c"
+  #|            },
+  #|            "toggleName": "R08.greedy_vs_nongreedy",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R09 (?i) matches different case",
+  #|            "context": {
+  #|                "userId": "AbC"
+  #|            },
+  #|            "toggleName": "R09.inline_flag_i",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R09 (?i) rejects extra chars",
+  #|            "context": {
+  #|                "userId": "zAbCz"
+  #|            },
+  #|            "toggleName": "R09.inline_flag_i",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Global case-insensitive matches different case",
+  #|            "context": {
+  #|                "userId": "AbC"
+  #|            },
+  #|            "toggleName": "Global.case.insensitive",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Regex constraint is case sensitive by default",
+  #|            "context": {
+  #|                "userId": "Cat"
+  #|            },
+  #|            "toggleName": "regex.case.sensitive",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Regex constraint is case sensitive by default (validate)",
+  #|            "context": {
+  #|                "userId": "cat"
+  #|            },
+  #|            "toggleName": "regex.case.sensitive",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Inverted constraint should enable when regex does not match",
+  #|            "context": {
+  #|                "userId": "xyz"
+  #|            },
+  #|            "toggleName": "Inverted.constraint",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Inverted constraint should disable when regex matches",
+  #|            "context": {
+  #|                "userId": "abc"
+  #|            },
+  #|            "toggleName": "Inverted.constraint",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R10 (?m) matches line 'foo' inside multiline string",
+  #|            "context": {
+  #|                "userId": "x\nfoo\ny"
+  #|            },
+  #|            "toggleName": "R10.inline_flag_m",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R10 without foo line would fail",
+  #|            "context": {
+  #|                "userId": "x\nfo\ny"
+  #|            },
+  #|            "toggleName": "R10.inline_flag_m",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R11 (?s) dot matches newline",
+  #|            "context": {
+  #|                "userId": "a\nb"
+  #|            },
+  #|            "toggleName": "R11.inline_flag_s_dotall",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "R90 lookahead should be rejected upstream; if it leaks through, it must not enable",
+  #|            "context": {
+  #|                "userId": "ab"
+  #|            },
+  #|            "toggleName": "R90.reject_lookahead",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "R91 backreference should be rejected upstream; if it leaks through, it must not enable",
+  #|            "context": {
+  #|                "userId": "aa"
+  #|            },
+  #|            "toggleName": "R91.reject_backreference",
+  #|            "expectedResult": false
+  #|        }
+  #|    ]
+  #|}
+
+///|
+let fixture_22 : String =
+  #|{
+  #|    "name": "22-cidr-constraint-operator",
+  #|    "state": {
+  #|        "version": 1,
+  #|        "features": [
+  #|            {
+  #|                "name": "CIDR.exact.match",
+  #|                "description": "Exact IP match using IN_CIDR",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "remoteAddress",
+  #|                                "operator": "IN_CIDR",
+  #|                                "values": ["127.0.0.1"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "CIDR.range.match",
+  #|                "description": "CIDR range match using IN_CIDR",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "remoteAddress",
+  #|                                "operator": "IN_CIDR",
+  #|                                "values": ["160.33.0.0/16"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "CIDR.mixed.values",
+  #|                "description": "Invalid values should be ignored when valid ones exist",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "remoteAddress",
+  #|                                "operator": "IN_CIDR",
+  #|                                "values": ["127.invalid", "192.168.1.0/24"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "CIDR.invalid.only",
+  #|                "description": "Only invalid values should not match anything",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "remoteAddress",
+  #|                                "operator": "IN_CIDR",
+  #|                                "values": ["127.invalid"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "CIDR.ipv6.exact.match",
+  #|                "description": "Exact IPv6 match using IN_CIDR",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "remoteAddress",
+  #|                                "operator": "IN_CIDR",
+  #|                                "values": ["2001:db8::1"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "CIDR.ipv6.range.match",
+  #|                "description": "IPv6 CIDR range match using IN_CIDR",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "remoteAddress",
+  #|                                "operator": "IN_CIDR",
+  #|                                "values": ["2001:db8::/32"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            },
+  #|            {
+  #|                "name": "CIDR.ipv6.mixed.values",
+  #|                "description": "Invalid values should be ignored when valid IPv6 CIDR exists",
+  #|                "enabled": true,
+  #|                "strategies": [
+  #|                    {
+  #|                        "name": "default",
+  #|                        "parameters": {},
+  #|                        "constraints": [
+  #|                            {
+  #|                                "contextName": "remoteAddress",
+  #|                                "operator": "IN_CIDR",
+  #|                                "values": ["bad::cidr", "2001:db8::/32"]
+  #|                            }
+  #|                        ]
+  #|                    }
+  #|                ]
+  #|            }
+  #|        ]
+  #|    },
+  #|    "tests": [
+  #|        {
+  #|            "description": "Exact IP match should be enabled",
+  #|            "context": {
+  #|                "remoteAddress": "127.0.0.1"
+  #|            },
+  #|            "toggleName": "CIDR.exact.match",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Exact IP mismatch should be disabled",
+  #|            "context": {
+  #|                "remoteAddress": "127.0.0.2"
+  #|            },
+  #|            "toggleName": "CIDR.exact.match",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "CIDR range should enable matching IP",
+  #|            "context": {
+  #|                "remoteAddress": "160.33.0.33"
+  #|            },
+  #|            "toggleName": "CIDR.range.match",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "CIDR range should disable non-matching IP",
+  #|            "context": {
+  #|                "remoteAddress": "160.34.0.1"
+  #|            },
+  #|            "toggleName": "CIDR.range.match",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Valid CIDR should match even when invalid entries exist",
+  #|            "context": {
+  #|                "remoteAddress": "192.168.1.42"
+  #|            },
+  #|            "toggleName": "CIDR.mixed.values",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Invalid-only values should not match",
+  #|            "context": {
+  #|                "remoteAddress": "127.0.0.1"
+  #|            },
+  #|            "toggleName": "CIDR.invalid.only",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Missing remoteAddress should not match",
+  #|            "context": {},
+  #|            "toggleName": "CIDR.range.match",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Exact IPv6 match should be enabled",
+  #|            "context": {
+  #|                "remoteAddress": "2001:db8::1"
+  #|            },
+  #|            "toggleName": "CIDR.ipv6.exact.match",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "Exact IPv6 mismatch should be disabled",
+  #|            "context": {
+  #|                "remoteAddress": "2001:db8::2"
+  #|            },
+  #|            "toggleName": "CIDR.ipv6.exact.match",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "IPv6 CIDR range should enable matching IP",
+  #|            "context": {
+  #|                "remoteAddress": "2001:db8:0:1::42"
+  #|            },
+  #|            "toggleName": "CIDR.ipv6.range.match",
+  #|            "expectedResult": true
+  #|        },
+  #|        {
+  #|            "description": "IPv6 CIDR range should disable non-matching IP",
+  #|            "context": {
+  #|                "remoteAddress": "2001:db9::1"
+  #|            },
+  #|            "toggleName": "CIDR.ipv6.range.match",
+  #|            "expectedResult": false
+  #|        },
+  #|        {
+  #|            "description": "Valid IPv6 CIDR should match even when invalid entries exist",
+  #|            "context": {
+  #|                "remoteAddress": "2001:db8::abcd"
+  #|            },
+  #|            "toggleName": "CIDR.ipv6.mixed.values",
+  #|            "expectedResult": true
+  #|        }
+  #|    ]
   #|}

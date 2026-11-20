@@ -4,10 +4,10 @@
   "backend": "wasm-gc",
   "summary": {
     "suites": 22,
-    "requiredSuites": 13,
-    "passed": 104,
+    "requiredSuites": 22,
+    "passed": 294,
     "failed": 0,
-    "notRun": 190
+    "notRun": 0
   },
   "suites": [
     {
@@ -47,10 +47,10 @@
     },
     {
       "file": "06-remote-address-strategy.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 6,
       "failed": 0,
-      "notRun": 6
+      "notRun": 0
     },
     {
       "file": "07-multiple-strategies.json",
@@ -96,24 +96,24 @@
     },
     {
       "file": "13-constraint-operators.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 46,
       "failed": 0,
-      "notRun": 46
+      "notRun": 0
     },
     {
       "file": "14-constraint-semver-operators.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 36,
       "failed": 0,
-      "notRun": 36
+      "notRun": 0
     },
     {
       "file": "15-global-constraints.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 6,
       "failed": 0,
-      "notRun": 6
+      "notRun": 0
     },
     {
       "file": "16-strategy-variants.json",
@@ -124,10 +124,10 @@
     },
     {
       "file": "17-dependent-features.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 43,
       "failed": 0,
-      "notRun": 43
+      "notRun": 0
     },
     {
       "file": "18-utf8-flag-names.json",
@@ -138,31 +138,31 @@
     },
     {
       "file": "19-delta-api-hydration.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 1,
       "failed": 0,
-      "notRun": 1
+      "notRun": 0
     },
     {
       "file": "20-delta-api-events.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 3,
       "failed": 0,
-      "notRun": 3
+      "notRun": 0
     },
     {
       "file": "21-regex-constraint-operators.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 37,
       "failed": 0,
-      "notRun": 37
+      "notRun": 0
     },
     {
       "file": "22-cidr-constraint-operators.json",
-      "required": false,
-      "passed": 0,
+      "required": true,
+      "passed": 12,
       "failed": 0,
-      "notRun": 12
+      "notRun": 0
     }
   ],
   "cases": [
@@ -457,66 +457,66 @@
       "kind": "tests",
       "index": 0,
       "description": "Feature.remoteAddress.A should be enabled for localhost",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "06-remote-address-strategy.json",
       "kind": "tests",
       "index": 1,
       "description": "Feature.remoteAddress.A should not be enabled for missing remoteAddress on context",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "06-remote-address-strategy.json",
       "kind": "tests",
       "index": 2,
       "description": "Feature.remoteAddress.B should be enabled for remoteAddress 192.168.0.1",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "06-remote-address-strategy.json",
       "kind": "tests",
       "index": 3,
       "description": "Feature.remoteAddress.B should not be enabled for remoteAddress 192.168.0.3",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "06-remote-address-strategy.json",
       "kind": "tests",
       "index": 4,
       "description": "Feature.remoteAddress.B should not be enabled for remoteAddress 217.100.10.11",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "06-remote-address-strategy.json",
       "kind": "tests",
       "index": 5,
       "description": "Feature.remoteAddress.C should be enabled for remoteAddress 192.168.0.3",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "07-multiple-strategies.json",
@@ -1542,965 +1542,965 @@
       "kind": "tests",
       "index": 0,
       "description": "F1.startsWith should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 1,
       "description": "F1.startsWith should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 2,
       "description": "F2.startsWith.multiple should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 3,
       "description": "F2.startsWith.multiple should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 4,
       "description": "F2.startsWith.caseInsensitve should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 5,
       "description": "F2.startsWith.caseInsensitve should handle various cases when enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 6,
       "description": "F3.endsWith should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 7,
       "description": "F3.endsWith should be disabled when casing is incorrect",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 8,
       "description": "F3.endsWith.ignoringCase should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 9,
       "description": "F3.endsWith should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 10,
       "description": "F4.contains should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 11,
       "description": "F4.contains should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 12,
       "description": "F4.contains.inverted should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 13,
       "description": "F5.numEq",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 14,
       "description": "F5.numEq works for floats",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 15,
       "description": "F5.numEq.inverted should be false",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 16,
       "description": "F5.numEq.float works for floats",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 17,
       "description": "F5.numEq.float works for integers",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 18,
       "description": "F5.numEq.inverted should be true",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 19,
       "description": "F5.numGT should be true",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 20,
       "description": "F5.numGT should be false",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 21,
       "description": "F5.numGTE should be true when equal",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 22,
       "description": "F5.numGTE should be true when larger",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 23,
       "description": "F5.numGTE should be false when lower",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 24,
       "description": "F5.numLTE should be false when higher",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 25,
       "description": "F5.numLTE should be true when equal",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 26,
       "description": "F5.numLTE should be true when lower",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 27,
       "description": "F5.numLT should be true when lower",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 28,
       "description": "F5.numLT should be false when equal",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 29,
       "description": "F6.number-range should be false when not in range",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 30,
       "description": "F6.number-range should be true when in range",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 31,
       "description": "F7.dateAfter should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 32,
       "description": "F7.dateAfter should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 33,
       "description": "F7.dateAfter is exclusive of date parameter",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 34,
       "description": "F7.dateBefore should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 35,
       "description": "F7.dateBefore should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 36,
       "description": "F7.dateBefore is exclusive of date parameter",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 37,
       "description": "F7.date-range should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 38,
       "description": "F7.date-with-timezone should respect timezone",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 39,
       "description": "F7.invalid-operator should always return false",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 40,
       "description": "F8.missing-field.IN should return false",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 41,
       "description": "F8.missing-field.IN should return true when present",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 42,
       "description": "F8.missing-field.NOT_IN should return true",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 43,
       "description": "F8.missing-field.NOT_IN should return true when null",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 44,
       "description": "F9.inverted.IN should return false when present but inverted",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "13-constraint-operators.json",
       "kind": "tests",
       "index": 45,
       "description": "F10.inverted.NOT_IN should return true when present but inverted",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 0,
       "description": "F8.semverEQ should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 1,
       "description": "F8.semverEQ should be enabled for metadata",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 2,
       "description": "F8.semverEQ should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 3,
       "description": "F8.semverGT should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 4,
       "description": "F8.semverGT should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 5,
       "description": "F8.semverGT should be disabled if only metadata differs",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 6,
       "description": "F8.semverGTE should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 7,
       "description": "F8.semverGTE should be enabled for greater",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 8,
       "description": "F8.semverGTE should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 9,
       "description": "F8.semverLT should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 10,
       "description": "F8.semverLT should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 11,
       "description": "F8.semverLT should be disabled if only metadata differs",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 12,
       "description": "F8.semverLTE should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 13,
       "description": "F8.semverLTE should be enabled for less",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 14,
       "description": "F8.semverLTE should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 15,
       "description": "F8.semverAlphaGT is less than beta",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 16,
       "description": "F8.semverAlphaGT operator is less than release",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 17,
       "description": "F8.semverAlphaLT is less than beta",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 18,
       "description": "F8.semverAlphaLT is greater than old beta",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 19,
       "description": "F8.semverAlphaLT is less than release",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 20,
       "description": "F8.semverAlphaVersioning alpha.1 is less than alpha.3",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 21,
       "description": "F8.semverAlphaVersioning alpha.4 is greater than alpha.3",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 22,
       "description": "F8.alphaUnnumbered - unnumbered is LT than numbered",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 23,
       "description": "F8.releaseCandidate - alpha is not greater than rc",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 24,
       "description": "F8.releaseCandidate - beta is not greater tha rc",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 25,
       "description": "F8.releaseCandidate - release is greater than rc",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 26,
       "description": "F8.invalidSemverWithLeadingV - invalid semver resolves to false",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 27,
       "description": "F8.invalidSemverWithLeadingV - broken semver resolves to false",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 28,
       "description": "F8.semverMetadataEQ should be enabled if only metadata differs",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 29,
       "description": "F8.semverMetadataEQ should be enabled if only metadata differs and contains a dot",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 30,
       "description": "F8.semverMetadataEQ should be enabled if metadata matches",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 31,
       "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 32,
       "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs and contains a dot",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 33,
       "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 34,
       "description": "F8.semverPreReleaseMetadataLT should be disabled as both are equal after discarding metadata",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "14-constraint-semver-operators.json",
       "kind": "tests",
       "index": 35,
       "description": "F8.semverPreReleaseMetadataGT should be disabled for higher metadata cause metadata is ignored and both are equal",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "15-global-constraints.json",
       "kind": "tests",
       "index": 0,
       "description": "F9.globalSegmentOn should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "15-global-constraints.json",
       "kind": "tests",
       "index": 1,
       "description": "F9.globalSegmentOff should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "15-global-constraints.json",
       "kind": "tests",
       "index": 2,
       "description": "F9.globalSegmentAndConstraint should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "15-global-constraints.json",
       "kind": "tests",
       "index": 3,
       "description": "F9.withMissingSegment should force evaluation to false",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "15-global-constraints.json",
       "kind": "tests",
       "index": 4,
       "description": "F9.withSeveralConstraintsAndSegments should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "15-global-constraints.json",
       "kind": "variantTests",
       "index": 0,
       "description": "F9.globalSegmentOn and customField=616 yields green",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "green",
         "payload": {
@@ -2510,8 +2510,16 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "green",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "val1"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "16-strategy-variants.json",
@@ -2799,250 +2807,250 @@
       "kind": "tests",
       "index": 0,
       "description": "Both parent and child must be enabled for the child to be enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 1,
       "description": "Both explicitly enabled parent and child must be enabled for the child to be enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 2,
       "description": "If parent is enabled but child is not, the child remains disabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 3,
       "description": "If parent is disabled, the child is also disabled, irrespective of its own state.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 4,
       "description": "Both parent and child being disabled results in the child being disabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 5,
       "description": "Child is enabled only if the parent is expectedly disabled and indeed is.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 6,
       "description": "Child is disabled if the parent is expected to be disabled but is actually enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 7,
       "description": "Child is enabled if its parent matches a specific variant.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 8,
       "description": "Child is enabled if its parent matches any of the specified variants.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 9,
       "description": "Child is enabled if the parent is enabled, regardless of empty variant dependencies.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 10,
       "description": "Child is disabled if the parent's variant does not match the specified one.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 11,
       "description": "Child is enabled if all of its multiple parents are enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 12,
       "description": "Child is disabled if any one of its multiple parents is disabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 13,
       "description": "Child is disabled if the specified parent does not exist.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 14,
       "description": "Child is disabled if there's a cyclic dependency with the parent.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 15,
       "description": "Child is disabled if a transitive dependency exists.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 16,
       "description": "Child is enabled if its parent is enabled with child context.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 17,
       "description": "Child is disabled if its parent is disabled with child context.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 18,
       "description": "Child is enabled if its parent's default variant is satisfied.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 19,
       "description": "Child is disabled if the parent is disabled, even if the child's expected variant is the disabled variant",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 20,
       "description": "Child is enabled if the parent is expected to be disabled and the parent's constraint does not match.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "tests",
       "index": 21,
       "description": "Child is disabled when it requires the parent's variant to be \"disabled\" and the parent is off because its constraint does not match.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 0,
       "description": "Child yields its variant when both parent and child are enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3052,16 +3060,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 1,
       "description": "Child yields its variant when both explicitly enabled parent and child are enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3071,61 +3087,81 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 2,
       "description": "Child yields a disabled variant when the parent is enabled, but the child is not.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 3,
       "description": "Child yields a disabled variant when the parent is disabled, even if the child is enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 4,
       "description": "Child yields a disabled variant when both the parent and child are disabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 5,
       "description": "Child yields its variant when the parent's disabled state is as expected.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3135,31 +3171,43 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 6,
       "description": "Child yields a disabled variant when the parent's disabled state is not as expected.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 7,
       "description": "Child yields its variant when the parent matches a specific variant.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3169,16 +3217,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 8,
       "description": "Child yields its variant when the parent matches any given variant.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3188,16 +3244,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 9,
       "description": "Child yields its variant when the parent is enabled, even with empty variant dependencies.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3207,31 +3271,43 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 10,
       "description": "Child yields a disabled variant if the parent's variant doesn't match the required one.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 11,
       "description": "Child yields its variant when all its parents are enabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3241,76 +3317,100 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 12,
       "description": "Child yields a disabled variant if any of its parents is disabled.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 13,
       "description": "Child yields a disabled variant in the absence of a specified parent.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 14,
       "description": "Child yields a disabled variant due to a cyclic dependency with the parent.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 15,
       "description": "Child yields a disabled variant because of a transitive dependency.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 16,
       "description": "Child yields its variant when parent is enabled with child context.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3320,31 +3420,43 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 17,
       "description": "Child yields a disabled variant when parent is disabled with child context.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 18,
       "description": "Child yields its variant when the parent's default variant is met.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3354,16 +3466,24 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 19,
       "description": "Child yields its variant when the parent is expected to be disabled and the parent's constraint does not match.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "child.variant",
         "payload": {
@@ -3373,23 +3493,35 @@
         "enabled": true,
         "feature_enabled": true
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "reason": ""
     },
     {
       "file": "17-dependent-features.json",
       "kind": "variantTests",
       "index": 20,
       "description": "Child yields a disabled variant when it requires the parent's variant to be \"disabled\" and the parent is off because its constraint does not match.",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": {
         "name": "disabled",
         "enabled": false,
         "feature_enabled": false
       },
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "reason": ""
     },
     {
       "file": "18-utf8-flag-names.json",
@@ -3418,583 +3550,583 @@
       "kind": "tests",
       "index": 0,
       "description": "Hydration feature should be enabled when context criteria are met",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "20-delta-api-events.json",
       "kind": "tests",
       "index": 0,
       "description": "delta.api.events.updated.1 should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "20-delta-api-events.json",
       "kind": "tests",
       "index": 1,
       "description": "delta.api.events.updated.2 should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "20-delta-api-events.json",
       "kind": "tests",
       "index": 2,
       "description": "delta.api.events.updated.3 should be enabled with segment",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 0,
       "description": "Basic email match should be enabled when regex matches",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 1,
       "description": "Broken regex should not match anything",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 2,
       "description": "Invalid regex should result in toggle being disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 3,
       "description": "Null value should result in toggle being disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 4,
       "description": "Sanity check for 'Null value should result in toggle being disabled'",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 5,
       "description": "Undefined value should result in toggle being disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 6,
       "description": "R01 matches basic email-ish",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 7,
       "description": "R01 rejects missing @",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 8,
       "description": "R02 matches user + 3 digits",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 9,
       "description": "R02 rejects wrong digit count",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 10,
       "description": "R03 matches ASCII alpha only",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 11,
       "description": "R03 rejects digits",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 12,
       "description": "R04 matches whole word cat",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 13,
       "description": "R04 does not match inside 'concatenate'",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 14,
       "description": "R05 matches foo",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 15,
       "description": "R05 matches fo",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 16,
       "description": "R05 rejects f",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 17,
       "description": "R06 matches abc (optional 'ab')",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 18,
       "description": "R06 matches c",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 19,
       "description": "R06 rejects ac (missing b)",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 20,
       "description": "R07 matches aaaa (4 a's)",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 21,
       "description": "R07 rejects a (too short)",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 22,
       "description": "R07 rejects aaaaa (too long)",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 23,
       "description": "R08 non-greedy still matches full string ending in b",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 24,
       "description": "R08 rejects missing ending b",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 25,
       "description": "R09 (?i) matches different case",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 26,
       "description": "R09 (?i) rejects extra chars",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 27,
       "description": "Global case-insensitive matches different case",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 28,
       "description": "Regex constraint is case sensitive by default",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 29,
       "description": "Regex constraint is case sensitive by default (validate)",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 30,
       "description": "Inverted constraint should enable when regex does not match",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 31,
       "description": "Inverted constraint should disable when regex matches",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 32,
       "description": "R10 (?m) matches line 'foo' inside multiline string",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 33,
       "description": "R10 without foo line would fail",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 34,
       "description": "R11 (?s) dot matches newline",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 35,
       "description": "R90 lookahead should be rejected upstream; if it leaks through, it must not enable",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "21-regex-constraint-operators.json",
       "kind": "tests",
       "index": 36,
       "description": "R91 backreference should be rejected upstream; if it leaks through, it must not enable",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 0,
       "description": "Exact IP match should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 1,
       "description": "Exact IP mismatch should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 2,
       "description": "CIDR range should enable matching IP",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 3,
       "description": "CIDR range should disable non-matching IP",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 4,
       "description": "Valid CIDR should match even when invalid entries exist",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 5,
       "description": "Invalid-only values should not match",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 6,
       "description": "Missing remoteAddress should not match",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 7,
       "description": "Exact IPv6 match should be enabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 8,
       "description": "Exact IPv6 mismatch should be disabled",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 9,
       "description": "IPv6 CIDR range should enable matching IP",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 10,
       "description": "IPv6 CIDR range should disable non-matching IP",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": false,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": false,
+      "reason": ""
     },
     {
       "file": "22-cidr-constraint-operators.json",
       "kind": "tests",
       "index": 11,
       "description": "Valid IPv6 CIDR should match even when invalid entries exist",
-      "required": false,
-      "status": "NotRun",
+      "required": true,
+      "status": "Pass",
       "expected": true,
-      "actual": null,
-      "reason": "out_of_declared_scope"
+      "actual": true,
+      "reason": ""
     }
   ]
 }

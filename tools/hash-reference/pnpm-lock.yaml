@@ -1,0 +1,62 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      encode-utf8:
+        specifier: 2.0.0
+        version: 2.0.0
+      fmix:
+        specifier: 1.0.0
+        version: 1.0.0
+      murmur-32:
+        specifier: 1.0.0
+        version: 1.0.0
+      murmur3hash-wasm:
+        specifier: 1.0.1
+        version: 1.0.1
+      nanoassert:
+        specifier: 2.0.0
+        version: 2.0.0
+
+packages:
+
+  encode-utf8@2.0.0:
+    resolution: {integrity: sha512-3EyMFxZj1/7oMotElDQUEQcP7N4TIe1aJ0m1uBDoyQ8I2LBHhBsXx8P3KsPbqNlGzG+NYxFwEauUwMPHZg3YDQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  fmix@1.0.0:
+    resolution: {integrity: sha512-PIaqOGvVH5P+R92Ywy5PumsNEHvondVQh42SGOmkA9A0ZTFbfguzZpjZ/Gy3WVRUqT9Ia8k5tWlJeiZQzRHA7g==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  murmur-32@1.0.0:
+    resolution: {integrity: sha512-l6QKUGWXzZWHash7lmZzycpIifOrnc3PeMaoFrMv90c+xqOyOSzJU0q2T/1d15MzAdEWTpCh1paC855APqt1Gw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  murmur3hash-wasm@1.0.1:
+    resolution: {integrity: sha512-+TDFpNmFmg0gABC0FbaddZpkohpj/QqJQCzhMCq5zadALNpoamL3NhBgPzGE7kj9ZYh/Mi2SjU9lUV/K3xqnMQ==}
+
+  nanoassert@2.0.0:
+    resolution: {integrity: sha512-7vO7n28+aYO4J+8w96AzhmU8G+Y/xpPDJz/se19ICsqj/momRbb9mh9ZUtkoJ5X3nTnPdhEJyc0qnM6yAsHBaA==}
+
+snapshots:
+
+  encode-utf8@2.0.0: {}
+
+  fmix@1.0.0: {}
+
+  murmur-32@1.0.0:
+    dependencies:
+      encode-utf8: 2.0.0
+      fmix: 1.0.0
+
+  murmur3hash-wasm@1.0.1:
+    dependencies:
+      nanoassert: 2.0.0
+
+  nanoassert@2.0.0: {}

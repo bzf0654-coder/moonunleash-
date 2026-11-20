@@ -1,0 +1,52 @@
+# Full acceptance ledger
+
+The objective is the fixed end-to-end acceptance contract, **not** stopping at an intermediate milestone. The previously published baseline is source `25b1313`, documentation `dee9c62`; later local results are not retroactively attributed to those commits or their CI.
+
+## Frozen exit gates
+
+- Specification: `Unleash/client-specification@9ef6efa01feabeb699857192ad8106fd7d990235`, all **22 suites / 294 Pass / 0 Fail / 0 NotRun** independently on wasm, wasm-gc, JavaScript and Linux native. Preserve the **24 file SHA-256 checks**, original cases and expectations.
+- Implement remaining advanced/date/SemVer constraints, complete segments, remote-address and CIDR behavior, portable regex, dependencies and public delta hydration/event updates. Delta installation must be atomic and maintain last-good state and generation guarantees. Delta state support does not imply SSE transport.
+- Fixed server: **Unleash OSS v7.4.0**, source `77c5af4d991541a93b877ddac0554beaaf61c8c5`. Record the actual deployment/image identity and database version. Prefer isolated ephemeral CI services; do not use unrelated authorized compute hosts or request production credentials.
+- Real Client API registration, full polling/ETag, configuration changes, modern strategy variants, constraints/dependencies, failure/recovery and basic metrics, using the actual MoonBit HTTP adapter on wasm and Linux native. A controlled mock or Node HTTP proxy is not the server acceptance substitute.
+- Resolve each old Unicode disagreement by correction or a reasoned normative/reference-implementation verdict with regression. Keep the original 93 / 4608 / 48 report and 20 initial mismatches intact.
+- Review final source/interface diffs, run applicable tests, publish real commits and verify same-SHA cloud jobs and artifact provenance. Update public scope and application materials without fabricating submission or certification.
+
+## Local work in progress (2026-11-20)
+
+Dependency checkpoint: all **43 unchanged suite-17 cases** passed, bringing local scope to **147 Pass / 0 Fail / 147 NotRun**, **14/22 suites**, on wasm, wasm-gc and JavaScript (unit tests **49/39/39**, native type checking passed). The frozen differential then passed **43 official + 14 edge decisions**, zero mismatches/exceptions; input SHA-256 `812ac4314ee836494ff4db0ea8be95f86d37e5875316a0aed2ac8de02eb739e7`. Original differential 93/93 and 4608/4608, Unicode 28/20, context defaults 108/108 and M1 strategy plan v2 1547/1547 were rerun unchanged.
+
+Advanced checkpoint: suites **13, 14 and 15** now pass unchanged, yielding **235 Pass / 0 Fail / 59 NotRun** on all three local runnable targets, unit tests **57/47/47**, and successful native type checking. SemVer uses digit-string numeric ordering and explicit ASCII lexical prerelease comparison. Date constraints validate Gregorian dates, offsets and fractional milliseconds and use the real [core/env clock](https://raw.githubusercontent.com/moonbitlang/core/3b911e46b84aaa0608e244938d50b37560fcbd9e/env/README.mbt.md) when currentTime is absent. Calendar, epoch, offset, boundary and malformed/Unicode inputs have direct assertions.
+
+Network checkpoint: new portable IPv4/IPv6/CIDR parsing and legacy remote-address strategy pass suites **06 and 22** on wasm, yielding **253 Pass / 0 Fail / 41 NotRun**, **19/22 suites**, with **62/62** wasm tests. Other backends have not yet rerun this latest IP increment. These changes are not yet published or cloud-accepted.
+
+Initial stops retained: SemVer first stopped on a missing `priv` warning; its first executed version failed official prerelease ordering and an additional precedence assertion. Added parser regression exposed the `beta.1`/`alpha.1` ordering; explicit per-character ASCII comparison fixed it without changing original expectations. The date implementation first stopped on deprecated UInt64 conversion and was corrected to the supported conversion. Suite 13 then exposed the old blanket rejection of unknown operators. The normative input was retained: well-formed unknown operators now return false **before inversion**, while malformed constraint shapes still reject installation. The original security regression was strengthened to require unknown/inverted/fallback/variant fail-closed behavior and availability of unrelated valid flags, rather than expecting a non-normative whole-snapshot rejection.
+
+Rules: all parents are ANDed; absent parents fail even for a negative dependency; a parent with its own dependency is unsatisfied, which also terminates cycles. `enabled: false` ignores variant whitelists. Positive variant dependencies check the parent's `feature_enabled` and selected name, not its variant-enabled field. Shared injected randomness reaches parent selection without a second rollout evaluation. Malformed dependency updates preserve the old installed snapshot.
+
+## Dependency differential plan v1 (before execution)
+
+Freeze the 43 original suite-17 boolean/variant expectations plus seven structural edge shapes evaluated through both APIs (**14 extra decisions**, **57 total**): AND satisfied, AND unsatisfied, missing negative parent, self-cycle, nested negative parent, allowed name `disabled` on an enabled parent with no variants, and ignored whitelist on a disabled negative parent. Use the same fixed ASCII identity `dependency-user` on all extra cases. No selection/filtering of contexts or seeds, no random rollout thresholds in extra cases, no oracle monkeypatches. Record serialized-input SHA-256, retain first/latest results, and fail on oracle exceptions or mismatches. The old differential and M1 corpus remain unchanged.
+
+## Regex and delta checkpoints (2026-11-20)
+
+Portable regex added unchanged suite 21: **290 Pass / 0 Fail / 4 NotRun** on wasm, wasm-gc and JS, tests **66/56/56**, native type check passed. Production uses exact `moonbitlang/regexp@0.3.7`; see [the dialect/resource contract and installation stops](<REGEX.md>). An initial compile stopped on five deprecated StringBuilder constructors; supported constructors fixed that warning. A negated-class caret regression was added before the final three-target run. No candidate result replaced an official expected value.
+
+Public delta now handles all five event types using owned temporary maps, shared structural validators and final full-state validation. Original suites 19/20 run through `Snapshot::from_delta`, not a supervisor conversion to full snapshots. All three local runtimes now pass **294 Pass / 0 Fail / 0 NotRun**, **22/22 suites**, with **24/24 source hashes**. Tests are **73/73 wasm, 63/63 wasm-gc, 63/63 JS**; native type check, `moon info`, `moon fmt` and whitespace checks passed. These are local runtime results, not an unexecuted claim about new Linux native/cloud jobs.
+
+Five additional delta regressions cover immutable snapshots, segment removal, hydration replacement, exactly one generation per batch, malformed/unknown/duplicate/disordered/unsafe-id rollback, structural validation before replay skipping, idempotent overlaps, explicit cursor reset, full-install cursor reset, empty states, invalidated clock recovery, negative time and closed stores. The [public delta contract and pre-execution test plan](<DELTA.md>) distinguish replay revalidation from new installation and explicit resynchronization.
+
+## Metrics, independent Unicode and final integration
+
+Bounded active/pending metrics, ISO UTC dates, exact 202 acknowledgment, registration identity, optional timer and scoped cancellation passed **14 core + 5 online** dedicated local tests; [contract](<METRICS.md>). They do not claim durable or exactly-once delivery.
+
+[Unicode adjudication](<UNICODE.md>) freezes 144 full uint32 values from two independent byte-oriented references and 112 API expectations before Moon evaluation; all three local backends passed. Original 20 Node6.12.2 differences are retained and individually classified. The fixed spec does not normatively decide the encoding; explicit UTF8 policy agrees with a fixed official-repository Rust implementation, not with Node's low-byte path. Read-only verifier and negative/read-only controls passed.
+
+Final independent review found two non-fixture regex bugs: unscoped inline flags wrongly nested the rest of an alternation, and case-insensitive hexadecimal/octal escapes bypassed the dependency's folding path. Both were corrected with explicit positive/negative, nested-scope and Unicode/range/quantifier regressions; the final local matrix passed **96/96 wasm, 81/81 wasm-gc and 81/81 JS**, native strict type checking and all three **294/0/0** reports. The new wasm/native executable initially lacked an unsupported-backend entry point; a conditional abort-only main, matching the existing live/smoke examples, restored GC/JS whole-module builds without skipping SDK tests. No official expectation or frozen Unicode input was changed.
+
+[Real-server wasm/native acceptance](<REAL_SERVER.md>) is implemented with direct SDK transport, independently fixed counters and Admin DB readback, but not yet executed. wasm/native strict compilation and raw-byte OCI chain/source-association verification passed locally; those checks do not prove runtime interoperability.
+
+The final controlled HTTP rerun first failed its supervisor registration check: the old mock expected a numeric seconds timestamp and six strategies, while the fixed-server-compatible SDK now sends ISO UTC, instanceId/sdkVersion and seven implemented strategies. The mock was updated to check these exact fields and time range, not to accept arbitrary payloads; the Moon program now also asserts registration succeeded on every refresh. The corrected rerun passed all six HTTP stages, two registrations, exact conditional ETags, incremental size rejection and no redirect following. This is a mock-contract correction, not evidence of a real Unleash pass.
+
+## Still required
+
+Linux native execution and same-source four-target cloud proof for this new 294-case implementation and fixed-server wasm/native interoperability plus metrics persistence remain open. Regex dialect limits are explicit rather than a blanket arbitrary-RE2 compatibility claim. Full local conformance is a required gate, **not** acceptance of the whole SDK. Earlier CI/source hashes above still prove only their historical scope.

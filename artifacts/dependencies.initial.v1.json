@@ -1,0 +1,881 @@
+{
+  "planVersion": 1,
+  "backend": "js",
+  "inputSha256": "812ac4314ee836494ff4db0ea8be95f86d37e5875316a0aed2ac8de02eb739e7",
+  "specRevision": "9ef6efa01feabeb699857192ad8106fd7d990235",
+  "reference": {
+    "name": "unleash-client",
+    "version": "6.12.2",
+    "gitHead": "dc113ce745f6c0efe65ae3f6b49a439144ac4aa3"
+  },
+  "summary": {
+    "official17": {
+      "matched": 43,
+      "mismatched": 0,
+      "oracleSpecFailures": 0
+    },
+    "edges": {
+      "matched": 14,
+      "mismatched": 0
+    },
+    "oracleErrors": 0
+  },
+  "cases": [
+    {
+      "id": "official17/tests/0",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/1",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/2",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/3",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/4",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/5",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/6",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/7",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/8",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/9",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/10",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/11",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/12",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/13",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/14",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/15",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/16",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/17",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/18",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/19",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/20",
+      "status": "Match",
+      "moonbit": true,
+      "node": true,
+      "officialExpected": true,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/tests/21",
+      "status": "Match",
+      "moonbit": false,
+      "node": false,
+      "officialExpected": false,
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/0",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/1",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/2",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/3",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/4",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/5",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/6",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/7",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/8",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/9",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/10",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/11",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/12",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/13",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/14",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/15",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/16",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/17",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/18",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/19",
+      "status": "Match",
+      "moonbit": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "node": {
+        "name": "child.variant",
+        "enabled": true,
+        "feature_enabled": true,
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        }
+      },
+      "officialExpected": {
+        "name": "child.variant",
+        "payload": {
+          "type": "string",
+          "value": "variantValue"
+        },
+        "enabled": true,
+        "feature_enabled": true
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "official17/variantTests/20",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "officialExpected": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "oracleMatchesSpec": true
+    },
+    {
+      "id": "edges/and/boolean",
+      "status": "Match",
+      "moonbit": true,
+      "node": true
+    },
+    {
+      "id": "edges/and/variant",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      }
+    },
+    {
+      "id": "edges/and-fail/boolean",
+      "status": "Match",
+      "moonbit": false,
+      "node": false
+    },
+    {
+      "id": "edges/and-fail/variant",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      }
+    },
+    {
+      "id": "edges/missing-negative/boolean",
+      "status": "Match",
+      "moonbit": false,
+      "node": false
+    },
+    {
+      "id": "edges/missing-negative/variant",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      }
+    },
+    {
+      "id": "edges/self/boolean",
+      "status": "Match",
+      "moonbit": false,
+      "node": false
+    },
+    {
+      "id": "edges/self/variant",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      }
+    },
+    {
+      "id": "edges/nested-negative/boolean",
+      "status": "Match",
+      "moonbit": false,
+      "node": false
+    },
+    {
+      "id": "edges/nested-negative/variant",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": false
+      }
+    },
+    {
+      "id": "edges/named-disabled/boolean",
+      "status": "Match",
+      "moonbit": true,
+      "node": true
+    },
+    {
+      "id": "edges/named-disabled/variant",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      }
+    },
+    {
+      "id": "edges/negative-whitelist/boolean",
+      "status": "Match",
+      "moonbit": true,
+      "node": true
+    },
+    {
+      "id": "edges/negative-whitelist/variant",
+      "status": "Match",
+      "moonbit": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      },
+      "node": {
+        "name": "disabled",
+        "enabled": false,
+        "feature_enabled": true
+      }
+    }
+  ]
+}

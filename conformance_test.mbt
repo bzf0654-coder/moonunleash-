@@ -9,7 +9,12 @@ fn get(value : @json.Json, key : String) -> @json.Json {
 ///|
 fn run_boolean_spec(source : String) -> Unit raise {
   let spec = @json.parse(source)
-  let snapshot = @sdk.Snapshot::parse(get(spec, "state").stringify())
+  let state = get(spec, "state")
+  let snapshot = if get(state, "events") is Array(_) {
+    @sdk.Snapshot::from_delta(state.stringify())
+  } else {
+    @sdk.Snapshot::parse(state.stringify())
+  }
   let cases = match get(spec, "tests") {
     Array(xs) => xs
     Null => []
@@ -66,6 +71,31 @@ test "official 05 random rollout" {
 }
 
 ///|
+test "official 06 remote address strategy" {
+  run_boolean_spec(fixture_06)
+}
+
+///|
+test "official 19 public delta hydration" {
+  run_boolean_spec(fixture_19)
+}
+
+///|
+test "official 20 public delta events" {
+  run_boolean_spec(fixture_20)
+}
+
+///|
+test "official 21 regular expression constraints" {
+  run_boolean_spec(fixture_21)
+}
+
+///|
+test "official 22 CIDR constraints" {
+  run_boolean_spec(fixture_22)
+}
+
+///|
 test "official 07 multiple strategies" {
   run_boolean_spec(fixture_07)
 }
@@ -96,8 +126,28 @@ test "official 12 custom stickiness" {
 }
 
 ///|
+test "official 13 advanced and date constraints" {
+  run_boolean_spec(fixture_13)
+}
+
+///|
+test "official 15 global segments" {
+  run_boolean_spec(fixture_15)
+}
+
+///|
+test "official 14 semantic version constraints" {
+  run_boolean_spec(fixture_14)
+}
+
+///|
 test "official 16 strategy variants" {
   run_boolean_spec(fixture_16)
+}
+
+///|
+test "official 17 dependent features" {
+  run_boolean_spec(fixture_17)
 }
 
 ///|

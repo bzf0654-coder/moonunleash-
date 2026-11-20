@@ -22,7 +22,11 @@ Plan v1 input SHA-256 was `70a107de32c85b6d210a38bc1645dca219e38fd16dd88563cbb1d
 
 Before re-execution, **plan v2** explicitly supplies `parameters: {}` on default strategies. All 64 contexts, configurations, weights, case IDs and official expectations are retained. The omitted-parameter robustness case stays in the MoonBit tests; v2 does not claim reference equivalence for it. New unexpected oracle errors are recorded per case and cause nonzero exit rather than skipping cases.
 
-## Results
+## Current integration status (2026-11-20)
+
+The M1 implementation remains covered. The full evaluator now adds advanced constraints, segment handling, dependencies and public delta state application; wasm, wasm-gc and JS each execute **all 22 suites / 294 Pass / 0 Fail / 0 NotRun**. Integrated tests are **96/96 wasm, 81/81 wasm-gc and 81/81 JS**, including metrics and frozen independent Unicode regressions. Native currently passes local strict type checking, not current runtime acceptance. The new four-target same-SHA cloud result and fixed-v7.4.0 real-server wasm/native acceptance are still pending. See the [current acceptance ledger](<ACCEPTANCE.md>), [delta contract](<DELTA.md>) and [metrics contract](<METRICS.md>).
+
+## Historical M1 results (2026-11-18)
 
 Plan v2 input SHA-256: `a37907e32a4978c90772a1323145359849a9d991475d1fdd588c7163b7834082`. The actual compiled JS MoonBit evaluator and unmodified Node core agree **11/11 official cases and 1536/1536 deterministic matrix comparisons**, with **0 oracle errors** and **0 oracle/spec disagreements**. Local tests pass wasm **43/43**, wasm-gc **33/33**, JavaScript **33/33**; Windows native type checking passes, runtime remains unverified. The public interfaces are unchanged. Existing local conformance has reached 104 Pass / 0 Fail / 190 NotRun on wasm, wasm-gc and JavaScript. This includes all 11 suite-16 cases, with no changes to upstream fixtures.
 
@@ -32,4 +36,4 @@ The source commit `25b13135f5cf9ed01c460dd3e587ab44ab9d5756` passed [cloud CI #5
 
 The server target is Unleash OSS v7.4.0, commit `77c5af4d991541a93b877ddac0554beaaf61c8c5`. Create strategy variants in that server's management configuration and fetch them through the backend Client API. Do not flatten them into deprecated feature-level variants. A representative A/B example is covered by the MoonBit regression above.
 
-No live v7.4.0 capture or end-to-end test is claimed here. Pure evaluation success does not prove server registration, token/environment selection, native networking or metrics. The server portion of M1 remains pending until an actual instance is exercised. Dependencies, advanced constraints, delta state application and the remaining 190 official cases are later required work. Unicode diagnostics and the known reference-SDK divergence remain visible.
+No live v7.4.0 capture or end-to-end test is claimed here. Pure evaluation success does not prove server registration, token/environment selection, native networking or metrics. The server portion of M1 remains pending until an actual instance is exercised. Dependencies, advanced constraints, public delta state application and all 294 official cases are now locally covered; current cloud and real-server evidence remain separate unfinished gates. [Unicode adjudication](<UNICODE.md>) retains the known Node-SDK divergence and adds independently frozen UTF-8 hash/API regressions.

@@ -1,0 +1,55 @@
+name: Real Unleash 7.4.0 acceptance
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-server:
+    name: Real server / ${{ matrix.target }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [wasm, native]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install native transport prerequisites
+        if: matrix.target == 'native'
+        run: sudo apt-get update && sudo apt-get install -y build-essential libssl-dev pkg-config
+      - name: Install official stable MoonBit toolchain
+        run: |
+          mkdir -p ci-output
+          curl --fail --show-error --location https://cli.moonbitlang.com/install/unix.sh -o "$RUNNER_TEMP/install-moonbit.sh"
+          sha256sum "$RUNNER_TEMP/install-moonbit.sh" > ci-output/moon-installer.sha256
+          bash "$RUNNER_TEMP/install-moonbit.sh"
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Record actual toolchain and environment
+        run: |
+          moon version --all | tee ci-output/toolchain-${{ matrix.target }}.txt
+          node --version | tee ci-output/node.txt
+          uname -a | tee ci-output/runner.txt
+          docker version > ci-output/docker-version.txt
+          git rev-parse HEAD > ci-output/checkout-sha.txt
+      - name: Resolve declared Moon dependencies
+        run: moon update
+      - name: Execute actual SDK against isolated pinned server
+        # Node controls only ephemeral Docker/Admin/readback. Moon directly sends all /client traffic.
+        # The script verifies registry provenance before starting containers, and cleans up in finally.
+        run: node tools/real-server.mjs ${{ matrix.target }}
+      - name: Publish current-run evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-unleash-7.4.0-${{ matrix.target }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ci-output/**
+          if-no-files-found: warn
+          retention-days: 14

@@ -204,7 +204,7 @@
     },
     {
       "file": "06-remote-address-strategy.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 6
       },
@@ -213,37 +213,37 @@
           "kind": "tests",
           "index": 0,
           "description": "Feature.remoteAddress.A should be enabled for localhost",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "Feature.remoteAddress.A should not be enabled for missing remoteAddress on context",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "Feature.remoteAddress.B should be enabled for remoteAddress 192.168.0.1",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 3,
           "description": "Feature.remoteAddress.B should not be enabled for remoteAddress 192.168.0.3",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 4,
           "description": "Feature.remoteAddress.B should not be enabled for remoteAddress 217.100.10.11",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 5,
           "description": "Feature.remoteAddress.C should be enabled for remoteAddress 192.168.0.3",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
@@ -694,7 +694,7 @@
     },
     {
       "file": "13-constraint-operators.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 46
       },
@@ -703,283 +703,283 @@
           "kind": "tests",
           "index": 0,
           "description": "F1.startsWith should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "F1.startsWith should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "F2.startsWith.multiple should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 3,
           "description": "F2.startsWith.multiple should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 4,
           "description": "F2.startsWith.caseInsensitve should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 5,
           "description": "F2.startsWith.caseInsensitve should handle various cases when enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 6,
           "description": "F3.endsWith should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 7,
           "description": "F3.endsWith should be disabled when casing is incorrect",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 8,
           "description": "F3.endsWith.ignoringCase should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 9,
           "description": "F3.endsWith should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 10,
           "description": "F4.contains should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 11,
           "description": "F4.contains should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 12,
           "description": "F4.contains.inverted should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 13,
           "description": "F5.numEq",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 14,
           "description": "F5.numEq works for floats",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 15,
           "description": "F5.numEq.inverted should be false",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 16,
           "description": "F5.numEq.float works for floats",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 17,
           "description": "F5.numEq.float works for integers",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 18,
           "description": "F5.numEq.inverted should be true",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 19,
           "description": "F5.numGT should be true",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 20,
           "description": "F5.numGT should be false",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 21,
           "description": "F5.numGTE should be true when equal",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 22,
           "description": "F5.numGTE should be true when larger",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 23,
           "description": "F5.numGTE should be false when lower",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 24,
           "description": "F5.numLTE should be false when higher",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 25,
           "description": "F5.numLTE should be true when equal",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 26,
           "description": "F5.numLTE should be true when lower",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 27,
           "description": "F5.numLT should be true when lower",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 28,
           "description": "F5.numLT should be false when equal",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 29,
           "description": "F6.number-range should be false when not in range",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 30,
           "description": "F6.number-range should be true when in range",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 31,
           "description": "F7.dateAfter should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 32,
           "description": "F7.dateAfter should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 33,
           "description": "F7.dateAfter is exclusive of date parameter",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 34,
           "description": "F7.dateBefore should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 35,
           "description": "F7.dateBefore should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 36,
           "description": "F7.dateBefore is exclusive of date parameter",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 37,
           "description": "F7.date-range should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 38,
           "description": "F7.date-with-timezone should respect timezone",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 39,
           "description": "F7.invalid-operator should always return false",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 40,
           "description": "F8.missing-field.IN should return false",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 41,
           "description": "F8.missing-field.IN should return true when present",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 42,
           "description": "F8.missing-field.NOT_IN should return true",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 43,
           "description": "F8.missing-field.NOT_IN should return true when null",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 44,
           "description": "F9.inverted.IN should return false when present but inverted",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 45,
           "description": "F10.inverted.NOT_IN should return true when present but inverted",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
     {
       "file": "14-constraint-semver-operators.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 36
       },
@@ -988,223 +988,223 @@
           "kind": "tests",
           "index": 0,
           "description": "F8.semverEQ should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "F8.semverEQ should be enabled for metadata",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "F8.semverEQ should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 3,
           "description": "F8.semverGT should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 4,
           "description": "F8.semverGT should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 5,
           "description": "F8.semverGT should be disabled if only metadata differs",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 6,
           "description": "F8.semverGTE should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 7,
           "description": "F8.semverGTE should be enabled for greater",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 8,
           "description": "F8.semverGTE should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 9,
           "description": "F8.semverLT should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 10,
           "description": "F8.semverLT should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 11,
           "description": "F8.semverLT should be disabled if only metadata differs",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 12,
           "description": "F8.semverLTE should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 13,
           "description": "F8.semverLTE should be enabled for less",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 14,
           "description": "F8.semverLTE should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 15,
           "description": "F8.semverAlphaGT is less than beta",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 16,
           "description": "F8.semverAlphaGT operator is less than release",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 17,
           "description": "F8.semverAlphaLT is less than beta",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 18,
           "description": "F8.semverAlphaLT is greater than old beta",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 19,
           "description": "F8.semverAlphaLT is less than release",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 20,
           "description": "F8.semverAlphaVersioning alpha.1 is less than alpha.3",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 21,
           "description": "F8.semverAlphaVersioning alpha.4 is greater than alpha.3",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 22,
           "description": "F8.alphaUnnumbered - unnumbered is LT than numbered",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 23,
           "description": "F8.releaseCandidate - alpha is not greater than rc",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 24,
           "description": "F8.releaseCandidate - beta is not greater tha rc",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 25,
           "description": "F8.releaseCandidate - release is greater than rc",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 26,
           "description": "F8.invalidSemverWithLeadingV - invalid semver resolves to false",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 27,
           "description": "F8.invalidSemverWithLeadingV - broken semver resolves to false",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 28,
           "description": "F8.semverMetadataEQ should be enabled if only metadata differs",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 29,
           "description": "F8.semverMetadataEQ should be enabled if only metadata differs and contains a dot",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 30,
           "description": "F8.semverMetadataEQ should be enabled if metadata matches",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 31,
           "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 32,
           "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs and contains a dot",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 33,
           "description": "F8.semverPreReleaseMetadataEQ should be enabled if only metadata differs",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 34,
           "description": "F8.semverPreReleaseMetadataLT should be disabled as both are equal after discarding metadata",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 35,
           "description": "F8.semverPreReleaseMetadataGT should be disabled for higher metadata cause metadata is ignored and both are equal",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
     {
       "file": "15-global-constraints.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 5,
         "variantTests": 1
@@ -1214,37 +1214,37 @@
           "kind": "tests",
           "index": 0,
           "description": "F9.globalSegmentOn should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "F9.globalSegmentOff should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "F9.globalSegmentAndConstraint should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 3,
           "description": "F9.withMissingSegment should force evaluation to false",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 4,
           "description": "F9.withSeveralConstraintsAndSegments should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 0,
           "description": "F9.globalSegmentOn and customField=616 yields green",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
@@ -1325,7 +1325,7 @@
     },
     {
       "file": "17-dependent-features.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 22,
         "variantTests": 21
@@ -1335,259 +1335,259 @@
           "kind": "tests",
           "index": 0,
           "description": "Both parent and child must be enabled for the child to be enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "Both explicitly enabled parent and child must be enabled for the child to be enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "If parent is enabled but child is not, the child remains disabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 3,
           "description": "If parent is disabled, the child is also disabled, irrespective of its own state.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 4,
           "description": "Both parent and child being disabled results in the child being disabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 5,
           "description": "Child is enabled only if the parent is expectedly disabled and indeed is.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 6,
           "description": "Child is disabled if the parent is expected to be disabled but is actually enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 7,
           "description": "Child is enabled if its parent matches a specific variant.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 8,
           "description": "Child is enabled if its parent matches any of the specified variants.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 9,
           "description": "Child is enabled if the parent is enabled, regardless of empty variant dependencies.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 10,
           "description": "Child is disabled if the parent's variant does not match the specified one.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 11,
           "description": "Child is enabled if all of its multiple parents are enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 12,
           "description": "Child is disabled if any one of its multiple parents is disabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 13,
           "description": "Child is disabled if the specified parent does not exist.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 14,
           "description": "Child is disabled if there's a cyclic dependency with the parent.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 15,
           "description": "Child is disabled if a transitive dependency exists.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 16,
           "description": "Child is enabled if its parent is enabled with child context.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 17,
           "description": "Child is disabled if its parent is disabled with child context.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 18,
           "description": "Child is enabled if its parent's default variant is satisfied.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 19,
           "description": "Child is disabled if the parent is disabled, even if the child's expected variant is the disabled variant",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 20,
           "description": "Child is enabled if the parent is expected to be disabled and the parent's constraint does not match.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 21,
           "description": "Child is disabled when it requires the parent's variant to be \"disabled\" and the parent is off because its constraint does not match.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 0,
           "description": "Child yields its variant when both parent and child are enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 1,
           "description": "Child yields its variant when both explicitly enabled parent and child are enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 2,
           "description": "Child yields a disabled variant when the parent is enabled, but the child is not.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 3,
           "description": "Child yields a disabled variant when the parent is disabled, even if the child is enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 4,
           "description": "Child yields a disabled variant when both the parent and child are disabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 5,
           "description": "Child yields its variant when the parent's disabled state is as expected.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 6,
           "description": "Child yields a disabled variant when the parent's disabled state is not as expected.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 7,
           "description": "Child yields its variant when the parent matches a specific variant.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 8,
           "description": "Child yields its variant when the parent matches any given variant.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 9,
           "description": "Child yields its variant when the parent is enabled, even with empty variant dependencies.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 10,
           "description": "Child yields a disabled variant if the parent's variant doesn't match the required one.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 11,
           "description": "Child yields its variant when all its parents are enabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 12,
           "description": "Child yields a disabled variant if any of its parents is disabled.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 13,
           "description": "Child yields a disabled variant in the absence of a specified parent.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 14,
           "description": "Child yields a disabled variant due to a cyclic dependency with the parent.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 15,
           "description": "Child yields a disabled variant because of a transitive dependency.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 16,
           "description": "Child yields its variant when parent is enabled with child context.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 17,
           "description": "Child yields a disabled variant when parent is disabled with child context.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 18,
           "description": "Child yields its variant when the parent's default variant is met.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 19,
           "description": "Child yields its variant when the parent is expected to be disabled and the parent's constraint does not match.",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "variantTests",
           "index": 20,
           "description": "Child yields a disabled variant when it requires the parent's variant to be \"disabled\" and the parent is off because its constraint does not match.",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
@@ -1614,7 +1614,7 @@
     },
     {
       "file": "19-delta-api-hydration.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 1
       },
@@ -1623,13 +1623,13 @@
           "kind": "tests",
           "index": 0,
           "description": "Hydration feature should be enabled when context criteria are met",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
     {
       "file": "20-delta-api-events.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 3
       },
@@ -1638,25 +1638,25 @@
           "kind": "tests",
           "index": 0,
           "description": "delta.api.events.updated.1 should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "delta.api.events.updated.2 should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "delta.api.events.updated.3 should be enabled with segment",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
     {
       "file": "21-regex-constraint-operators.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 37
       },
@@ -1665,229 +1665,229 @@
           "kind": "tests",
           "index": 0,
           "description": "Basic email match should be enabled when regex matches",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "Broken regex should not match anything",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "Invalid regex should result in toggle being disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 3,
           "description": "Null value should result in toggle being disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 4,
           "description": "Sanity check for 'Null value should result in toggle being disabled'",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 5,
           "description": "Undefined value should result in toggle being disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 6,
           "description": "R01 matches basic email-ish",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 7,
           "description": "R01 rejects missing @",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 8,
           "description": "R02 matches user + 3 digits",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 9,
           "description": "R02 rejects wrong digit count",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 10,
           "description": "R03 matches ASCII alpha only",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 11,
           "description": "R03 rejects digits",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 12,
           "description": "R04 matches whole word cat",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 13,
           "description": "R04 does not match inside 'concatenate'",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 14,
           "description": "R05 matches foo",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 15,
           "description": "R05 matches fo",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 16,
           "description": "R05 rejects f",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 17,
           "description": "R06 matches abc (optional 'ab')",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 18,
           "description": "R06 matches c",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 19,
           "description": "R06 rejects ac (missing b)",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 20,
           "description": "R07 matches aaaa (4 a's)",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 21,
           "description": "R07 rejects a (too short)",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 22,
           "description": "R07 rejects aaaaa (too long)",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 23,
           "description": "R08 non-greedy still matches full string ending in b",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 24,
           "description": "R08 rejects missing ending b",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 25,
           "description": "R09 (?i) matches different case",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 26,
           "description": "R09 (?i) rejects extra chars",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 27,
           "description": "Global case-insensitive matches different case",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 28,
           "description": "Regex constraint is case sensitive by default",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 29,
           "description": "Regex constraint is case sensitive by default (validate)",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 30,
           "description": "Inverted constraint should enable when regex does not match",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 31,
           "description": "Inverted constraint should disable when regex matches",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 32,
           "description": "R10 (?m) matches line 'foo' inside multiline string",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 33,
           "description": "R10 without foo line would fail",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 34,
           "description": "R11 (?s) dot matches newline",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 35,
           "description": "R90 lookahead should be rejected upstream; if it leaks through, it must not enable",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 36,
           "description": "R91 backreference should be rejected upstream; if it leaks through, it must not enable",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     },
     {
       "file": "22-cidr-constraint-operators.json",
-      "status": "NotRun",
+      "status": "Required",
       "groups": {
         "tests": 12
       },
@@ -1896,73 +1896,73 @@
           "kind": "tests",
           "index": 0,
           "description": "Exact IP match should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 1,
           "description": "Exact IP mismatch should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 2,
           "description": "CIDR range should enable matching IP",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 3,
           "description": "CIDR range should disable non-matching IP",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 4,
           "description": "Valid CIDR should match even when invalid entries exist",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 5,
           "description": "Invalid-only values should not match",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 6,
           "description": "Missing remoteAddress should not match",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 7,
           "description": "Exact IPv6 match should be enabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 8,
           "description": "Exact IPv6 mismatch should be disabled",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 9,
           "description": "IPv6 CIDR range should enable matching IP",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 10,
           "description": "IPv6 CIDR range should disable non-matching IP",
-          "status": "NotRun"
+          "status": "Required"
         },
         {
           "kind": "tests",
           "index": 11,
           "description": "Valid IPv6 CIDR should match even when invalid entries exist",
-          "status": "NotRun"
+          "status": "Required"
         }
       ]
     }

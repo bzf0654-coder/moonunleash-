@@ -34,7 +34,14 @@ fn main raise {
     let spec = @json.parse(fixture.source)
     let snapshot : Result[@sdk.Snapshot, String] = if fixture.required {
       required_suites = required_suites + 1
-      Ok(@sdk.Snapshot::parse(field(spec, "state").stringify())) catch {
+      let state = field(spec, "state")
+      Ok(
+        if field(state, "events") is Array(_) {
+          @sdk.Snapshot::from_delta(state.stringify())
+        } else {
+          @sdk.Snapshot::parse(state.stringify())
+        },
+      ) catch {
         @sdk.ConfigError::Invalid(detail) => Err("invalid: " + detail)
         @sdk.ConfigError::Unsupported(detail) => Err("unsupported: " + detail)
         _ => Err("snapshot_parse_error")

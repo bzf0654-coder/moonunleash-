@@ -75,6 +75,22 @@ pub fn SnapshotStore::install(
     raise Invalid("negative monotonic time")
   }
   let snapshot = Snapshot::parse(source)
+  self.commit_snapshot(snapshot, now_ms, origin)
+}
+
+///|
+fn SnapshotStore::commit_snapshot(
+  self : SnapshotStore,
+  snapshot : Snapshot,
+  now_ms : Int64,
+  origin : String,
+) -> Int64 raise ConfigError {
+  if self.closed || now_ms < 0 {
+    raise Invalid("cannot commit closed state or negative monotonic time")
+  }
+  if self.generation == 9223372036854775807L {
+    raise Invalid("snapshot generation exhausted")
+  }
   self.snapshot = Some(snapshot)
   self.generation = self.generation + 1L
   self.verified_at = Some(now_ms)
@@ -116,7 +132,8 @@ pub fn SnapshotStore::record_failure(
 
 ///|
 /// Conservatively invalidate freshness after an adapter detects clock rollback.
-/// The snapshot is retained, but only a full accepted install restores readiness.
+/// The snapshot is retained. A new validated install/update restores readiness;
+/// a no-change replay cannot revalidate an untrusted clock.
 pub fn SnapshotStore::invalidate_clock(self : SnapshotStore) -> Unit {
   if !self.closed {
     self.verified_at = None
