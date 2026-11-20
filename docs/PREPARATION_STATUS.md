@@ -1,4 +1,10 @@
-# 申报准备状态（更新于 2026-11-18）
+# 申报准备状态（更新于 2026-11-20）
+
+## 当前完整规范状态
+
+wasm、wasm-gc、JS、Linux native 已在[四目标云端 CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346)独立执行全部 **22 组 / 294 Pass / 0 Fail / 0 NotRun**、24 项上游哈希校验及适用回归；[同源公开证明](<../artifacts/ci-run-44689082346.json>)核对实际工具链、当前运行摘要和报告 SHA-256，未下载原始产物归档。原子 delta、有界 metrics、UTF-8 独立裁定及原 Node 20 差异回归均已实现，不用 104 条历史结果替代全量证据。源码 `1f5cc6378948d1ac04655c64871e24d6bfbab665` 已同时通过[最新四后端规范](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815957)与[wasm/native 真服务完整闭环](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815719)，含恢复、两次 metrics 数据库精确读回和七项推荐示例判定；固定技术验收已完成，证据及剩余边界见[验收台账](<ACCEPTANCE.md>)。个人资料与实际报名仍需申请人负责；Mooncakes 发布、官方认证、Windows native 运行、SSE 与生产性能均不作已完成声明。
+
+## 历史 M1 新增状态（2026-11-18）
 
 **M1 新增状态：**策略级变体纯评估已实现；本地 wasm 43/43、wasm-gc 33/33、JS 33/33；三者规范均为 104 Pass / 0 Fail / 190 NotRun，13/22 组。新增固定差分 11 条官方及 1536 条矩阵一致，原 93/4608/48 差分不变。源码 `25b1313` 已通过[第五轮四目标 CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44337305293)，新 SHA 的 job/step 和四份产物元数据均已核验；真实 v7.4.0 互通仍待验证。完整终点为固定 22 组 294 Pass / 0 Fail / 0 NotRun，见 [M1 契约与边界](<STRATEGY_VARIANTS.md>)；下面 11 月 17 日数据保留为历史。
 
@@ -32,7 +38,7 @@
 
 尚未添加 remote、未 push、未执行云端 CI、未发布 Mooncakes、未提交官方表单。需要仓库所有者完成公开创建，或提供真正可公开访问的正确仓库 URL。此条件从第 2 轮持续至第 4 轮；本地继续完善不能替代公开入口。申请人资料、参赛群/表单操作按[发布清单](<PUBLICATION_CHECKLIST.md>)由用户确认，不能虚填。
 
-## 仍是后续开发/运行验证，不计为当前已通过
+## 11 月 17 日未完成事项（历史，当前结果见顶部）
 
 - 真实 Unleash 服务端接受与持续互通：尚无本次授权配置好的实例/凭据；可控 HTTP 服务不是替代证明。
 - Windows native C 编译与运行：本机缺少编译器；本机类型检查不能替代运行。Linux native 云端构建测试已通过，不据此声称 native 真实网络 smoke 已跑。

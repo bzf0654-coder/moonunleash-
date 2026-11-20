@@ -1,0 +1,386 @@
+{
+  "repository": "bzf0654-coder/moonunleash-",
+  "workflow": ".github/workflows/real-server.yml",
+  "runId": 44690815719,
+  "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815719",
+  "headSha": "1f5cc6378948d1ac04655c64871e24d6bfbab665",
+  "status": "completed",
+  "conclusion": "success",
+  "attempt": 1,
+  "event": "push",
+  "createdAt": "2026-11-20T06:51:57Z",
+  "updatedAt": "2026-11-20T06:53:53Z",
+  "jobs": [
+    {
+      "id": 136135896548,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/136135896548",
+      "name": "Real server / wasm",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815719/job/136135896548",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native transport prerequisites",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain and environment",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve declared Moon dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Execute actual SDK against isolated pinned server",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Publish current-run evidence, including failures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "annotations": [
+        {
+          "level": "warning",
+          "title": "",
+          "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        },
+        {
+          "level": "notice",
+          "title": "MoonUnleash real-server proof",
+          "message": "{\"sha\":\"1f5cc6378948d1ac04655c64871e24d6bfbab665\",\"target\":\"wasm\",\"status\":\"PASS\",\"sourceRevision\":\"77c5af4d991541a93b877ddac0554beaaf61c8c5\",\"image\":\"unleashorg/unleash-server@sha256:fd521aeb776da5577c1889514bae9d48f901e8bc6119529c643797f901f75980\",\"config\":\"sha256:8f47f34458be176c3d3467bbded66f815ca341f0c92817e150ac2f9b1dcf5688\",\"containerId\":\"517b6f83091ac56e2c59f4595bf6686caeafa34819bcf9689da93065d2bae520\",\"toolchain\":\"moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\",\"databaseVersion\":\"PostgreSQL 15.20 (Debian 15.20-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit\",\"operations\":[\"registered\",\"recommendation\",\"recommendation-off\",\"recommendation-zero\",\"baseline\",\"off\",\"off-seen\",\"on\",\"on-seen\",\"persisted\",\"stop\",\"outage-seen\",\"start\",\"recovered\",\"off-again\",\"off-again-seen\",\"on-again\",\"on-again-seen\",\"final-persisted\",\"complete\"],\"registrations\":1,\"seen304\":true,\"distinctETags\":[\"\\\"6ef7ec5a:18:v1\\\"\",\"\\\"6ef7ec5a:19:v1\\\"\",\"\\\"6ef7ec5a:21:v1\\\"\",\"\\\"6ef7ec5a:22:v1\\\"\",\"\\\"6ef7ec5a:23:v1\\\"\",\"\\\"6ef7ec5a:24:v1\\\"\",\"\\\"6ef7ec5a:25:v1\\\"\"],\"parentDistinctETags\":[\"\\\"6ef7ec5a:21:v1\\\"\",\"\\\"6ef7ec5a:22:v1\\\"\",\"\\\"6ef7ec5a:23:v1\\\"\",\"\\\"6ef7ec5a:24:v1\\\"\",\"\\\"6ef7ec5a:25:v1\\\"\"],\"acceptedMetrics\":2,\"recommendationCases\":7,\"persistedBeforeOutage\":{\"ci-parent\":{\"yes\":2,\"no\":1,\"variants\":{\"blue\":1}},\"ci-child\":{\"yes\":4,\"no\":2,\"variants\":{\"gold\":2,\"disabled\":1}}},\"persistedFinal\":{\"ci-parent\":{\"yes\":3,\"no\":1,\"variants\":{\"blue\":1}},\"ci-child\":{\"yes\":6,\"no\":3,\"variants\":{\"gold\":4,\"disabled\":2}}},\"resultSha256\":\"2c81a80643786f605b3648696a41617b1b4ca41cf7895fb1d5ab82960d7ef560\"}"
+        },
+        {
+          "level": "notice",
+          "title": "Real server wasm actual toolchain",
+          "message": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+        }
+      ],
+      "proof": {
+        "sha": "1f5cc6378948d1ac04655c64871e24d6bfbab665",
+        "target": "wasm",
+        "status": "PASS",
+        "sourceRevision": "77c5af4d991541a93b877ddac0554beaaf61c8c5",
+        "image": "unleashorg/unleash-server@sha256:fd521aeb776da5577c1889514bae9d48f901e8bc6119529c643797f901f75980",
+        "config": "sha256:8f47f34458be176c3d3467bbded66f815ca341f0c92817e150ac2f9b1dcf5688",
+        "containerId": "517b6f83091ac56e2c59f4595bf6686caeafa34819bcf9689da93065d2bae520",
+        "toolchain": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun",
+        "databaseVersion": "PostgreSQL 15.20 (Debian 15.20-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+        "operations": [
+          "registered",
+          "recommendation",
+          "recommendation-off",
+          "recommendation-zero",
+          "baseline",
+          "off",
+          "off-seen",
+          "on",
+          "on-seen",
+          "persisted",
+          "stop",
+          "outage-seen",
+          "start",
+          "recovered",
+          "off-again",
+          "off-again-seen",
+          "on-again",
+          "on-again-seen",
+          "final-persisted",
+          "complete"
+        ],
+        "registrations": 1,
+        "seen304": true,
+        "distinctETags": [
+          "\"6ef7ec5a:18:v1\"",
+          "\"6ef7ec5a:19:v1\"",
+          "\"6ef7ec5a:21:v1\"",
+          "\"6ef7ec5a:22:v1\"",
+          "\"6ef7ec5a:23:v1\"",
+          "\"6ef7ec5a:24:v1\"",
+          "\"6ef7ec5a:25:v1\""
+        ],
+        "parentDistinctETags": [
+          "\"6ef7ec5a:21:v1\"",
+          "\"6ef7ec5a:22:v1\"",
+          "\"6ef7ec5a:23:v1\"",
+          "\"6ef7ec5a:24:v1\"",
+          "\"6ef7ec5a:25:v1\""
+        ],
+        "acceptedMetrics": 2,
+        "recommendationCases": 7,
+        "persistedBeforeOutage": {
+          "ci-parent": {
+            "yes": 2,
+            "no": 1,
+            "variants": {
+              "blue": 1
+            }
+          },
+          "ci-child": {
+            "yes": 4,
+            "no": 2,
+            "variants": {
+              "gold": 2,
+              "disabled": 1
+            }
+          }
+        },
+        "persistedFinal": {
+          "ci-parent": {
+            "yes": 3,
+            "no": 1,
+            "variants": {
+              "blue": 1
+            }
+          },
+          "ci-child": {
+            "yes": 6,
+            "no": 3,
+            "variants": {
+              "gold": 4,
+              "disabled": 2
+            }
+          }
+        },
+        "resultSha256": "2c81a80643786f605b3648696a41617b1b4ca41cf7895fb1d5ab82960d7ef560"
+      }
+    },
+    {
+      "id": 136135896880,
+      "checkRunUrl": "https://api.github.com/repos/bzf0654-coder/moonunleash-/check-runs/136135896880",
+      "name": "Real server / native",
+      "url": "https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815719/job/136135896880",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install native transport prerequisites",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install official stable MoonBit toolchain",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Record actual toolchain and environment",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve declared Moon dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Execute actual SDK against isolated pinned server",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Publish current-run evidence, including failures",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "annotations": [
+        {
+          "level": "warning",
+          "title": "",
+          "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        },
+        {
+          "level": "notice",
+          "title": "MoonUnleash real-server proof",
+          "message": "{\"sha\":\"1f5cc6378948d1ac04655c64871e24d6bfbab665\",\"target\":\"native\",\"status\":\"PASS\",\"sourceRevision\":\"77c5af4d991541a93b877ddac0554beaaf61c8c5\",\"image\":\"unleashorg/unleash-server@sha256:fd521aeb776da5577c1889514bae9d48f901e8bc6119529c643797f901f75980\",\"config\":\"sha256:8f47f34458be176c3d3467bbded66f815ca341f0c92817e150ac2f9b1dcf5688\",\"containerId\":\"1b7de562263aa080b04b3deb45ff999b3f31cad06fbf9ae462802526a16f99e9\",\"toolchain\":\"moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\",\"databaseVersion\":\"PostgreSQL 15.20 (Debian 15.20-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit\",\"operations\":[\"registered\",\"recommendation\",\"recommendation-off\",\"recommendation-zero\",\"baseline\",\"off\",\"off-seen\",\"on\",\"on-seen\",\"persisted\",\"stop\",\"outage-seen\",\"start\",\"recovered\",\"off-again\",\"off-again-seen\",\"on-again\",\"on-again-seen\",\"final-persisted\",\"complete\"],\"registrations\":1,\"seen304\":true,\"distinctETags\":[\"\\\"6ef7ec5a:18:v1\\\"\",\"\\\"6ef7ec5a:19:v1\\\"\",\"\\\"6ef7ec5a:21:v1\\\"\",\"\\\"6ef7ec5a:22:v1\\\"\",\"\\\"6ef7ec5a:23:v1\\\"\",\"\\\"6ef7ec5a:24:v1\\\"\",\"\\\"6ef7ec5a:25:v1\\\"\"],\"parentDistinctETags\":[\"\\\"6ef7ec5a:21:v1\\\"\",\"\\\"6ef7ec5a:22:v1\\\"\",\"\\\"6ef7ec5a:23:v1\\\"\",\"\\\"6ef7ec5a:24:v1\\\"\",\"\\\"6ef7ec5a:25:v1\\\"\"],\"acceptedMetrics\":2,\"recommendationCases\":7,\"persistedBeforeOutage\":{\"ci-parent\":{\"yes\":2,\"no\":1,\"variants\":{\"blue\":1}},\"ci-child\":{\"yes\":4,\"no\":2,\"variants\":{\"gold\":2,\"disabled\":1}}},\"persistedFinal\":{\"ci-parent\":{\"yes\":3,\"no\":1,\"variants\":{\"blue\":1}},\"ci-child\":{\"yes\":6,\"no\":3,\"variants\":{\"gold\":4,\"disabled\":2}}},\"resultSha256\":\"ccd544f57f1e0952985eecee6d831fc30d4f30c54e50bfc4dddff81508298d0d\"}"
+        },
+        {
+          "level": "notice",
+          "title": "Real server native actual toolchain",
+          "message": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun\n"
+        }
+      ],
+      "proof": {
+        "sha": "1f5cc6378948d1ac04655c64871e24d6bfbab665",
+        "target": "native",
+        "status": "PASS",
+        "sourceRevision": "77c5af4d991541a93b877ddac0554beaaf61c8c5",
+        "image": "unleashorg/unleash-server@sha256:fd521aeb776da5577c1889514bae9d48f901e8bc6119529c643797f901f75980",
+        "config": "sha256:8f47f34458be176c3d3467bbded66f815ca341f0c92817e150ac2f9b1dcf5688",
+        "containerId": "1b7de562263aa080b04b3deb45ff999b3f31cad06fbf9ae462802526a16f99e9",
+        "toolchain": "moon 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moon\nmoonc v0.10.22+124d61d05 (2026-11-19) ~/.moon/bin/moonc\nmoonrun 0.1.20261119 (738607b 2026-11-19) ~/.moon/bin/moonrun",
+        "databaseVersion": "PostgreSQL 15.20 (Debian 15.20-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+        "operations": [
+          "registered",
+          "recommendation",
+          "recommendation-off",
+          "recommendation-zero",
+          "baseline",
+          "off",
+          "off-seen",
+          "on",
+          "on-seen",
+          "persisted",
+          "stop",
+          "outage-seen",
+          "start",
+          "recovered",
+          "off-again",
+          "off-again-seen",
+          "on-again",
+          "on-again-seen",
+          "final-persisted",
+          "complete"
+        ],
+        "registrations": 1,
+        "seen304": true,
+        "distinctETags": [
+          "\"6ef7ec5a:18:v1\"",
+          "\"6ef7ec5a:19:v1\"",
+          "\"6ef7ec5a:21:v1\"",
+          "\"6ef7ec5a:22:v1\"",
+          "\"6ef7ec5a:23:v1\"",
+          "\"6ef7ec5a:24:v1\"",
+          "\"6ef7ec5a:25:v1\""
+        ],
+        "parentDistinctETags": [
+          "\"6ef7ec5a:21:v1\"",
+          "\"6ef7ec5a:22:v1\"",
+          "\"6ef7ec5a:23:v1\"",
+          "\"6ef7ec5a:24:v1\"",
+          "\"6ef7ec5a:25:v1\""
+        ],
+        "acceptedMetrics": 2,
+        "recommendationCases": 7,
+        "persistedBeforeOutage": {
+          "ci-parent": {
+            "yes": 2,
+            "no": 1,
+            "variants": {
+              "blue": 1
+            }
+          },
+          "ci-child": {
+            "yes": 4,
+            "no": 2,
+            "variants": {
+              "gold": 2,
+              "disabled": 1
+            }
+          }
+        },
+        "persistedFinal": {
+          "ci-parent": {
+            "yes": 3,
+            "no": 1,
+            "variants": {
+              "blue": 1
+            }
+          },
+          "ci-child": {
+            "yes": 6,
+            "no": 3,
+            "variants": {
+              "gold": 4,
+              "disabled": 2
+            }
+          }
+        },
+        "resultSha256": "ccd544f57f1e0952985eecee6d831fc30d4f30c54e50bfc4dddff81508298d0d"
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "real-unleash-7.4.0-native-44690815719-1",
+      "id": 14608437050,
+      "size": 132510,
+      "expired": false,
+      "digest": "sha256:9bdafb32328b71b3455afef488b320d44b9cb57a51f43923660572e308fc43ca",
+      "createdAt": "2026-11-20T06:53:50Z",
+      "headSha": "1f5cc6378948d1ac04655c64871e24d6bfbab665"
+    },
+    {
+      "name": "real-unleash-7.4.0-wasm-44690815719-1",
+      "id": 14607774620,
+      "size": 159165,
+      "expired": false,
+      "digest": "sha256:ad5e0095976eecb871d336285bcde7a251c62701eac92e2942bd6ad8a5068474",
+      "createdAt": "2026-11-20T06:53:16Z",
+      "headSha": "1f5cc6378948d1ac04655c64871e24d6bfbab665"
+    }
+  ],
+  "note": "Public API job/step status, artifact metadata and current-run verified summary annotations. Raw artifact archives are not downloaded; summary report/result hashes bind the public summaries to archived files. Compiler versions are read from actual run annotations, never inferred from the stable label."
+}

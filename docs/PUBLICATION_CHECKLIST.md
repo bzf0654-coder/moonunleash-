@@ -10,6 +10,7 @@
 - [x] 公开 API 已核验实际目标所属账号、public 状态和空仓库元数据。
 - [x] 确认远程引用为空后首推 8dca496；不使用 force。公开 commit 与一页说明均已读回，见[发布实录](<PUBLICATION_STATUS.md>)。
 - [x] 修复 9bd4255 的[第三轮 CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44096693547)四目标成功，job/步骤及同 SHA 的新产物元数据已读取；未冒称下载产物内容。
+- [x] 固定完整技术门同源通过：`1f5cc6378948d1ac04655c64871e24d6bfbab665` 的[四后端 294 条 SDK CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815957)和[双后端 v7.4.0 真服务 CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815719)均 PASS；七项推荐示例、故障恢复、两次 metrics 精确入库读回及当前运行证明已核验，见[验收台账](<ACCEPTANCE.md>)。
 - [ ] 确认历史 Git 作者 fbzqqqq 与参赛账号 bzf0654-coder 的关系及贡献归属；未擅自改作者或重写历史。
 - [ ] 阅读[一页说明](<APPLICATION_ONE_PAGE.md>)，替换身份与公开仓库链接，不编造个人经历、用户采纳或已经掌握的工程经验。
 - [ ] 阅读[第三方声明](<../THIRD_PARTY.md>)和[兼容边界](<COMPATIBILITY_SCOPE.md>)，接受开发预览版的限制。

@@ -1,8 +1,10 @@
 # 公开发布与云端验收
 
-## 2026-11-20：当前增量尚待新云端验收
+## 2026-11-20：固定范围技术验收通过
 
-三个本地运行后端已各达到 **294 Pass / 0 Fail / 0 NotRun**，测试为 wasm **96/96**、wasm-gc/JS 各 **81/81**；Windows native 严格类型检查通过。公共 delta、完整约束/依赖、有界 metrics 与独立 UTF-8 Golden 已实现，见[当前验收清单](<ACCEPTANCE.md>)。[新的四目标云端运行](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346)已在 `4249cc378a480f1d2196e02611fd51abb2ca76e1` 全部通过 294/0/0 和严格测试，Linux native 不再只有本地类型检查；[公开证明](<../artifacts/ci-run-44689082346.json>)核对了实际编译器、当前运行验证汇总/摘要及非空同 SHA 产物元数据，未下载原始产物归档。[固定真实服务器门](<REAL_SERVER.md>)已实际启动容器，但前两轮失败于 readiness/bootstrap，修复和失败保留于验收记录；互通与 metrics 数据库读回仍未通过。以下四目标 104 条或93条结果均仅为历史证据，不代表这次 294 条增量的 native、metrics 入库或新同 SHA 云端已经通过。
+源码 **`1f5cc6378948d1ac04655c64871e24d6bfbab665`** 已普通提交推送，并同时通过[四后端 SDK CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815957)与[双后端真服务验收](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815719)。wasm、wasm-gc、JS、Linux native 各 **22 组 / 294 Pass / 0 Fail / 0 NotRun**，保留 24 项原始哈希；真服务 wasm/native 分别通过固定 v7.4.0 的注册、配置获取/ETag、策略变体/约束/依赖、同客户端故障恢复、两次 metrics 接收与精确数据库读回，以及申请书推荐示例的七项真实快照判定。公共 delta、完整约束/依赖、有界 metrics 和独立 UTF-8 裁定均在该版本内。
+
+[SDK 证据](<../artifacts/ci-run-44690815957.json>)和[真服务证据](<../artifacts/ci-run-44690815719.json>)逐项验证同 SHA、必需 job/step、实际工具链、当前运行汇总、报告摘要及非空产物元数据；**未下载认证保护的原始产物归档**。实际云端工具链为 Moon `0.1.20261119 (738607b)` / moonc `v0.10.22+124d61d05`，数据库 PostgreSQL `15.20`。Windows native 仍仅类型检查，Mooncakes 未发布，非生产就绪或官方认证声明。文档收口后的最终提交仍须重新核验同 SHA 运行，不把本次证明改标为其他源码。此前 readiness/bootstrap/recovery 失败完整保留，见[验收台账](<ACCEPTANCE.md>)；下面 104/93 条结果均为当时的历史范围。
 
 ## 实际发布
 

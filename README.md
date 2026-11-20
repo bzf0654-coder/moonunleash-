@@ -46,7 +46,7 @@ moon run cmd/main --target wasm-gc
 | JavaScript | 本地 81/81 项测试、294/294 条；在线适配尚未提供 |
 | native | Linux 云端严格检查/测试、离线示例与 294/294 条已通过；Windows 本地仍仅类型检查 |
 
-[四目标全量云端通过](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346)对应 `4249cc378a480f1d2196e02611fd51abb2ca76e1`；[公开运行证明](<artifacts/ci-run-44689082346.json>)逐目标核对了 22 组、294/0/0、24 项哈希和报告摘要，而非只看绿色图标。真实 Unleash wasm/native 互通仍单独验收，不由此推断通过。
+**固定范围技术验收已通过：**源码 `1f5cc6378948d1ac04655c64871e24d6bfbab665` 的[四目标 SDK CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815957)各为 **22 组 / 294 Pass / 0 Fail / 0 NotRun**、24 项哈希通过；同 SHA 的[真实 Unleash v7.4.0 验收](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44690815719)在 wasm、Linux native 均 **PASS**，包括注册、200/304、配置更新、策略变体/依赖、同客户端断线恢复、两次 metrics 入库读回及申请书 7 项真实快照判定。[SDK 公开证明](<artifacts/ci-run-44690815957.json>)与[真服务公开证明](<artifacts/ci-run-44690815719.json>)分别核验当前运行摘要、报告哈希、工具链与非空同 SHA 产物元数据；未下载原始产物归档。
 
 测试项数量包含 suite runner，每个 runner 内有多条官方断言，不能把 96 项解释为 96 条官方规范用例。全部 24 项上游 SHA-256 校验仍通过。完整版本与限制见[构建状态](<docs/BUILD_STATUS.md>)、[范围清单](<docs/COMPATIBILITY_SCOPE.md>)及[完整验收账](<docs/ACCEPTANCE.md>)。
 
@@ -80,7 +80,7 @@ API Token 的作用域决定可见项目和环境，不是 context.environment�
 
 ## 兼容性与限制
 
-官方测试基线固定为 [client-specification 9ef6efa](https://github.com/Unleash/client-specification/tree/9ef6efa01feabeb699857192ad8106fd7d990235)。本地 wasm、wasm-gc、JS 均执行全部 22 组，达到 **294 Pass / 0 Fail / 0 NotRun**，各有[逐用例报告](<docs/COMPATIBILITY_SCOPE.md>)。原始用例和期望未修改；19/20 通过公共 delta API 安装状态。当前改动的 Linux native 执行与同 SHA 云端证明仍待完成，不能用旧 104 条云端结果顶替。
+官方测试基线固定为 [client-specification 9ef6efa](https://github.com/Unleash/client-specification/tree/9ef6efa01feabeb699857192ad8106fd7d990235)。本地 wasm、wasm-gc、JS 均执行全部 22 组，达到 **294 Pass / 0 Fail / 0 NotRun**，各有[逐用例报告](<docs/COMPATIBILITY_SCOPE.md>)。原始用例和期望未修改；19/20 通过公共 delta API 安装状态。[四后端云端实测](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346)已包含 Linux native 的完整 294 条与 24 哈希，[公开同源证明](<artifacts/ci-run-44689082346.json>)与旧 104 条云端记录分开保存。
 
 ```sh
 node tools/conformance.mjs wasm-gc
@@ -92,8 +92,8 @@ node tools/conformance.mjs js
 
 - 非法结构、未知策略及超出安全预算的配置仍会导致**整份新快照被拒绝**，可能阻止其他开关更新；保留最近有效快照。结构有效的未知运算符不会通过反转打开功能。
 - 全部官方规范本地通过不等于每个 RE2/JavaScript 扩展均兼容，也不消除上文 Unicode 分桶差异；精确边界见[范围清单](<docs/COMPATIBILITY_SCOPE.md>)。
-- 项目终点是固定 22 组 **294 Pass / 0 Fail / 0 NotRun** 的四后端证据，加固定 OSS v7.4.0 真实互通（提交见 [M1 记录](<docs/STRATEGY_VARIANTS.md>)）。当前只完成三个本地规范门，真实服务端验收尚未完成。
-- 已实现基础 metrics 及其单元/生命周期回归，真实服务端接收与入库仍待独立验收；计数不是 A/B 曝光或转化归因。尚无磁盘缓存、OpenFeature Provider、性能承诺及真实 Unleash 互通通过记录。
+- 项目终点是固定 22 组 **294 Pass / 0 Fail / 0 NotRun** 的四后端证据，加固定 OSS v7.4.0 真实互通（提交见 [M1 记录](<docs/STRATEGY_VARIANTS.md>)）。四后端规范云端门已通过，真实服务端与最终同源验收另见[完整验收台账](<docs/ACCEPTANCE.md>)，不从规范通过推断互通结果。
+- 基础 metrics 已通过单元/生命周期回归及 wasm/native 真实服务的两次接收、精确数据库读回；[证据和计数边界](<docs/REAL_SERVER.md>)独立于规范通过。计数不是 A/B 曝光或转化归因；尚无磁盘缓存、OpenFeature Provider 或性能承诺。
 - 默认继续使用最近有效快照并标记陈旧；可设置 max_stale 后按应用显式 fallback 降级。关闭功能不是瞬间全局生效。
 - 当前标准库时钟为 Unix epoch 毫秒；检测回拨后保守停止使用旧快照判定，直到全量有效响应重建新鲜度，不将它冒称单调时钟。
 - 在线适配使用当前 core/async 实验性 API，固定工具链很重要。单异步运行时模型，不声明跨 OS 线程安全。
