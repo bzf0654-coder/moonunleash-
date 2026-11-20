@@ -69,7 +69,7 @@ predicate.metadata["https://mobyproject.org/buildkit@v1#metadata"].vcs.source
 
 ## Startup and bootstrap
 
-Only the server is exposed, on a random `127.0.0.1` host port. PostgreSQL stays on the private per-run Docker network. The runner waits for `pg_isready`, then `/health` plus authenticated Admin project readiness. Server environment:
+Only the server is exposed, on an OS-selected free `127.0.0.1` host port published explicitly to Docker. An empty/random Docker HostPort can be reallocated after stop/start; the selected numeric binding is fixed for this container and checked again before recovery readiness. A rare port-release/bind race is a startup failure, never an origin change for the SDK. PostgreSQL stays on the private per-run Docker network. The runner waits for `pg_isready`, then `/health` plus authenticated Admin project readiness. Server environment:
 
 ```text
 DATABASE_URL=postgres://unleash:<ephemeral-password>@<private-db-name>:5432/unleash
@@ -91,6 +91,12 @@ Admin creates `ci-parent` and `ci-child` (feature POST actually **201**, despite
 The frozen [create-strategy schema](https://github.com/Unleash/unleash/blob/77c5af4d991541a93b877ddac0554beaaf61c8c5/src/lib/openapi/spec/create-feature-strategy-schema.ts) explicitly permits `sortOrder:number`. After creating both child strategies, the runner uses their returned IDs in `POST …/strategies/set-sort-order` with root-array body `[{"id":"<gold-id>","sortOrder":0},{"id":"<later-id>","sortOrder":1}]`, then checks ordered Admin GET output. The [sort-order schema](https://github.com/Unleash/unleash/blob/77c5af4d991541a93b877ddac0554beaaf61c8c5/src/lib/openapi/spec/set-strategy-sort-order-schema.ts) requires both fields; the controller actually returns **200 empty**. Every observed full SDK response must contain exactly two child strategies in gold/later order with both constraints intact. Moon's gold/payload assertion and raw metrics' absence of any `later` count independently demonstrate first-match order; merely checking the bootstrap request is not sufficient.
 
 Sources: [feature controller](https://github.com/Unleash/unleash/blob/77c5af4d991541a93b877ddac0554beaaf61c8c5/src/lib/features/feature-toggle/feature-toggle-controller.ts), [auto-default insertion](https://github.com/Unleash/unleash/blob/77c5af4d991541a93b877ddac0554beaaf61c8c5/src/lib/features/feature-toggle/feature-toggle-service.ts#L1939-L1997), [dependency controller](https://github.com/Unleash/unleash/blob/77c5af4d991541a93b877ddac0554beaaf61c8c5/src/lib/features/dependent-features/dependent-features-controller.ts).
+
+## Application example: real 50/50 configuration and seven decisions
+
+A separate `recommendation-ab` flag is created with the application's exact parameters: `groupId=recommendation-ab-v1`, `rollout=100`, `stickiness=userId`, `plan IN [enterprise]`; strategy variants `control` (500 fixed, string payload `baseline`) and `treatment` (500 variable, `model-v2`); no global variants. The actual SDK HTTP observer checks the server-returned parameters, weights and payloads. MoonBit parses those received response bytes with the public `Snapshot::parse`, never synthetic or edited JSON, and asserts user-1/control, user-2/treatment, free-plan/disabled, missing-userId/disabled and unknown-feature/disabled. Two additional Admin phases really disable the flag, then re-enable it with rollout=0; each waits for the matching committed SDK response and proves disabled. A JSON Patch replaces only the strategy's rollout field, preserving its actual variants.
+
+These seven decisions use the immutable Snapshot API and do not add metrics to the online two-flag test. The original `ci-parent`/`ci-child` counters and persistence gates below are unchanged. Three required checkpoints (`recommendation`, `recommendation-off`, `recommendation-zero`) extend the original ordered seventeen operations to twenty; none of the old operations is removed. Five separate parent-phase ETags must remain distinct, so the extra recommendation revisions cannot satisfy the original parent update gate accidentally. Implementation/type checking alone is not a passing real-server record.
 
 ## Acceptance sequence and independent counts
 

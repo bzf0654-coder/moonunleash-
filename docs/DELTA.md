@@ -34,6 +34,6 @@ In addition to all four unchanged official delta cases through the actual public
 
 ## Observed validation (2026-11-20)
 
-All four original official delta cases and five additional lifecycle/atomicity regression tests passed on wasm, wasm-gc and JavaScript. The complete SDK passed **294/294 cases** with **73/63/63** MoonBit tests; native type checking passed. Linux native execution and same-source cloud proof for this increment are still pending.
+All four original official delta cases and five additional lifecycle/atomicity regression tests passed on wasm, wasm-gc and JavaScript. At the initial delta checkpoint the complete SDK passed **294/294 cases** with **73/63/63** MoonBit tests; later integration increased the local counts to **96/81/81**. [Four-backend cloud CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346) on `4249cc378a480f1d2196e02611fd51abb2ca76e1` now passes 294/0/0 independently on wasm, wasm-gc, JS and Linux native. Its [public proofs](<../artifacts/ci-run-44689082346.json>) include each report digest and all 24 verified upstream hashes. Windows native execution remains outside the runtime matrix.
 
 No expectation is generated from candidate outputs. The conformance executable itself detects delta envelopes and calls `Snapshot::from_delta`; the Node supervisor does not convert events into synthetic full snapshots for the candidate.

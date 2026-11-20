@@ -102,6 +102,64 @@ async fn wait_parent(
 }
 
 ///|
+fn recommendation_state(
+  body : String,
+  enabled : Bool,
+  rollout : String,
+) -> Bool raise {
+  if body == "" {
+    return false
+  }
+  match field(@json.parse(body), "features") {
+    Array(features) =>
+      features.any(fn(feature) {
+        if field(feature, "name") != @json.Json::string("recommendation-ab") ||
+          field(feature, "enabled") != @json.Json::boolean(enabled) {
+          return false
+        }
+        if !enabled {
+          return true
+        }
+        match field(feature, "strategies") {
+          Array(strategies) if strategies.length() == 1 =>
+            field(field(strategies[0], "parameters"), "rollout") ==
+            @json.Json::string(rollout)
+          _ => false
+        }
+      })
+    _ => false
+  }
+}
+
+///|
+async fn wait_recommendation(
+  seen : Observations,
+  client : @online.Client,
+  enabled : Bool,
+  rollout : String,
+) -> Unit {
+  @async.with_timeout(30000, async fn() {
+    while !recommendation_state(seen.full_body, enabled, rollout) ||
+          client.status().generation <= seen.before_install_generation {
+      @async.sleep(20)
+    }
+  })
+}
+
+///|
+fn recommendation_result(value : @sdk.Variant) -> @json.Json {
+  object([
+    ("name", @json.Json::string(value.name)),
+    ("enabled", @json.Json::boolean(value.enabled)),
+    ("feature_enabled", @json.Json::boolean(value.feature_enabled)),
+    (
+      "payload",
+      optional_string(value.payload.map(fn(payload) { payload.value })),
+    ),
+  ])
+}
+
+///|
 fn check_variant(
   value : @sdk.Variant,
   name : String,
@@ -210,6 +268,83 @@ async fn main {
       wait_parent(seen, client, true)
       let allowed = @sdk.Context::new(user_id="allowed-user")
       let denied = @sdk.Context::new(user_id="denied-user")
+
+      // The application example is evaluated from REAL received response bytes,
+      // without mutating JSON or adding calls to the client's two-flag metrics.
+      let enterprise = @sdk.Context::parse(
+        "{\"userId\":\"user-1\",\"properties\":{\"plan\":\"enterprise\"}}",
+      )
+      let enterprise_2 = @sdk.Context::parse(
+        "{\"userId\":\"user-2\",\"properties\":{\"plan\":\"enterprise\"}}",
+      )
+      let free = @sdk.Context::parse(
+        "{\"userId\":\"user-1\",\"properties\":{\"plan\":\"free\"}}",
+      )
+      let missing_user = @sdk.Context::parse(
+        "{\"properties\":{\"plan\":\"enterprise\"}}",
+      )
+      wait_recommendation(seen, client, true, "100")
+      let recommendation = @sdk.Snapshot::parse(seen.full_body)
+      let control_variant = recommendation.get_variant(
+        "recommendation-ab", enterprise,
+      )
+      let treatment_variant = recommendation.get_variant(
+        "recommendation-ab", enterprise_2,
+      )
+      let free_variant = recommendation.get_variant("recommendation-ab", free)
+      let missing_variant = recommendation.get_variant(
+        "recommendation-ab", missing_user,
+      )
+      let unknown_variant = recommendation.get_variant(
+        "unknown-feature", enterprise,
+      )
+      check_variant(control_variant, "control", "baseline")
+      check_variant(treatment_variant, "treatment", "model-v2")
+      check_disabled(free_variant)
+      check_disabled(missing_variant)
+      check_disabled(unknown_variant)
+      control(
+        control_url,
+        "recommendation",
+        object([
+          (
+            "cases",
+            @json.Json::array([
+              recommendation_result(control_variant),
+              recommendation_result(treatment_variant),
+              recommendation_result(free_variant),
+              recommendation_result(missing_variant),
+              recommendation_result(unknown_variant),
+            ]),
+          ),
+        ]),
+      )
+      // The Node Admin control switches the actual flag off, then sets its
+      // actual strategy to rollout=0 and re-enables it. No synthetic snapshots.
+      wait_recommendation(seen, client, false, "100")
+      let off_variant = @sdk.Snapshot::parse(seen.full_body).get_variant(
+        "recommendation-ab", enterprise,
+      )
+      check_disabled(off_variant)
+      control(
+        control_url,
+        "recommendation-off",
+        object([
+          ("cases", @json.Json::array([recommendation_result(off_variant)])),
+        ]),
+      )
+      wait_recommendation(seen, client, true, "0")
+      let zero_variant = @sdk.Snapshot::parse(seen.full_body).get_variant(
+        "recommendation-ab", enterprise,
+      )
+      check_disabled(zero_variant)
+      control(
+        control_url,
+        "recommendation-zero",
+        object([
+          ("cases", @json.Json::array([recommendation_result(zero_variant)])),
+        ]),
+      )
 
       // Fixed public calls. Wait predicates never evaluate, so counts are independent.
       // Baseline: parent yes=2 blue=1; child yes=3 no=1 gold=1.

@@ -1,7 +1,7 @@
 // Pure validation of public current-run GitHub check annotations. No network or SDK execution.
 import assert from 'node:assert/strict';
 import { baseline, image } from './server-provenance.mjs';
-const operations = ['registered', 'baseline', 'off', 'off-seen', 'on', 'on-seen', 'persisted', 'stop',
+const operations = ['registered', 'recommendation', 'recommendation-off', 'recommendation-zero', 'baseline', 'off', 'off-seen', 'on', 'on-seen', 'persisted', 'stop',
   'outage-seen', 'start', 'recovered', 'off-again', 'off-again-seen', 'on-again', 'on-again-seen', 'final-persisted', 'complete'];
 const before = { 'ci-parent': { yes: 2, no: 1, variants: { blue: 1 } }, 'ci-child': { yes: 4, no: 2, variants: { gold: 2, disabled: 1 } } };
 const final = { 'ci-parent': { yes: 3, no: 1, variants: { blue: 1 } }, 'ci-child': { yes: 6, no: 3, variants: { gold: 4, disabled: 2 } } };
@@ -24,8 +24,12 @@ export function validateProof(proof, mode, target, sha) {
     assert.match(proof.databaseVersion, /^PostgreSQL 15\./);
     assert.equal(proof.registrations, 1);
     assert.equal(proof.acceptedMetrics, 2);
+    assert.equal(proof.recommendationCases, 7, 'all proposal decisions must use real server snapshots');
     assert.equal(proof.seen304, true);
     assert.ok(Array.isArray(proof.distinctETags) && new Set(proof.distinctETags).size >= 5);
+    assert.ok(Array.isArray(proof.parentDistinctETags) && proof.parentDistinctETags.length === 5 &&
+      new Set(proof.parentDistinctETags).size === 5 && proof.parentDistinctETags.every(tag => typeof tag === 'string' && tag.length > 0),
+    'five real parent revisions must remain independent of recommendation updates');
     assert.deepEqual(proof.operations, operations);
     assert.deepEqual(proof.persistedBeforeOutage, before);
     assert.deepEqual(proof.persistedFinal, final);

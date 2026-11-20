@@ -4,7 +4,7 @@ Baseline: [Unleash/client-specification 9ef6efa](https://github.com/Unleash/clie
 
 ## Current measured scope
 
-The pinned index contains **22 suites / 294 cases**, all now Required. Local wasm, wasm-gc and JavaScript reports each contain **294 Pass / 0 Fail / 0 NotRun** (2026-11-20). All **24 SHA-256 checks** pass and original cases/expectations remain unchanged. Current Linux native execution and same-source cloud proof are still pending. This is a development preview, not a complete SDK certification or live-server acceptance.
+The pinned index contains **22 suites / 294 cases**, all now Required. Local wasm, wasm-gc and JavaScript reports each contain **294 Pass / 0 Fail / 0 NotRun** (2026-11-20). All **24 SHA-256 checks** pass and original cases/expectations remain unchanged. [Four-target cloud CI](https://github.com/bzf0654-coder/moonunleash-/actions/runs/44689082346), source `4249cc378a480f1d2196e02611fd51abb2ca76e1`, now independently passes 294/0/0 on Linux native as well as wasm, wasm-gc and JS. The [public same-run proofs](<../artifacts/ci-run-44689082346.json>) verify all 24 hashes and report digests; raw artifact archives were not downloaded. This is a development preview, not a complete SDK certification or live-server acceptance.
 
 | Required suite | Passing cases |
 |---|---:|

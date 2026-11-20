@@ -25,11 +25,27 @@ const adminToken = `*:*.${randomUUID()}`, backendToken = `default:development.${
 const password = randomUUID();
 const environment = 'development';
 const flags = ['ci-parent', 'ci-child'];
+// This third flag is evaluated ONLY with Snapshot; the two online metrics gates stay unchanged.
+const recommendationName = 'recommendation-ab';
+const recommendationParameters = rollout => ({ groupId: 'recommendation-ab-v1', rollout, stickiness: 'userId' });
+const recommendationConstraints = [{ contextName: 'plan', operator: 'IN', values: ['enterprise'] }];
+const recommendationVariants = [
+  { name: 'control', weight: 500, weightType: 'fix', stickiness: 'userId', payload: { type: 'string', value: 'baseline' } },
+  { name: 'treatment', weight: 500, weightType: 'variable', stickiness: 'userId', payload: { type: 'string', value: 'model-v2' } },
+];
+const recommendationDisabled = { name: 'disabled', enabled: false, feature_enabled: false, payload: null };
+// Hand-frozen proposal outcomes, never inferred from observed SDK output.
+const recommendationExpected = [
+  { name: 'control', enabled: true, feature_enabled: true, payload: 'baseline' },
+  { name: 'treatment', enabled: true, feature_enabled: true, payload: 'model-v2' },
+  recommendationDisabled, recommendationDisabled, recommendationDisabled,
+];
 const featurePath = name => `/api/admin/projects/default/features/${name}/environments/${environment}`;
 let base, control, child, commandNumber = 0, httpNumber = 0, wireNumber = 0;
-let fault, stopped = false, completed = false, serverContainerId, toolchain, databaseVersion;
+let fault, stopped = false, completed = false, serverContainerId, toolchain, databaseVersion, recommendationStrategyId;
 const created = { network: false, db: false, server: false };
-const state = { ops: [], registrations: [], polls: [], metrics: [], oldETag: null, seen304: false, newETags: new Set() };
+const state = { ops: [], registrations: [], polls: [], metrics: [], oldETag: null, seen304: false, newETags: new Set(),
+  recommendationCases: 0, recommendationSnapshot: null, parentETags: new Set(), lastParentEnabled: null };
 const initialExpected = {
   'ci-parent': { yes: 2, no: 1, variants: { blue: 1 } },
   'ci-child': { yes: 4, no: 2, variants: { gold: 2, disabled: 1 } },
@@ -38,7 +54,7 @@ const finalExpected = {
   'ci-parent': { yes: 3, no: 1, variants: { blue: 1 } },
   'ci-child': { yes: 6, no: 3, variants: { gold: 4, disabled: 2 } },
 };
-const order = ['registered', 'baseline', 'off', 'off-seen', 'on', 'on-seen', 'persisted', 'stop',
+const order = ['registered', 'recommendation', 'recommendation-off', 'recommendation-zero', 'baseline', 'off', 'off-seen', 'on', 'on-seen', 'persisted', 'stop',
   'outage-seen', 'start', 'recovered', 'off-again', 'off-again-seen', 'on-again', 'on-again-seen', 'final-persisted', 'complete'];
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const json = (name, value) => writeFile(resolve(out, name), JSON.stringify(value, null, 2) + '\n');
@@ -138,6 +154,17 @@ async function bootstrap() {
   }
   await admin('/api/admin/projects/default/features/ci-child/dependencies', { method: 'POST',
     body: { feature: 'ci-parent', enabled: true, variants: ['blue'] } });
+  // Reproduce the proposal's exact 50/50 strategy, separately from metrics flags.
+  await admin('/api/admin/context', { method: 'POST', body: { name: 'plan' }, expected: 201 });
+  await admin('/api/admin/projects/default/features', { method: 'POST',
+    body: { name: recommendationName, type: 'release' }, expected: 201 });
+  const recommendation = await admin(featurePath(recommendationName) + '/strategies', { method: 'POST', body: {
+    name: 'flexibleRollout', sortOrder: 0, parameters: recommendationParameters('100'),
+    constraints: recommendationConstraints, variants: recommendationVariants,
+  } });
+  assert.equal(typeof recommendation.id, 'string');
+  recommendationStrategyId = recommendation.id;
+  await admin(featurePath(recommendationName) + '/on', { method: 'POST' });
   // Strategies MUST exist before /on, or the server inserts a default OR strategy.
   for (const name of flags) await admin(featurePath(name) + '/on', { method: 'POST' });
   // Fixed server caches known feature names for 10 seconds. This is not a readiness assertion.
@@ -206,6 +233,7 @@ async function observe(event) {
       const parent = data.features.find(f => f.name === 'ci-parent');
       const child = data.features.find(f => f.name === 'ci-child');
       assert.ok(parent && child);
+      state.lastParentEnabled = parent.enabled;
       assert.ok(parent.strategies.some(s => s.variants?.some(v => v.name === 'blue' && v.payload?.value === 'parent-blue')));
       assert.equal(child.strategies.length, 2, 'no auto-inserted default strategy');
       assert.deepEqual(child.strategies.map(s => s.variants?.map(v => ({ name: v.name, payload: v.payload }))), [
@@ -217,6 +245,20 @@ async function observe(event) {
         assert.ok(strategy.constraints?.some(c => c.contextName === 'userId' && c.operator === 'IN' && c.values?.length === 1 && c.values[0] === 'allowed-user'));
       }
       assert.ok(child.dependencies?.some(d => d.feature === 'ci-parent' && d.enabled === true && d.variants?.includes('blue')));
+      const recommendation = data.features.find(f => f.name === recommendationName);
+      assert.ok(recommendation, 'real Client API must return the proposal feature');
+      assert.equal(typeof recommendation.enabled, 'boolean');
+      assert.deepEqual(recommendation.variants ?? [], [], 'proposal must not use legacy global variants');
+      assert.equal(recommendation.strategies.length, 1, 'proposal has exactly one configured strategy');
+      const strategy = recommendation.strategies[0];
+      assert.equal(strategy.name, 'flexibleRollout');
+      assert.ok(['100', '0'].includes(strategy.parameters.rollout), 'only the two real configured rollout states');
+      assert.deepEqual(strategy.parameters, recommendationParameters(strategy.parameters.rollout));
+      assert.equal(strategy.constraints.length, 1);
+      assert.deepEqual(strategy.constraints.map(c => ({ contextName: c.contextName, operator: c.operator, values: c.values })), recommendationConstraints);
+      assert.deepEqual(strategy.variants.map(v => ({ name: v.name, weight: v.weight, stickiness: v.stickiness, payload: v.payload })),
+        recommendationVariants.map(({ weightType, ...variant }) => variant), 'proposal preserves exact 500/500 weights and model payloads, even after PATCH');
+      state.recommendationSnapshot = { enabled: recommendation.enabled, rollout: strategy.parameters.rollout };
       state.oldETag = event.responseETag;
       state.newETags.add(event.responseETag);
     } else {
@@ -249,7 +291,47 @@ async function operation(op, body) {
         return data.instances.some(i => i.instanceId === instanceId && i.sdkVersion === 'moonunleash:0.1.0' && typeof i.clientIp === 'string');
       });
       break;
-    case 'baseline': assert.ok(state.seen304); break;
+    case 'recommendation':
+      assert.deepEqual(state.recommendationSnapshot, { enabled: true, rollout: '100' }, 'initial proposal must be observed from real HTTP');
+      assert.deepEqual(body, { cases: recommendationExpected }, 'exact five initial proposal decisions');
+      state.recommendationCases += 5;
+      await admin(featurePath(recommendationName) + '/off', { method: 'POST' });
+      break;
+    case 'recommendation-off': {
+      assert.deepEqual(state.recommendationSnapshot, { enabled: false, rollout: '100' }, 'real disabled proposal must be observed');
+      assert.deepEqual(body, { cases: [recommendationDisabled] }, 'proposal disabled by real server');
+      state.recommendationCases++;
+      // Frozen PATCH loads the COMPLETE existing strategy before applyPatch/update.
+      // A bare PUT without variants would clear them in mapStrategyUpdate.
+      const updated = await admin(featurePath(recommendationName) + `/strategies/${recommendationStrategyId}`, { method: 'PATCH', body: [
+        { op: 'replace', path: '/parameters/rollout', value: '0' },
+      ] });
+      assert.equal(updated.id, recommendationStrategyId);
+      assert.equal(updated.parameters.rollout, '0');
+      await admin(featurePath(recommendationName) + '/on', { method: 'POST' });
+      break;
+    }
+    case 'recommendation-zero':
+      assert.deepEqual(state.recommendationSnapshot, { enabled: true, rollout: '0' }, 'real zero rollout must be observed after enabling');
+      assert.deepEqual(body, { cases: [recommendationDisabled] }, 'proposal disabled by real zero-percent rollout');
+      state.recommendationCases++;
+      break;
+    case 'baseline':
+      assert.ok(state.seen304);
+      assert.equal(state.lastParentEnabled, true);
+      assert.equal(typeof state.oldETag, 'string'); assert.ok(state.oldETag);
+      state.parentETags.add(state.oldETag);
+      break;
+    case 'off-seen': case 'off-again-seen':
+      assert.equal(state.lastParentEnabled, false);
+      assert.equal(typeof state.oldETag, 'string'); assert.ok(state.oldETag);
+      state.parentETags.add(state.oldETag);
+      break;
+    case 'on-seen': case 'on-again-seen':
+      assert.equal(state.lastParentEnabled, true);
+      assert.equal(typeof state.oldETag, 'string'); assert.ok(state.oldETag);
+      state.parentETags.add(state.oldETag);
+      break;
     case 'off': case 'off-again': await admin(featurePath('ci-parent') + '/off', { method: 'POST' }); break;
     case 'on': case 'on-again': await admin(featurePath('ci-parent') + '/on', { method: 'POST' }); break;
     case 'persisted':
@@ -259,14 +341,21 @@ async function operation(op, body) {
     case 'outage-seen':
       assert.ok(stopped); assert.equal(body.ready, true); assert.ok(body.failures > 0); assert.equal(typeof body.error, 'string');
       break;
-    case 'start':
-      assert.ok(stopped); await command('docker', ['start', names.server]); stopped = false; await ready(); break;
+    case 'start': {
+      assert.ok(stopped); await command('docker', ['start', names.server]); stopped = false;
+      const recoveredPort = (await command('docker', ['port', names.server, '4242/tcp'])).text.trim();
+      await json('recovery-origin.json', { expected: base, actual: `http://${recoveredPort}` });
+      assert.equal(`http://${recoveredPort}`, base, 'same SDK must recover at the SAME published origin');
+      await ready(); break;
+    }
     case 'recovered':
       assert.equal(body.failures, 0); assert.equal(body.ready, true);
       await snapshotContainer(names.server, 'container-after-recovery.json'); break;
     case 'final-persisted':
       assert.equal(state.metrics.length, 2); await metricsReadback(finalExpected, 'final'); break;
     case 'complete':
+      assert.equal(state.recommendationCases, 7, 'all seven real-snapshot proposal decisions');
+      assert.equal(state.parentETags.size, 5, 'five distinct parent revisions, excluding proposal-only revisions');
       assert.equal(state.registrations.length, 1); assert.equal(state.metrics.length, 2);
       assert.ok(state.seen304); assert.ok(state.newETags.size >= 5, 'initial plus four real off/on revisions');
       completed = true; break;
@@ -352,13 +441,20 @@ try {
   databaseVersion = (await command('docker', ['exec', names.db, 'psql', '-U', 'unleash', '-d', 'unleash', '-tAc', 'select version();'])).text.trim();
   assert.match(databaseVersion, /^PostgreSQL 15\./);
   await json('database-version.json', { databaseVersion });
+  // Docker may allocate a DIFFERENT port on stop/start when HostPort is empty.
+  // Select a free loopback port once, then publish it EXPLICITLY for this container.
+  // A rare release/bind race fails Docker startup; it never changes SDK origin.
+  const reservation = createServer();
+  await new Promise((resolve, reject) => { reservation.once('error', reject); reservation.listen(0, '127.0.0.1', resolve); });
+  const hostPort = reservation.address().port;
+  await new Promise((resolve, reject) => reservation.close(error => error ? reject(error) : resolve()));
   await command('docker', ['run', '-d', '--platform', 'linux/amd64', '--name', names.server, '--network', names.network,
-    '-p', '127.0.0.1::4242', '-e', `DATABASE_URL=postgres://unleash:${password}@${names.db}:5432/unleash`,
+    '-p', `127.0.0.1:${hostPort}:4242`, '-e', `DATABASE_URL=postgres://unleash:${password}@${names.db}:5432/unleash`,
     '-e', 'DATABASE_SSL=false', '-e', 'HTTP_HOST=0.0.0.0', '-e', 'HTTP_PORT=4242', '-e', 'UNLEASH_URL=http://127.0.0.1:4242',
     '-e', `INIT_ADMIN_API_TOKENS=${adminToken}`, '-e', `INIT_BACKEND_API_TOKENS=${backendToken}`,
     '-e', 'SEND_TELEMETRY=false', '-e', 'CHECK_VERSION=false', '-e', 'LOG_LEVEL=warn', image]); created.server = true;
   const port = (await command('docker', ['port', names.server, '4242/tcp'])).text.trim();
-  assert.match(port, /^127\.0\.0\.1:\d+$/); base = `http://${port}`;
+  assert.equal(port, `127.0.0.1:${hostPort}`); base = `http://${port}`;
   await ready(); await snapshotContainer(names.server, 'container-before.json'); await bootstrap();
   const controlURL = await startControl(); await runMoon(controlURL);
   assert.ok(completed); assert.deepEqual(state.ops, order); passed = true;
@@ -379,6 +475,7 @@ try {
   if (created.network) await command('docker', ['network', 'rm', names.network], { allowFailure: true });
   await json('result.json', { status: passed ? 'PASS' : 'FAIL', executed: true, target, appName, instanceId,
     environment, image, sourceRevision: baseline.revision, completedAt: new Date().toISOString(),
+    recommendationCases: state.recommendationCases, parentDistinctETags: [...state.parentETags],
     operations: state.ops, wire: { registrations: state.registrations.length, polls: state.polls.length,
       seen304: state.seen304, distinctETags: [...state.newETags], acceptedMetrics: state.metrics.length },
     caveats: ['No signature verification or reproducible-build proof', 'PostgreSQL postgres:15 and Moon stable are mutable; actual identities are archived'] });
@@ -389,7 +486,8 @@ if (passed) {
   const proof = { sha: process.env.GITHUB_SHA ?? null, target, status: 'PASS', sourceRevision: baseline.revision,
     image, config: baseline.config, containerId: serverContainerId, toolchain, databaseVersion,
     operations: state.ops, registrations: state.registrations.length, seen304: state.seen304,
-    distinctETags: [...state.newETags], acceptedMetrics: state.metrics.length,
+    distinctETags: [...state.newETags], parentDistinctETags: [...state.parentETags],
+    acceptedMetrics: state.metrics.length, recommendationCases: state.recommendationCases,
     persistedBeforeOutage: initialExpected, persistedFinal: finalExpected,
     resultSha256: createHash('sha256').update(await readFile(resolve(out, 'result.json'))).digest('hex') };
   await json('public-proof.json', proof);
