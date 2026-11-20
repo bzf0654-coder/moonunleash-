@@ -4,6 +4,8 @@ import { once } from 'node:events';
 import { mkdir, open, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { createHash } from 'node:crypto';
+import { annotation } from './ci-command.mjs';
 import './generate-fixtures.mjs';
 const target = process.argv[2] ?? 'wasm-gc';
 if (!['wasm-gc', 'wasm', 'js', 'native'].includes(target)) throw Error('Unsupported target');
@@ -37,4 +39,8 @@ for (const expected of expectedCases) {
 const passed = report.cases.filter(c => c.status === 'Pass').length;
 const notRun = report.cases.filter(c => c.status === 'NotRun').length;
 if (passed !== report.summary.passed || notRun !== report.summary.notRun || report.summary.failed !== 0 || passed + notRun !== report.cases.length) throw Error('Report summary mismatch');
+const manifest = JSON.parse(await readFile(new URL('tests/fixtures/upstream/manifest.json', root), 'utf8'));
+if (report.revision !== '9ef6efa01feabeb699857192ad8106fd7d990235' || manifest.files.length !== 24 || passed !== 294 || notRun !== 0 || report.summary.requiredSuites !== 22 || report.summary.suites !== 22) throw Error('Frozen full-acceptance gate changed');
+const proof = { sha: process.env.GITHUB_SHA ?? null, target, revision: report.revision, hashesVerified: manifest.files.length, ...report.summary, reportSha256: createHash('sha256').update(await readFile(path)).digest('hex') };
+if (process.env.GITHUB_ACTIONS === 'true') console.log(`::notice title=MoonUnleash conformance proof::${annotation(JSON.stringify(proof))}`);
 console.log(`${target}: ${passed} official cases passed, ${notRun} explicitly not run, ${report.summary.requiredSuites}/${report.summary.suites} suites required. Report: ${fileURLToPath(path)}`);

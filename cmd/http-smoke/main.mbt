@@ -1,5 +1,11 @@
 ///|
 async fn main {
+  @async.with_timeout(15000, run)
+}
+
+///|
+// Bound the complete sequence, not only individual HTTP requests.
+async fn run() -> Unit {
   let args = @env.args()
   guard args.length() == 2 else {
     fail(

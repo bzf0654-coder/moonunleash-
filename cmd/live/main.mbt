@@ -1,5 +1,11 @@
 ///|
 async fn main {
+  @async.with_timeout(30000, run)
+}
+
+///|
+// Bound the whole example, including registration and scoped shutdown.
+async fn run() -> Unit {
   let url = match @env.get_env_var("UNLEASH_URL") {
     Some(value) => value
     None =>

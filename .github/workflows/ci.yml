@@ -48,6 +48,7 @@ jobs:
       - name: Type check and test
         run: |
           node tools/ci-command.test.mjs
+          node tools/ci-proof.test.mjs
           node tools/ci-command.mjs ${{ matrix.target }}
       - name: Generate and validate per-case conformance report
         run: |

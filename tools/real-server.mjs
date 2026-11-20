@@ -2,7 +2,7 @@
 // SDK transport is MoonBit -> real Unleash; this process only observes copies.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
 import { createServer } from 'node:http';
 import { appendFile, mkdir, open, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -27,7 +27,7 @@ const environment = 'development';
 const flags = ['ci-parent', 'ci-child'];
 const featurePath = name => `/api/admin/projects/default/features/${name}/environments/${environment}`;
 let base, control, child, commandNumber = 0, httpNumber = 0, wireNumber = 0;
-let fault, stopped = false, completed = false, serverContainerId;
+let fault, stopped = false, completed = false, serverContainerId, toolchain, databaseVersion;
 const created = { network: false, db: false, server: false };
 const state = { ops: [], registrations: [], polls: [], metrics: [], oldETag: null, seen304: false, newETags: new Set() };
 const initialExpected = {
@@ -102,7 +102,8 @@ async function admin(path, { method = 'GET', body, expected = 200 } = {}) {
 }
 async function ready() {
   await until('Unleash health and authenticated Admin readiness', async () => {
-    await admin('/health'); await admin('/api/admin/projects/default'); return true;
+    assert.equal((await admin('/health')).health, 'GOOD');
+    await admin('/api/admin/projects/default/overview'); return true;
   }, 120000);
 }
 async function bootstrap() {
@@ -338,7 +339,7 @@ try {
       runId: process.env.GITHUB_RUN_ID, runAttempt: process.env.GITHUB_RUN_ATTEMPT }, expected: { beforeOutage: initialExpected, final: finalExpected } });
   await verifyProvenance(resolve(out, 'provenance'));
   await command('docker', ['version']);
-  await command('moon', ['version', '--all']);
+  toolchain = (await command('moon', ['version', '--all'])).text.trim();
   await command('docker', ['pull', '--platform', 'linux/amd64', image]);
   await command('docker', ['pull', '--platform', 'linux/amd64', 'postgres:15']);
   await command('docker', ['image', 'inspect', image]);
@@ -347,7 +348,10 @@ try {
   await command('docker', ['run', '-d', '--platform', 'linux/amd64', '--name', names.db, '--network', names.network,
     '--tmpfs', '/var/lib/postgresql/data', '-e', 'POSTGRES_USER=unleash', '-e', `POSTGRES_PASSWORD=${password}`,
     '-e', 'POSTGRES_DB=unleash', 'postgres:15']); created.db = true;
-  await until('PostgreSQL ready', async () => (await command('docker', ['exec', names.db, 'pg_isready', '-U', 'unleash', '-d', 'unleash'], { allowFailure: true })).code === 0);
+  await until('PostgreSQL ready', async () => (await command('docker', ['exec', names.db, 'pg_isready', '-h', '127.0.0.1', '-U', 'unleash', '-d', 'unleash'], { allowFailure: true })).code === 0);
+  databaseVersion = (await command('docker', ['exec', names.db, 'psql', '-U', 'unleash', '-d', 'unleash', '-tAc', 'select version();'])).text.trim();
+  assert.match(databaseVersion, /^PostgreSQL 15\./);
+  await json('database-version.json', { databaseVersion });
   await command('docker', ['run', '-d', '--platform', 'linux/amd64', '--name', names.server, '--network', names.network,
     '-p', '127.0.0.1::4242', '-e', `DATABASE_URL=postgres://unleash:${password}@${names.db}:5432/unleash`,
     '-e', 'DATABASE_SSL=false', '-e', 'HTTP_HOST=0.0.0.0', '-e', 'HTTP_PORT=4242', '-e', 'UNLEASH_URL=http://127.0.0.1:4242',
@@ -378,5 +382,17 @@ try {
     operations: state.ops, wire: { registrations: state.registrations.length, polls: state.polls.length,
       seen304: state.seen304, distinctETags: [...state.newETags], acceptedMetrics: state.metrics.length },
     caveats: ['No signature verification or reproducible-build proof', 'PostgreSQL postgres:15 and Moon stable are mutable; actual identities are archived'] });
+}
+if (passed) {
+  // Public check annotations expose verified current-run summaries, not private log links.
+  // The result hash binds this summary to the same bytes uploaded as an artifact.
+  const proof = { sha: process.env.GITHUB_SHA ?? null, target, status: 'PASS', sourceRevision: baseline.revision,
+    image, config: baseline.config, containerId: serverContainerId, toolchain, databaseVersion,
+    operations: state.ops, registrations: state.registrations.length, seen304: state.seen304,
+    distinctETags: [...state.newETags], acceptedMetrics: state.metrics.length,
+    persistedBeforeOutage: initialExpected, persistedFinal: finalExpected,
+    resultSha256: createHash('sha256').update(await readFile(resolve(out, 'result.json'))).digest('hex') };
+  await json('public-proof.json', proof);
+  if (process.env.GITHUB_ACTIONS === 'true') console.log(`::notice title=MoonUnleash real-server proof::${annotation(JSON.stringify(proof))}`);
 }
 console.log(`Real-server ${target}: ${passed ? 'PASS' : 'FAIL'}. Evidence: ${out}`);
