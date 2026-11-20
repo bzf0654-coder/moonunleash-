@@ -316,8 +316,9 @@ async function runMoon(controlURL) {
 async function snapshotContainer(name, filename) {
   // Select safe fields IN docker, so credentials never reach even an interrupted raw log.
   const format = '{"Id":{{json .Id}},"Image":{{json .Image}},"Name":{{json .Name}},"State":{{json .State}},"ports":{{json .NetworkSettings.Ports}}}';
-  const value = await command('docker', ['inspect', '--format', format, name], { allowFailure: true });
-  if (value.code !== 0) return;
+  // Before/recovery identity is a required gate, not best-effort diagnostics.
+  // Cleanup callers already catch errors separately after preserving the result.
+  const value = await command('docker', ['inspect', '--format', format, name]);
   const container = JSON.parse(value.text);
   if (name === names.server) {
     assert.equal(container.Image, baseline.config, 'executed container uses the verified image config');
